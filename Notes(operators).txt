@@ -1,0 +1,269 @@
+Operators
+
+An operator is something that takes on or more values (or expressions, in programming jargon) and yields another value.
+
+Operators can be grouped according to the number of values they take. Unary operators take only one value, for example ! (the logical not operator) or ++ (the increment operator). Binary operators take two values, such as the familiar arithmetical operators + (plus) and - (minus), and the majority of PHP operators fall into this category. Finally, there is a single ternary operator, ? :, which takes three values; this is usually referred to simply as "the ternary operator" (although it could perhaps more properly be called the conditional operator).
+
+Arithmetic Operators:
+
+Example     Name            Result
++$a         Identity
+-$a         Negation        Opposite of $a
+$a + %b     Addition        Sum of $a and $b
+$a - $b     Subraction      Difference of $a and $b
+$a * $b     Multiplication  Product of $a and $b
+$a / $b     Division        Quotient of $a and $b
+$a % $b     Modulo          Remainder of $a divided by $b
+$a ** $b    Exponentiation  Raising $a to the $b'th power
+
+The division operator ("/") returns a float value unless the two operands are integers (or strings that get converted to integers) and the numbers are evenly divisible, in which case an integer value will be returned. For integer division, see intdiv().
+
+Assignment Operators:
+
+The basic assignment operator is "=". Your first inclination might be to think of this as "equal to". Don't. It really means that the left operand gets set to the value of the expression on the right (that is, "gets set to"). 
+
+Sample codes:
+
+//First example
+<?php
+
+$a = ($b = 4) + 5; // $a is equal to 9 now, and $b has been set to 4.
+
+?>
+
+//Second example
+<?php
+
+$a = 3;
+$a += 5; // sets $a to 8, as if we had said: $a = $a + 5;
+$b = "Hello ";
+$b .= "There!"; // sets $b to "Hello There!", just like $b = $b . "There!";
+
+?>
+
+Note that the assignment copies the original variable to the new one (assignment by value), so changes to one will not affect the other. This may also have relevance if you need to copy something like a large array inside a tight loop.
+
+Assignment by Reference:
+
+    Assignment by reference is also supported, using the "$var = &$othervar;" syntax. Assignment by reference means that both variables end up pointing at the same data, and nothing is copied anywhere.
+
+Sample codes:
+
+//first example
+<?php
+$a = 3;
+$b = &$a; // $b is a reference to $a
+
+print "$a\n"; // prints 3
+print "$b\n"; // prints 3
+
+$a = 4; // change $a
+
+print "$a\n"; // prints 4
+print "$b\n"; // prints 4 as well, since $b is a reference to $a, which has
+              // been changed
+?>
+
+Bitwise Operators
+
+Bitwise operators allow evaluation and manipulation of specific bits within an integer.
+
+Example     Name        Result
+$a & $b     And         $a and $b are set
+$a | $b     Or          $a or $b  are set
+$a ^ $b     Xor         $a or $b are not set
+~ $a        Not         $a not set
+$a << $b    Shift left  shift bits of $a and $b to the left
+$a >> $b    Shift right shift bits of $a and $b to the right
+
+Bit shifting in PHP is arithmetic. Bits shifted off either end are discarded. Left shifts have zeros shifted in on the right while the sign bit is shifted out on the left, meaning the sign of an operand is not preserved. Right shifts have copies of the sign bit shifted in on the left, meaning the sign of an operand is preserved.
+
+Comparison Operators:
+
+Comparison operators, as their name implies, allow you to compare two values. You may also be interested in viewing the type comparison tables, as they show examples of various type related comparisons.
+
+Example     Name            Result
+$a == $b	Equal	        TRUE if $a is equal to $b 
+$a === $b	Identical	    TRUE if $a is equal to $b, and                               they are of the same type.
+$a != $b	Not equal	    TRUE if $a is not equal to $b                               after type juggling.
+$a <> $b	Not equal	    TRUE if $a is not equal to $b                               after type juggling.
+$a !== $b	Not identical	TRUE if $a is not equal to $b,                               or they are not of the same                                 type.
+$a < $b	    Less than	    TRUE if $a is strictly less than                             $b.
+$a > $b	    Greater than	TRUE if $a is strictly greater                               than $b.
+$a <= $b	Less than or equal to	TRUE if $a is less than                                      or equal to $b.
+$a >= $b	Greater than or equal to   TRUE if $a is greater                                        than or equal to $b.
+$a <=> $b	Spaceship	     An integer less than, equal to,                              or greater than zero when $a is                              respectively less than, equal                                to, or greater than $b. 
+If you compare a number with a string or the comparison involves numerical strings, then each string is converted to a number and the comparison performed numerically. These rules also apply to the switch statement. The type conversion does not take place when the comparison is === or !== as this involves comparing the type as well as the value.
+
+Error Control Operators:
+
+PHP supports one error control operator: the at sign (@). When prepended to an expression in PHP, any error messages that might be generated by that expression will be ignored.
+
+If you have set a custom error handler function with set_error_handler() then it will still get called, but this custom error handler can (and should) call error_reporting() which will return 0 when the call that triggered the error was preceded by an @.
+
+If the track_errors feature is enabled, any error message generated by the expression will be saved in the variable $php_errormsg. This variable will be overwritten on each error, so check early if you want to use it.  
+
+Sample code
+
+//First example
+<?php
+/* Intentional file error */
+$my_file = @file ('non_existent_file') or
+    die ("Failed opening file: error was '$php_errormsg'");
+
+// this works for any expression, not just functions:
+$value = @$cache[$key];
+// will not issue a notice if the index $key doesn't exist.
+
+?>
+
+Note: The @-operator works only on expressions. A simple rule of thumb is: if you can take the value of something, you can prepend the @ operator to it. For instance, you can prepend it to variables, function and include calls, constants, and so forth. You cannot prepend it to function or class definitions, or conditional structures such as if and foreach, and so forth.
+
+Execution Operators:
+
+PHP supports one execution operator: backticks (``). Note that these are not single-quotes! PHP will attempt to execute the contents of the backticks as a shell command; the output will be returned (i.e., it won't simply be dumped to output; it can be assigned to a variable). Use of the backtick operator is identical to shell_exec().
+
+Sample Code:
+
+//First example
+
+<?php
+$output = `ls -al`;
+echo "<pre>$output</pre>";
+?>
+
+Incrementing/Decrementing Operators:
+
+PHP supports C-style pre- and post-increment and decrement operators.
+
+Note: The increment/decrement operators only affect numbers and strings. Arrays, objects and resources are not affected. Decrementing NULL values has no effect too, but incrementing them results in 1.
+
+Example	Name	       Effect
+++$a	Pre-increment	Increments $a by one, then returns                           $a.
+$a++	Post-increment	Returns $a, then increments $a by                           one.
+--$a	Pre-decrement	Decrements $a by one, then returns                           $a.
+$a--	Post-decrement	Returns $a, then decrements $a by                           one.
+
+Sample code:
+//First example
+
+<?php
+echo "<h3>Postincrement</h3>";
+$a = 5;
+echo "Should be 5: " . $a++ . "<br />\n";
+echo "Should be 6: " . $a . "<br />\n";
+
+echo "<h3>Preincrement</h3>";
+$a = 5;
+echo "Should be 6: " . ++$a . "<br />\n";
+echo "Should be 6: " . $a . "<br />\n";
+
+echo "<h3>Postdecrement</h3>";
+$a = 5;
+echo "Should be 5: " . $a-- . "<br />\n";
+echo "Should be 4: " . $a . "<br />\n";
+
+echo "<h3>Predecrement</h3>";
+$a = 5;
+echo "Should be 4: " . --$a . "<br />\n";
+echo "Should be 4: " . $a . "<br />\n";
+?>
+
+PHP follows Perl's convention when dealing with arithmetic operations on character variables and not C's. For example, in PHP and Perl $a = 'Z'; $a++; turns $a into 'AA', while in C a = 'Z'; a++; turns a into '[' (ASCII value of 'Z' is 90, ASCII value of '[' is 91). Note that character variables can be incremented but not decremented and even so only plain ASCII alphabets and digits (a-z, A-Z and 0-9) are supported. Incrementing/decrementing other character variables has no effect, the original string is unchanged.
+
+Logical Operators :
+Example	    Name	Result
+$a and $b	And	    TRUE if both $a and $b are TRUE.
+$a or $b	Or	    TRUE if either $a or $b is TRUE.
+$a xor $b	Xor	    TRUE if either $a or $b is TRUE, but not                     both.
+! $a	    Not	    TRUE if $a is not TRUE.
+$a && $b	And	    TRUE if both $a and $b are TRUE.
+$a || $b	Or	    TRUE if either $a or $b is TRUE.
+
+String Operators:
+
+There are two string operators. The first is the concatenation operator ('.'), which returns the concatenation of its right and left arguments. The second is the concatenating assignment operator ('.='), which appends the argument on the right side to the argument on the left side. Please read Assignment Operators for more information.
+
+Sample Code
+//First Example
+<?php
+$a = "Hello ";
+$b = $a . "World!"; // now $b contains "Hello World!"
+
+$a = "Hello ";
+$a .= "World!";     // now $a contains "Hello World!"
+?>
+
+Array operators:
+
+Example	    Name	    Result
+$a + $b	    Union	    Union of $a and $b.
+$a == $b	Equality	TRUE if $a and $b have the same                             key/value pairs.
+$a === $b	Identity	TRUE if $a and $b have the same                             key/value pairs in the same order                           and of the same types.
+$a != $b	Inequality	TRUE if $a is not equal to $b.
+$a <> $b	Inequality	TRUE if $a is not equal to $b.
+$a !== $b	Non-identity TRUE if $a is not identical to $b.
+
+The + operator returns the right-hand array appended to the left-hand array; for keys that exist in both arrays, the elements from the left-hand array will be used, and the matching elements from the right-hand array will be ignored.
+
+Sample Code
+
+//First example
+<?php
+$a = array("a" => "apple", "b" => "banana");
+$b = array("a" => "pear", "b" => "strawberry", "c" => "cherry");
+
+$c = $a + $b; // Union of $a and $b
+echo "Union of \$a and \$b: \n";
+var_dump($c);
+
+$c = $b + $a; // Union of $b and $a
+echo "Union of \$b and \$a: \n";
+var_dump($c);
+
+$a += $b; // Union of $a += $b is $a and $b
+echo "Union of \$a += \$b: \n";
+var_dump($a);
+?>
+
+Type Operators
+
+instanceof is used to determine whether a PHP variable is an instantiated object of a certain class:
+
+Sample Code
+
+//First example
+
+<?php
+class MyClass
+{
+}
+
+class NotMyClass
+{
+}
+$a = new MyClass;
+
+var_dump($a instanceof MyClass);
+var_dump($a instanceof NotMyClass);
+?>
+
+//Second example with inherited class
+
+<?php
+class ParentClass
+{
+}
+
+class MyClass extends ParentClass
+{
+}
+
+$a = new MyClass;
+
+var_dump($a instanceof MyClass);
+var_dump($a instanceof ParentClass);
+?>
+
+
+
