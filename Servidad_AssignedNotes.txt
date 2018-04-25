@@ -1,0 +1,335 @@
+			PREDEFINED EXCEPTIONS
+
+Exception - it  is the base class for all Exceptions in PHP 5 and also the base class
+	  for all user exceptions in PHP 7.
+Sample Code: 
+Exception {
+/* Properties */
+protected string $message ;
+protected int $code ;
+protected string $file ;
+protected int $line ;
+/* Methods */
+public __construct ([ string $message = "" [, int $code = 0 [, Throwable $previous = NULL ]]] )
+final public string getMessage ( void )
+final public Throwable getPrevious ( void )
+final public mixed getCode ( void )
+final public string getFile ( void )
+final public int getLine ( void )
+final public array getTrace ( void )
+final public string getTraceAsString ( void )
+public string __toString ( void )
+final private void __clone ( void )
+}
+Properties:
+message
+The exception message
+
+code
+The exception code
+
+file
+The filename where the exception was created
+
+line
+The line where the exception was created
+
+
+Error Exception 
+Sample Code:
+ErrorException extends Exception {
+/* Properties */
+protected int $severity ;
+/* Inherited properties */
+protected string $message ;
+protected int $code ;
+protected string $file ;
+protected int $line ;
+/* Methods */
+public __construct ([ string $message = "" [, int $code = 0 [, int $severity = E_ERROR [, string $filename = __FILE__ [, int $lineno = __LINE__ [, Exception $previous = NULL ]]]]]] )
+final public int getSeverity ( void )
+/* Inherited methods */
+final public string Exception::getMessage ( void )
+final public Throwable Exception::getPrevious ( void )
+final public mixed Exception::getCode ( void )
+final public string Exception::getFile ( void )
+final public int Exception::getLine ( void )
+final public array Exception::getTrace ( void )
+final public string Exception::getTraceAsString ( void )
+public string Exception::__toString ( void )
+final private void Exception::__clone ( void )
+}
+Properties:
+severity
+The severity of the exception
+
+ArgumentCountError - it is thrown when too few arguments are passed to a user-defined function
+		or method.
+Sample Code:
+ArgumentCountError extends TypeError {
+/* Inherited methods */
+final public string Error::getMessage ( void )
+final public Throwable Error::getPrevious ( void )
+final public mixed Error::getCode ( void )
+final public string Error::getFile ( void )
+final public int Error::getLine ( void )
+final public array Error::getTrace ( void )
+final public string Error::getTraceAsString ( void )
+public string Error::__toString ( void )
+final private void Error::__clone ( void )
+}
+
+ArithmeticError - it is thrown when an error occurs while a mathematical operations are being performed
+Sample Code:
+ArithmeticError extends Error {
+/* Inherited methods */
+final public string Error::getMessage ( void )
+final public Throwable Error::getPrevious ( void )
+final public mixed Error::getCode ( void )
+final public string Error::getFile ( void )
+final public int Error::getLine ( void )
+final public array Error::getTrace ( void )
+final public string Error::getTraceAsString ( void )
+public string Error::__toString ( void )
+final private void Error::__clone ( void )
+}
+
+AssertionError - it is thrown when an assertion made via asser() method fails.
+Sample Code:
+AssertionError extends Error {
+/* Inherited methods */
+final public string Error::getMessage ( void )
+final public Throwable Error::getPrevious ( void )
+final public mixed Error::getCode ( void )
+final public string Error::getFile ( void )
+final public int Error::getLine ( void )
+final public array Error::getTrace ( void )
+final public string Error::getTraceAsString ( void )
+public string Error::__toString ( void )
+final private void Error::__clone ( void )
+}
+
+DivisionByZeroError - it is thrown when you try to divide a number by zero,
+Sample Code:
+DivisionByZeroError extends ArithmeticError {
+/* Inherited methods */
+final public string Error::getMessage ( void )
+final public Throwable Error::getPrevious ( void )
+final public mixed Error::getCode ( void )
+final public string Error::getFile ( void )
+final public int Error::getLine ( void )
+final public array Error::getTrace ( void )
+final public string Error::getTraceAsString ( void )
+public string Error::__toString ( void )
+final private void Error::__clone ( void )
+}
+
+ParseError - it is thrown when an error occurs while Parsing PHP Code, such as when eval() is called.
+Sample Code: 
+ParseError extends Error {
+/* Inherited methods */
+final public string Error::getMessage ( void )
+final public Throwable Error::getPrevious ( void )
+final public mixed Error::getCode ( void )
+final public string Error::getFile ( void )
+final public int Error::getLine ( void )
+final public array Error::getTrace ( void )
+final public string Error::getTraceAsString ( void )
+public string Error::__toString ( void )
+final private void Error::__clone ( void )
+}
+
+TypeError - there are 3 scenarios whare a TypeError may be thrown. First is when the 
+	argument type being passed to a function does not match its corresponding 
+	declared parameter type. The second is where a value being returned from a 
+	function does not match the declared function return type. The third is where 
+	an invalid number of arguments are passed to a built-in PHP function.
+Sample Code:
+TypeError extends Error {
+/* Inherited methods */
+final public string Error::getMessage ( void )
+final public Throwable Error::getPrevious ( void )
+final public mixed Error::getCode ( void )
+final public string Error::getFile ( void )
+final public int Error::getLine ( void )
+final public array Error::getTrace ( void )
+final public string Error::getTraceAsString ( void )
+public string Error::__toString ( void )
+final private void Error::__clone ( void )
+}
+
+			PREDEFINED INTERFACES AND CLASSES
+Traversable is an interface to detect if a class is traversable using foreach.
+Sample Code:
+Traversable {
+}
+
+Iterator is an Interface for external iterators or objects that can be iterated themselves internally.
+Sample Code:
+Iterator extends Traversable {
+/* Methods */
+abstract public mixed current ( void )
+abstract public scalar key ( void )
+abstract public void next ( void )
+abstract public void rewind ( void )
+abstract public bool valid ( void )
+}
+
+IteratorAggregate is an Interface to create an external Iterator.
+Sample Code:
+IteratorAggregate extends Traversable {
+/* Methods */
+abstract public Traversable getIterator ( void )
+}
+
+Throwable is the base interface for any object that can be thrown via a throw statement in PHP 7, including Error and Exception.
+Sample Code:
+Throwable {
+/* Methods */
+abstract public string getMessage ( void )
+abstract public int getCode ( void )
+abstract public string getFile ( void )
+abstract public int getLine ( void )
+abstract public array getTrace ( void )
+abstract public string getTraceAsString ( void )
+abstract public Throwable getPrevious ( void )
+abstract public string __toString ( void )
+}
+
+ArrayAccess is an Interface to provide accessing objects as arrays.
+Sample code:
+ArrayAccess {
+/* Methods */
+abstract public bool offsetExists ( mixed $offset )
+abstract public mixed offsetGet ( mixed $offset )
+abstract public void offsetSet ( mixed $offset , mixed $value )
+abstract public void offsetUnset ( mixed $offset )
+}
+
+Serializable is an Interface for customized serializing.
+Sample Code:
+Serializable {
+/* Methods */
+abstract public string serialize ( void )
+abstract public void unserialize ( string $serialized )
+}
+
+Closure is a Class used to represent anonymous functions.
+Sample Code:
+Closure {
+/* Methods */
+private __construct ( void )
+public static Closure bind ( Closure $closure , object $newthis [, mixed $newscope = "static" ] )
+public Closure bindTo ( object $newthis [, mixed $newscope = "static" ] )
+public mixed call ( object $newthis [, mixed $... ] )
+public static Closure fromCallable ( callable $callable )
+}
+
+Generator
+Sample Code:
+Generator implements Iterator {
+/* Methods */
+public mixed current ( void )
+public mixed getReturn ( void )
+public mixed key ( void )
+public void next ( void )
+public void rewind ( void )
+public mixed send ( mixed $value )
+public mixed throw ( Throwable $exception )
+public bool valid ( void )
+public void __wakeup ( void )
+}
+
+			CONTEXT OPTIONS ANF PARAMETERS
+Socket context options are available for all wrappers that work over sockets, like tcp, 
+http and ftp.
+Sample Code:
+<?php
+// connect to the internet using the '192.168.0.100' IP
+$opts = array(
+    'socket' => array(
+        'bindto' => '192.168.0.100:0',
+    ),
+);
+?>
+
+HTTP context options are Context options for http:// and https:// transports.
+Sample Code:
+<?php
+
+$url = "http://www.example.org/header.php";
+
+$opts = array('http' =>
+    array(
+        'method' => 'GET',
+        'max_redirects' => '0',
+        'ignore_errors' => '1'
+    )
+);
+?>
+
+FTP context options are Context options for ftp:// and ftps:// transports.
+
+SSL context options are Context options for ssl:// and tls:// transports.
+
+CURL context options are available when the CURL extension was compiled using the --with-curlwrappers configure option.
+
+Phar context options are Context options for phar:// wrapper.
+
+MongoDB context options are Context options for mongodb:// transports.
+
+Context parameters are parameters that can be set on a context using the stream_context_set_params() function.
+
+Zip context options are available for zip wrappers.
+
+			SUPPORTED PROTOCOLS AND WRAPPERS
+file:// - Filesystem is the default wrapper used with PHP and represents the local filesystem. When a relative path is specified (a path which does not begin with /, \, \\, or a Windows drive letter) the path provided will be applied against the current working directory. 
+
+http:// - Allows read-only access to files/resources via HTTP 1.0, using the HTTP GET method. A Host: header is sent with the request to handle name-based virtual hosts. If you have configured a user_agent string using your php.ini file or the stream context, it will also be included in the request.
+
+ftp:// - Allows read access to existing files and creation of new files via FTP. If the server does not support passive mode ftp, the connection will fail.
+
+php:// - php://stdin, php://stdout and php://stderr allow direct access to the 
+corresponding input or output stream of the PHP process. The stream references a 
+duplicate file descriptor, so if you open php://stdin and later close it, you close 
+only your copy of the descriptor-the actual stream referenced by STDIN is unaffected. 
+
+zlib:// - works like gzopen(), except that the stream can be used with fread() and the other filesystem functions. 
+
+data://
+Sample Code:
+<?php
+// prints "I love PHP"
+echo file_get_contents('data://text/plain;base64,SSBsb3ZlIFBIUAo=');
+?>
+
+glob:// — Find pathnames matching pattern
+Sample Code:
+<?php
+// Loop over all *.php files in ext/spl/examples/ directory
+// and print the filename and its size
+$it = new DirectoryIterator("glob://ext/spl/examples/*.php");
+foreach($it as $f) {
+    printf("%s: %.1FK\n", $f->getFilename(), $f->getSize()/1024);
+}
+?>
+
+phar:// - Also known as PHP Archive.
+
+ssh2://
+Sample  Code:
+<?php
+$session = ssh2_connect('example.com', 22);
+ssh2_auth_pubkey_file($session, 'username', '/home/username/.ssh/id_rsa.pub',
+                                            '/home/username/.ssh/id_rsa', 'secret');
+$stream = fopen("ssh2.tunnel://$session/remote.example.com:1234", 'r');
+?>
+
+rar:// - The wrapper takes the url encoded path to the RAR archive (relative or absolute),
+ an optional asterik (*), an optional number sign (#) and an optional url encoded entry 
+name, as stored in the archive.
+
+ogg:// - Files opened for reading via the ogg:// wrapper are treated as compressed audio 
+encoded using the OGG/Vorbis codec.
+
+expect:// - Streams opened via the expect:// wrapper provide access to process'es stdio, stdout and stderr via PTY.
