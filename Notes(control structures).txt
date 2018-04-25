@@ -1,0 +1,440 @@
+Control Structures:
+
+IF statement:
+
+	The if construct is one of the most important features of many languages, PHP included. It allows for conditional execution of code fragments. PHP features an if structure that is similar to that of C.
+
+Basic structure:
+	if (expr)
+  		statement
+
+
+As described in the section about expressions, expression is evaluated to its Boolean value. If expression evaluates to TRUE, PHP will execute statement, and if it evaluates to FALSE - it'll ignore it. More information about what values evaluate to FALSE can be found in the 'Converting to boolean' section.
+
+Sample Code:
+
+//First example
+
+<?php
+if ($a > $b)
+  echo "a is bigger than b";
+?>
+
+//Second example
+	
+<?php
+if ($a > $b) {
+  echo "a is bigger than b";
+  $b = $a;
+}
+?>
+
+ELSE statment:
+	Often you'd want to execute a statement if a certain condition is met, and a different statement if the condition is not met. This is what else is for. else extends an if statement to execute a statement in case the expression in the if statement evaluates to FALSE. For example, the following code would display a is greater than b if $a is greater than $b, and a is NOT greater than b otherwise.
+
+Basic structure:
+	if(expr){
+	   statement
+}else{
+	statement
+}
+
+Sample code:
+//First example
+
+<?php
+if ($a > $b) {
+  echo "a is greater than b";
+} else {
+  echo "a is NOT greater than b";
+}
+?>
+
+ElseIf statement:
+	elseif, as its name suggests, is a combination of if and else. Like else, it extends an if statement to execute a different statement in case the original if expression evaluates to FALSE. However, unlike else, it will execute that alternative expression only if the elseif conditional expression evaluates to TRUE. For example, the following code would display a is bigger than b, a equal to b or a is smaller than b.
+
+Basic structure:
+	if(expr){
+		statement
+}elseif(expr){
+	statement
+}else{
+	statement
+}
+
+Sample code:
+//First example
+
+<?php
+if ($a > $b) {
+    echo "a is bigger than b";
+} elseif ($a == $b) {
+    echo "a is equal to b";
+} else {
+    echo "a is smaller than b";
+}
+?>
+
+Alternative syntax for control structures:
+	PHP offers an alternative syntax for some of its control structures; namely, if, while, for, foreach, and switch. In each case, the basic form of the alternate syntax is to change the opening brace to a colon (:) and the closing brace to endif;, endwhile;, endfor;, endforeach;, or endswitch;, respectively.
+
+sample code:
+
+<?php if ($a == 5): ?>
+A is equal to 5
+<?php endif; ?>	
+
+While loop:
+	while loops are the simplest type of loop in PHP. They behave just like their C counterparts.
+
+Basic structure:
+	while(expr){
+	statement
+}
+
+	The meaning of a while statement is simple. It tells PHP to execute the nested statement(s) repeatedly, as long as the while expression evaluates to TRUE. The value of the expression is checked each time at the beginning of the loop, so even if this value changes during the execution of the nested statement(s), execution will not stop until the end of the iteration (each time PHP runs the statements in the loop is one iteration). Sometimes, if the while expression evaluates to FALSE from the very beginning, the nested statement(s) won't even be run once.
+
+Sample code:
+
+<?php
+/* example 1 */
+
+$i = 1;
+while ($i <= 10) {
+    echo $i++;  /* the printed value would be
+                   $i before the increment
+                   (post-increment) */
+}
+
+/* example 2 */
+
+$i = 1;
+while ($i <= 10):
+    echo $i;
+    $i++;
+endwhile;
+?>
+
+Do-while loop:
+	do-while loops are very similar to while loops, except the truth expression is checked at the end of each iteration instead of in the beginning. The main difference from regular while loops is that the first iteration of a do-while loop is guaranteed to run (the truth expression is only checked at the end of the iteration), whereas it may not necessarily run with a regular while loop (the truth expression is checked at the beginning of each iteration, if it evaluates to FALSE right from the beginning, the loop execution would end immediately).
+
+Basic structure:
+
+do{
+statement
+}while(expr);
+
+Sample code:
+do {
+    if ($i < 5) {
+        echo "i is not big enough";
+        break;
+    }
+    $i *= $factor;
+    if ($i < $minimum_limit) {
+        break;
+    }
+   echo "i is ok";
+
+    /* process i */
+
+} while (0);
+?>
+
+For loop:
+	for loops are the most complex loops in PHP. They behave like their C counterparts.
+
+Basic strucure:
+
+for(expr1; expr2; expr3){
+statement
+}
+
+The first expression (expr1) is evaluated (executed) once unconditionally at the beginning of the loop.
+
+In the beginning of each iteration, expr2 is evaluated. If it evaluates to TRUE, the loop continues and the nested statement(s) are executed. If it evaluates to FALSE, the execution of the loop ends.
+
+At the end of each iteration, expr3 is evaluated (executed).
+
+Each of the expressions can be empty or contain multiple expressions separated by commas. In expr2, all expressions separated by a comma are evaluated but the result is taken from the last part. expr2 being empty means the loop should be run indefinitely (PHP implicitly considers it as TRUE, like C). This may not be as useless as you might think, since often you'd want to end the loop using a conditional break statement instead of using the for truth expression.
+
+Sample code:
+
+<?php
+/* example 1 */
+
+for ($i = 1; $i <= 10; $i++) {
+    echo $i;
+}
+
+/* example 2 */
+
+for ($i = 1; ; $i++) {
+    if ($i > 10) {
+        break;
+    }
+    echo $i;
+}
+
+/* example 3 */
+
+$i = 1;
+for (; ; ) {
+    if ($i > 10) {
+        break;
+    }
+    echo $i;
+    $i++;
+}
+
+/* example 4 */
+
+for ($i = 1, $j = 0; $i <= 10; $j += $i, print $i, $i++);
+?>
+
+Foreach statement:
+	The foreach construct provides an easy way to iterate over arrays. foreach works only on arrays and objects, and will issue an error when you try to use it on a variable with a different data type or an uninitialized variable.
+
+2 Basic syntax:
+
+//syntax 1
+ foreach (array_expression as $value)
+    statement
+
+//syntax 2
+foreach (array_expression as $key => $value)
+    statement
+
+	The first form loops over the array given by array_expression. On each iteration, the value of the current element is assigned to $value and the internal array pointer is advanced by one (so on the next iteration, you'll be looking at the next element).
+
+The second form will additionally assign the current element's key to the $key variable on each iteration.
+
+Break statement:
+	break ends execution of the current for, foreach, while, do-while or switch structure.
+
+	break accepts an optional numeric argument which tells it how many nested enclosing structures are to be broken out of. The default value is 1, only the immediate enclosing structure is broken out of.
+
+Sample code:
+
+<?php
+$arr = array('one', 'two', 'three', 'four', 'stop', 'five');
+while (list(, $val) = each($arr)) {
+    if ($val == 'stop') {
+        break;    /* You could also write 'break 1;' here. */
+    }
+    echo "$val<br />\n";
+}
+
+/* Using the optional argument. */
+
+$i = 0;
+while (++$i) {
+    switch ($i) {
+    case 5:
+        echo "At 5<br />\n";
+        break 1;  /* Exit only the switch. */
+    case 10:
+        echo "At 10; quitting<br />\n";
+        break 2;  /* Exit the switch and the while. */
+    default:
+        break;
+    }
+}
+?>
+
+Continue statement:
+
+	continue is used within looping structures to skip the rest of the current loop iteration and continue execution at the condition evaluation and then the beginning of the next iteration.
+
+	continue accepts an optional numeric argument which tells it how many levels of enclosing loops it should skip to the end of. The default value is 1, thus skipping to the end of the current loop.
+
+Sample code:
+
+<?php
+while (list($key, $value) = each($arr)) {
+    if (!($key % 2)) { // skip even members
+        continue;
+    }
+    do_something_odd($value);
+}
+
+$i = 0;
+while ($i++ < 5) {
+    echo "Outer<br />\n";
+    while (1) {
+        echo "Middle<br />\n";
+        while (1) {
+            echo "Inner<br />\n";
+            continue 3;
+        }
+        echo "This never gets output.<br />\n";
+    }
+    echo "Neither does this.<br />\n";
+}
+?>
+
+Switch statement:
+	The switch statement is similar to a series of IF statements on the same expression. In many occasions, you may want to compare the same variable (or expression) with many different values, and execute a different piece of code depending on which value it equals to. This is exactly what the switch statement is for.
+
+Basic structure:
+switch(expr){
+case 0:
+	statement
+	break;
+case 1:
+	statement
+	break;
+}
+
+Sample code:
+//example 1
+<?php
+
+switch ($i) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+}
+?>
+
+//example2 allows usage of strings
+<?php
+switch ($i) {
+    case "apple":
+        echo "i is apple";
+        break;
+    case "bar":
+        echo "i is bar";
+        break;
+    case "cake":
+        echo "i is cake";
+        break;
+}
+?>
+	It is important to understand how the switch statement is executed in order to avoid mistakes. The switch statement executes line by line (actually, statement by statement). In the beginning, no code is executed. Only when a case statement is found whose expression evaluates to a value that matches the value of the switch expression does PHP begin to execute the statements. PHP continues to execute the statements until the end of the switch block, or the first time it sees a break statement. If you don't write a break statement at the end of a case's statement list, PHP will go on executing the statements of the following case.
+
+Declare statement:
+	The declare construct is used to set execution directives for a block of code. The syntax of declare is similar to the syntax of other flow control constructs:
+
+Basic Structure:
+declare(directive)
+	statement
+
+	The directive section allows the behavior of the declare block to be set. Currently only three directives are recognized: the ticks directive (See below for more information on the ticks directive), the encoding directive (See below for more information on the encoding directive) and the strict_types directive (See for more information the strict section on the Function arguments page)
+
+Sample code:
+<?php
+// This is valid:
+declare(ticks=1);
+
+// This is invalid:
+const TICK_VALUE = 1;
+declare(ticks=TICK_VALUE);
+?>
+	The statement part of the declare block will be executed - how it is executed and what side effects occur during execution may depend on the directive set in the directive block.
+
+The declare construct can also be used in the global scope, affecting all code following it (however if the file with declare was included then it does not affect the parent file).
+
+Return statement:
+
+	return returns program control to the calling module. Execution resumes at the expression following the called module's invocation.
+
+If called from within a function, the return statement immediately ends execution of the current function, and returns its argument as the value of the function call. return also ends the execution of an eval() statement or script file.
+
+If called from the global scope, then execution of the current script file is ended. If the current script file was included or required, then control is passed back to the calling file. Furthermore, if the current script file was included, then the value given to return will be returned as the value of the include call. If return is called from within the main script file, then script execution ends. If the current script file was named by the auto_prepend_file or auto_append_file configuration options in php.ini, then that script file's execution is ended.
+
+Sample code:
+
+b.php
+<?php
+echo "b";
+return;
+?>
+
+Require statement:
+	require is identical to include except upon failure it will also produce a fatal E_COMPILE_ERROR level error. In other words, it will halt the script whereas include only emits a warning (E_WARNING) which allows the script to continue.
+
+Sample code:
+<?php
+require 'somefile.php';
+?>
+
+Include statement:
+	The include statement includes and evaluates the specified file.
+
+	Files are included based on the file path given or, if none is given, the include_path specified. If the file isn't found in the include_path, include will finally check in the calling script's own directory and the current working directory before failing. The include construct will emit a warning if it cannot find a file; this is different behavior from require, which will emit a fatal error.
+
+	If a path is defined — whether absolute (starting with a drive letter or \ on Windows, or / on Unix/Linux systems) or relative to the current directory (starting with . or ..) — the include_path will be ignored altogether. For example, if a filename begins with ../, the parser will look in the parent directory to find the requested file.
+
+Sample Code:
+
+vars.php
+<?php
+
+$color = 'green';
+$fruit = 'apple';
+
+?>
+
+test.php
+<?php
+
+echo "A $color $fruit"; // A
+
+include 'vars.php';
+
+echo "A $color $fruit"; // A green apple
+
+?>
+
+If the include occurs inside a function within the calling file, then all of the code contained in the called file will behave as though it had been defined inside that function. So, it will follow the variable scope of that function. An exception to this rule are magic constants which are evaluated by the parser before the include occurs.
+
+Require_once statement:
+	
+	The require_once statement is identical to require except PHP will check if the file has already been included, and if so, not include (require) it again.
+
+Include_once statement:
+	
+	The include_once statement includes and evaluates the specified file during the execution of the script. This is a behavior similar to the include statement, with the only difference being that if the code from a file has already been included, it will not be included again, and include_once returns TRUE. As the name suggests, the file will be included just once.
+
+	include_once may be used in cases where the same file might be included and evaluated more than once during a particular execution of a script, so in this case it may help avoid problems such as function redefinitions, variable value reassignments, etc.
+
+Sample Code:
+	
+<?php
+include_once "a.php"; // this will include a.php
+include_once "A.php"; // this will include a.php again! (PHP 4 only)
+?>
+
+goTo statement:
+	The goto operator can be used to jump to another section in the program. The target point is specified by a label followed by a colon, and the instruction is given as goto followed by the desired target label. This is not a full unrestricted goto. The target label must be within the same file and context, meaning that you cannot jump out of a function or method, nor can you jump into one. You also cannot jump into any sort of loop or switch structure. You may jump out of these, and a common use is to use a goto in place of a multi-level break.
+
+Sampe Code:
+<?php
+goto a;
+echo 'Foo';
+ 
+a:
+echo 'Bar';
+?>
+	
+	
+	
+		
+
+
+	
+
+
+
+	
+	
+
+	
+
