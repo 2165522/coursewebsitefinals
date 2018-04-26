@@ -89,6 +89,8 @@ Comments
     echo 'One Final Test'; # This is a one-line shell-style comment
 ?>
 
+	-The “one-l ine” comment style remarks only PHP codes either the current block or the end of the line, whichever comes first, meaning HTML code with // … ?> or # … ?> before them will be printed; having ?> on the other hand breaks out PHP mode returning it to HTML mode while // or # doesn’t affect it. The asp_tags configuration directive acts the same with // %> and # %> when being enabled but the </script> tag cannot break out PHP mode in a one-line comment.
+
 =========================================================================
 
 TYPES
@@ -119,12 +121,124 @@ Four Scalar types:
 			- Every other value is considered TRUE (including any resource and NAN).
 	*-1 is considered TRUE, like any other non-zero (whether negative or positive) number!	
 
-	- integer
-	- float (floating-point number, aka double)
-	- string
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-Four compound types:
+	- integer
+		- Integers can be specified in decimal (base 10), hexadecimal (base 16), octal (base 8) or binary (base 2) notation, optionally preceded by a sign (- or +).
+		- To use octal notation, precede the number with a 0 (zero). To use hexadecimal notation precede the number with 0x. To use binary notation precede the number with 0b.
 	
+	<?php
+	$a = 1234; // decimal number
+	$a = -123; // a negative number
+	$a = 0123; // octal number (equivalent to 83 decimal)
+	$a = 0x1A; // hexadecimal number (equivalent to 26 decimal)
+	$a = 0b11111111; // binary number (equivalent to 255 decimal)
+	?>
+
+Integer Overflow
+
+	- If PHP encounters a number beyond the bounds of the integer type, it will be interpreted as a float instead. Also, an operation which results in a number beyond the bounds of the integer type will return a float instead.
+
+Integer overflow on a 32-bit system
+
+	<?php
+	$large_number = 2147483647;
+	var_dump($large_number);                     // int(2147483647)
+
+	$large_number = 2147483648;
+	var_dump($large_number);                     // float(2147483648)
+
+	$million = 1000000;
+	$large_number =  50000 * $million;
+	var_dump($large_number);                     // float(50000000000)
+	?>	
+
+Integer overflow on a 64-bit system
+
+	<?php
+	$large_number = 9223372036854775807;
+	var_dump($large_number);                     // int(9223372036854775807)
+
+	$large_number = 9223372036854775808;
+	var_dump($large_number);                     // float(9.2233720368548E+18)
+
+	$million = 1000000;
+	$large_number =  50000000000000 * $million;
+	var_dump($large_number);                     // float(5.0E+19)
+	?>
+
+		- There is no division operator in PHP the 1/2 produce the float 0.5. The round() function provides better control over rounding.
+
+Converting to Integer
+
+	From booleans 
+		FALSE will yield 0 (zero), and TRUE will yield 1 (one).
+
+	From floating point numbers 
+		When converting from float to integer, the number will be rounded towards zero.
+
+	- Casts such as (int) or (integer) is used when converting a value to integer but in some parts of it, cast is not necessary because the value will automatically be converted when an operator requires an integer argument. Intval() function can converts a value to integer also.
+If a resource is converted to an integer, then the result will be the unique resource number assigned to the resource by PHP at runtime.
+
+*Never cast an unknown fraction to integer, as this can sometimes lead to unexpected results.
+
+<?php
+echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
+?>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+- float (floating-point number, aka double)
+		- can be specified using any of the following syntaxes:
+			<?php
+			$a = 1.234; 
+			$b = 1.2e3; 
+			$c = 7E-10;
+				?>
+	Formally:
+
+		LNUM          [0-9]+
+		DNUM          ([0-9]*[\.]{LNUM}) | ({LNUM}[\.][0-9]*)
+		EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
+
+	- The size of a float is platform-dependent, although a maximum of ~1.8e308 with a precision of roughly 14 decimal digits is a common value (the 64 bit IEEE format).
+
+	Converting to float
+		- For values of other types, the conversion is performed by converting the value to integer first and then to float.
+
+	Comparing Float
+		- Testing floating point values for equality is problematic, due to the way that they are represented internally but there are ways to make comparisons of floating point values that work around these limitations.
+
+		- To test floating point values for equality, an upper bound on the relative error due to rounding is used. This value is known as the machine epsilon, or unit round off, and is the smallest acceptable difference in calculations.
+
+		$a and $b are equal to 5 digits of precision.
+			<?php
+			$a = 1.23456789;
+			$b = 1.23456780;
+			$epsilon = 0.00001;
+
+			if(abs($a-$b) < $epsilon) {
+			    echo "true";
+			}
+			?>
+
+	Nan
+	- Some numeric operations can result in a value represented by the constant NAN. This result represents an undefined value in floating-point calculations. Any loose or strict comparisons of this value against any other value, including itself, but except TRUE, will have a result of FALSE.
+
+	- NAN represents any number of different values and should not be compared to other values, including itself instead it should be checked for using is_nan().
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+	- string
+		-A string is series of characters, where a character is the same as a byte. This means that PHP only supports a 256-character set, and hence does not offer native Unicode support.
+	SYNTAX
+		- single quoted
+		- double quoted
+		- heredoc syntax
+		- nowdoc syntax 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Four compound types:	
 	- array
 	- object
 	- callable
