@@ -91,7 +91,7 @@ Comments
 
 	-The “one-l ine” comment style remarks only PHP codes either the current block or the end of the line, whichever comes first, meaning HTML code with // … ?> or # … ?> before them will be printed; having ?> on the other hand breaks out PHP mode returning it to HTML mode while // or # doesn’t affect it. The asp_tags configuration directive acts the same with // %> and # %> when being enabled but the </script> tag cannot break out PHP mode in a one-line comment.
 
-=========================================================================
+====================================================================================================================================================
 
 TYPES
 
@@ -102,13 +102,16 @@ PHP supports ten primitive types.
 Four Scalar types:
 
 	- boolean
-		- expresses a truth value. It can be either TRUE or FALSE.
+		- Considered as the simplest type in which it only gives a correct value whether it’s TRUE or FALSE.
+
 	SYNTAX
 	<?php
 	$foo = True; // assign the value TRUE to $foo
 	?>
 	
 	Converting to Boolean 
+		- In converting a value to boolean, (bool) or (boolean) casts is being used but sometimes the cast is dispensable because the value will be converted right away by an operator or control structure requiring a boolean argument.
+
 		- When converting to boolean, the following values are considered FALSE:
 
 			- the boolean FALSE itself
@@ -119,14 +122,25 @@ Four Scalar types:
 			- the special type NULL (including unset variables)
 			- SimpleXML objects created from empty tags
 			- Every other value is considered TRUE (including any resource and NAN).
-	*-1 is considered TRUE, like any other non-zero (whether negative or positive) number!	
+
+	*-1 is considered TRUE, like any other non-zero (whether negative or positive) number!
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 	- integer
-		- Integers can be specified in decimal (base 10), hexadecimal (base 16), octal (base 8) or binary (base 2) notation, optionally preceded by a sign (- or +).
-		- To use octal notation, precede the number with a 0 (zero). To use hexadecimal notation precede the number with 0x. To use binary notation precede the number with 0b.
-	
+
+Syntax
+	- Different types of integers are as follows:
+
+Decimal – base 10
+Hexadecimal – base 16, begin the number with 0x in using this notation
+Octal – base 8, begin the number with 0 in using this notation
+Binary – base 2, begin the number with 0b in using this notation
+
+Can also be preceded by a sign (- or +).
+
+	Integer literals
+
 	<?php
 	$a = 1234; // decimal number
 	$a = -123; // a negative number
@@ -135,9 +149,25 @@ Four Scalar types:
 	$a = 0b11111111; // binary number (equivalent to 255 decimal)
 	?>
 
+Formally, the structure for integer literals is:
+
+decimal     : [1-9][0-9]*
+            | 0
+
+hexadecimal : 0[xX][0-9a-fA-F]+
+
+octal       : 0[0-7]+
+
+binary      : 0[bB][01]+
+
+integer     : [+-]?decimal
+            | [+-]?hexadecimal
+            | [+-]?octal
+            | [+-]?binary
+
 Integer Overflow
 
-	- If PHP encounters a number beyond the bounds of the integer type, it will be interpreted as a float instead. Also, an operation which results in a number beyond the bounds of the integer type will return a float instead.
+	- Number that exceeds the integer type experienced by the PHP will be interpreted as a float likewise with the operation having a number beyond the bounds of the integer type will return a float.
 
 Integer overflow on a 32-bit system
 
@@ -167,7 +197,7 @@ Integer overflow on a 64-bit system
 	var_dump($large_number);                     // float(5.0E+19)
 	?>
 
-		- There is no division operator in PHP the 1/2 produce the float 0.5. The round() function provides better control over rounding.
+		- There is no integer division operator in PHP. 1/2 yields the float 0.5. The value can be casted to an integer to round it towards zero, or the round() function provides finer control over rounding.
 
 Converting to Integer
 
@@ -177,7 +207,7 @@ Converting to Integer
 	From floating point numbers 
 		When converting from float to integer, the number will be rounded towards zero.
 
-	- Casts such as (int) or (integer) is used when converting a value to integer but in some parts of it, cast is not necessary because the value will automatically be converted when an operator requires an integer argument. Intval() function can converts a value to integer also.
+	- CCasts such as (int) or (integer) is used when converting a value to integer but in some parts of it, cast is not necessary because the value will automatically be converted when an operator requires an integer argument. Intval() function can converts a value to integer also.
 If a resource is converted to an integer, then the result will be the unique resource number assigned to the resource by PHP at runtime.
 
 *Never cast an unknown fraction to integer, as this can sometimes lead to unexpected results.
@@ -189,7 +219,7 @@ echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
 - float (floating-point number, aka double)
-		- can be specified using any of the following syntaxes:
+		- Floating point numbers which are also known as "floats", "doubles", or "real numbers" can be classified using any of the following syntaxes:
 			<?php
 			$a = 1.234; 
 			$b = 1.2e3; 
@@ -204,14 +234,15 @@ echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
 	- The size of a float is platform-dependent, although a maximum of ~1.8e308 with a precision of roughly 14 decimal digits is a common value (the 64 bit IEEE format).
 
 	Converting to float
-		- For values of other types, the conversion is performed by converting the value to integer first and then to float.
+		- Other types of values conversion is being done by converting first the value to integer then to float. As of PHP 5, a notice is thrown if an object is converted to float.
 
 	Comparing Float
-		- Testing floating point values for equality is problematic, due to the way that they are represented internally but there are ways to make comparisons of floating point values that work around these limitations.
+		- Equality is difficult to be done sometimes with testing floating point values because of how it is being illustrated internally but knowing the differentiation of floating point values that works around these limitations has a way.
 
-		- To test floating point values for equality, an upper bound on the relative error due to rounding is used. This value is known as the machine epsilon, or unit round off, and is the smallest acceptable difference in calculations.
+		- In testing the floating point values for equality, upper bound on the relative error due to rounding known as the machine epsilon or unit roundoff used, making it as the smallest acceptable difference in calculations.
 
 		$a and $b are equal to 5 digits of precision.
+
 			<?php
 			$a = 1.23456789;
 			$b = 1.23456780;
@@ -228,7 +259,7 @@ echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
 	- NAN represents any number of different values and should not be compared to other values, including itself instead it should be checked for using is_nan().
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-	- string
+	- string(not done)
 		-A string is series of characters, where a character is the same as a byte. This means that PHP only supports a 256-character set, and hence does not offer native Unicode support.
 	SYNTAX
 		- single quoted
@@ -239,16 +270,147 @@ echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Four compound types:	
-	- array
-	- object
-	- callable
-	- iterable
+	- array(not done)
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
+	- object
+		- To create a new object, use the new statement to instantiate a class:
+	<?php
+	class foo
+	{
+   	 function do_foo()
+    	{
+        echo "Doing foo."; 
+    	}
+	}
+
+	$bar = new foo;
+	$bar->do_foo();
+	?>
+Converting to object
+	- Object to Object – Not modified
+	- Value of any other type to Object – instance of the stdClass built-in class created
+	- NULL – instance is Empty
+	- Array that is being transformed to an object having properties named by keys and corresponding values, with the exception of numeric keys which will be inaccessible unless iterated.
+
+	<?php
+	$obj = (object) array('1' => 'foo');
+	var_dump(isset($obj->{'1'})); // outputs 'bool(false)'
+	var_dump(key($obj)); // outputs 'int(1)'
+	?>
+
+For any other value, a member variable named scalar will contain the value.
+
+	<?php
+	$obj = (object) 'ciao';
+	echo $obj->scalar;  // outputs 'ciao'
+	?>	
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+	- callable
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+	- iterable
+		- A pseudo- type established in PHP 7.1 that takes any array or object implementing the Traversable interface in which this two are iterable using foreach and can be utilized with yield from within a generator.
+
+	Using Iterables 
+		-Iterables as a parameter can be a great help specially in knowing that a particular function needs a set of values but a part of it does not give much attention about the form of the value set because it will be utilized with foreach. A TypeError will be thrown if a value is not an array or instance.
+
+Iterable parameter type example
+	<?php
+
+	function foo(iterable $iterable) {
+    		foreach ($iterable as $value) {
+        	// ...
+    		} 
+	}
+
+	?>
+
+Iterable parameter default value example
+	<?php
+
+	function foo(iterable $iterable = []) {
+    		// ...
+	}
+
+	?>
+
+Iterable can also be used as a return type to indicate a function will return an iterable value. If the returned value is not an array or instance of Traversable, a TypeError will be thrown.
+
+Iterable return type example 
+	<?php
+
+	function bar(): iterable {
+    		return [1, 2, 3];
+	}
+
+	?>
+
+Functions declaring iterable as a return type may also be generators.
+
+Iterable generator return type example
+	<?php
+
+	function gen(): iterable {
+    		yield 1;
+    		yield 2;
+	    	yield 3;
+	}
+
+	?>
+
+Iterable Type Variance
+
+	- Classes extending or implementing may broaden methods using array or Traversable as parameter types to iterable or narrow return types from iterable to array or Traversable.
+
+Iterable type variance example
+
+	<?php
+
+	interface Example {
+    		public function method(array $array): iterable;
+	}
+
+	class ExampleImplementation implements Example {
+    		public function method(iterable $iterable): array {
+        		// Parameter broadened and return type narrowed.
+    		}
+	}
+
+	?>
+
+=================================================================================================================================================
 And Finally two special types:
 
 	- resource 
-	- NULL
+		-Considered as a special variable holding a reference to an external resource, that are created and used by special functions.
 
+Converting to resource
+	- As resource variables hold special handles to opened files, database connections, image canvas areas and the like, converting to a resource makes no sense.
+
+Freeing Resources
+	- A resource with no more references to it is detected automatically, and it is freed by the garbage collector. For this reason, it is rarely necessary to free the memory manually with the help of reference- counting system.
+-------------------------------------------------------------------------------------------------------------------------------------------------
+	- NULL
+		- It represents a variable having no value and the only possible value of type null.
+
+	Variable that is null to be considered are as follows:
+		- it has been assigned the constant NULL.
+		- it has not been set to any value yet.
+		- it has been unset().
+
+Syntax
+	- There is only one value of type null, and that is the case-insensitive constant NULL.
+	
+	<?php
+	$var = NULL;       
+	?>
+
+Casting to Null
+	- Casting a variable to null using (unset) $var will not remove the variable or unset its value. It will only return a NULL value.
+
+==================================================================================================================================================
 This manual also introduces some pseudo-types for readability reasons:
 
 	- mixed
