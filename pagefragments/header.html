@@ -7,8 +7,9 @@
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        
     </head>
 
     <body>
@@ -16,15 +17,33 @@
 
         <nav class="grey lighten-2" role="navigation">
             <div class=" nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">Webtek 2018</a>
-                <ul class="right hide-on-med-and-down ">
-                    <li><a href="#">Java Servlets</a></li>
-                    <li><a href="#">PHP</a></li>
+                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">learntheweb</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">Javascript</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
                 </ul>
-
-                <ul id="nav-mobile" class="sidenav">
-                    <li><a href="#">Navbar Link</a></li>
-                </ul>
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             </div>
         </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">Javascript</a></li>
+            <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+        <!--
+        <ul class="right hide-on-med-and-down ">
+            <li><a href="#">Java Servlets</a></li>
+            <li><a href="#">PHP</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+-->
