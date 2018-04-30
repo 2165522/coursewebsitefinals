@@ -47,6 +47,7 @@ p {
     
     h1.header {
         font-size: 3em !important;
+        text-align: center !important;
     }
 
 }

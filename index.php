@@ -21,17 +21,38 @@ header("Content-Type: text/html");
         <nav class="grey lighten-2" role="navigation">
             <div class=" nav-wrapper container">
                 <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">w3Script</a>
-                <ul class="right hide-on-med-and-down ">
-                    <li><a href="#">Java Servlets</a></li>
-                    <li><a href="#">PHP</a></li>
-                </ul>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a class="dropdown-trigger" href="#!" data-target="servlets">Java Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
 
-                <ul id="nav-mobile" class="sidenav">
-                    <li><a href="#">Navbar Link</a></li>
+                    <ul id='servlets' class='dropdown-content'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a href="#!">three</a></li>
+                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                    </ul>
+
+                    <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
+
+                    <ul id='php' class='dropdown-content'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a href="#!">three</a></li>
+                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                    </ul>
+
                 </ul>
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             </div>
         </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="!#" class="dropdown-trigger" data-target="servlets">Java Servlets</a></li>
+            <li><a href="#">PHP</a></li>
+            <li><a href="#">Javascript</a></li>
+        </ul>
 
         <!-- Server-Side Web Scripting Technologies section-->
 
@@ -42,7 +63,7 @@ header("Content-Type: text/html");
                         <div class="col s12 m6 l6">
                             <h1 class="header white-text">Server-side Web Scripting Technologies</h1>
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -200,7 +221,14 @@ header("Content-Type: text/html");
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/bin/materialize.min.js"></script>
         <script src="js/bin/init.js"></script>
-
+        <script>
+            $(document).ready(function(){
+                $('.dropdown-trigger').dropdown();
+            });
+            $(document).ready(function(){
+                $('.collapsible').collapsible();
+            });
+        </script>
     </body>
 
 </html>
