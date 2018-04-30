@@ -20,7 +20,7 @@ header("Content-Type: text/html");
 
         <nav class="grey lighten-2" role="navigation">
             <div class=" nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">w3Script</a>
+                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
                 <ul class="right hide-on-med-and-down ">
                     <li><a href="#">Java Servlets</a></li>
                     <li><a href="#">PHP</a></li>
@@ -78,7 +78,7 @@ header("Content-Type: text/html");
 
                     <div class="col s12 m6">
                         <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+                            <h2 class="center brown-text"><i class="material-icons">border_color</i></h2>
                             <h5 class="center">Take the quiz</h5>
 
                             <p class="center light">Test your knowledge about java servlets.</p>
@@ -98,23 +98,24 @@ header("Content-Type: text/html");
         <!-- PHP section-->
 
 
-        <div id="index-banner" class="parallax-container valign-wrapper">
+ <div id="index-banner" class="parallax-container valign-wrapper">
             <div class="section no-pad-bot">
                 <div class="container">
-
-
-                    <div class="row center">
-
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <h1 class="header white-text">PHP (Hypertext Preprocessor)</h1>
+                         
+                        </div>
+                        
                     </div>
-
-                    <br><br>
 
                 </div>
             </div>
             <div class="parallax"><img src="./img/background2.jpg" alt="Unsplashed background img 1"></div>
         </div>
+        
 
-        <!--   Servlet Section   -->
+        <!--   PHP Section   -->
         <div class="container">
             <div class="section">
 
@@ -122,10 +123,6 @@ header("Content-Type: text/html");
 
                 <div class="row">
 
-                    <div class="col m12">
-                        <h2 class="header center  blue-text">PHP</h2>
-                        <h3 class="header center blue-text">(Hypertext Preprocessor)</h3>
-                    </div>
                     <div class="col s12 m6">
                         <div class="icon-block">
                             <h2 class="center brown-text"><i class="material-icons">subject</i></h2>
@@ -146,7 +143,7 @@ header("Content-Type: text/html");
 
                     <div class="col s12 m6">
                         <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+                            <h2 class="center brown-text"><i class="material-icons">border_color</i></h2>
                             <h5 class="center">Take the quiz</h5>
 
                             <p class="center light">Test your knowledge about php scripting.</p>
