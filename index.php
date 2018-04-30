@@ -20,7 +20,7 @@ header("Content-Type: text/html");
 
         <nav class="grey lighten-2" role="navigation">
             <div class=" nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">scriptCademy</a>
+                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="dropdown-trigger" href="#!" data-target="servlets">Java Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -54,6 +54,7 @@ header("Content-Type: text/html");
             </div>
         </nav>
         <ul class="sidenav" id="mobile-demo">
+            <li class="light-blue-text text-darken-4"><div class="container"><h5>Course Notes</h5></div></li>
             <li><a href="!#" class="dropdown-trigger" data-target="servlets">Java Servlets</a></li>
             <li><a href="#">PHP</a></li>
             <li><a href="#">Javascript</a></li>
