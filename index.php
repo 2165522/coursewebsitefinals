@@ -7,11 +7,11 @@ header("Content-Type: text/html");
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>WebTek 2018</title>
+        <title>Learn Server-side Web Scripting</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     </head>
 
@@ -20,7 +20,7 @@ header("Content-Type: text/html");
 
         <nav class="grey lighten-2" role="navigation">
             <div class=" nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">Webtek 2018</a>
+                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">w3Script</a>
                 <ul class="right hide-on-med-and-down ">
                     <li><a href="#">Java Servlets</a></li>
                     <li><a href="#">PHP</a></li>
@@ -38,14 +38,16 @@ header("Content-Type: text/html");
         <div id="index-banner" class="parallax-container valign-wrapper">
             <div class="section no-pad-bot">
                 <div class="container">
-
-                    <h1 class="header right white-text">Server-side Web Scripting Technologies</h1>
-
-                    <br><br>
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <h1 class="header white-text">Server-side Web Scripting Technologies</h1>
+                        </div>
+                        
+                    </div>
 
                 </div>
             </div>
-            <div class="parallax"><img src="./img/background1.jpg" alt="Unsplashed background img 1"></div>
+            <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
         </div>
 
         <!--   Servlet Section   -->
@@ -161,7 +163,7 @@ header("Content-Type: text/html");
             </div>
         </div>  
 
-        <footer class="page-footer teal #f4511e deep-orange darken-1">
+        <footer class="page-footer light-blue darken-4">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -196,8 +198,8 @@ header("Content-Type: text/html");
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
+        <script src="js/bin/materialize.min.js"></script>
+        <script src="js/bin/init.js"></script>
 
     </body>
 

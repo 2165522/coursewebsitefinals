@@ -23,7 +23,7 @@ p {
     min-height: 380px;
     line-height: 0;
     height: auto;
-    color: rgba(255,255,255,.5);
+    color: rgba(255,255,255,.9);
 }
 .parallax-container .section {
     width: 100%;
@@ -34,6 +34,7 @@ p {
         position: absolute;
         top: 40%;
     }
+
     #index-banner .section {
         top: 10%;
     }
@@ -43,6 +44,11 @@ p {
     #index-banner .section {
         top: 0;
     }
+    
+    h1.header {
+        font-size: 30em !important;
+    }
+
 }
 
 .icon-block {

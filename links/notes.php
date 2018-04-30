@@ -6,9 +6,9 @@ include("../pagefragments/header.html");
 
 ?>
 
-    <div class="row">
-        <div class="col m2"></div>
-        <div class="col s12 m8">
+<div class="row">
+    <div class="col l12 s12 m12">
+        <div class="container">
             <ul class="collapsible expandable">
                 <li>
                     <div class="collapsible-header active"><i class="material-icons">arrow_drop_down</i>First</div>
@@ -24,8 +24,9 @@ include("../pagefragments/header.html");
                 </li>
             </ul>
         </div>
-        <div class="col m2"></div>
-    </div>
+    </div> 
+</div>
+
 
 
 <?php
