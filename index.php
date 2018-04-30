@@ -20,8 +20,7 @@ header("Content-Type: text/html");
 
         <nav class="grey lighten-2" role="navigation">
             <div class=" nav-wrapper container">
-<<<<<<< HEAD
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">w3Script</a>
+                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">scriptCademy</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="dropdown-trigger" href="#!" data-target="servlets">Java Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -45,13 +44,11 @@ header("Content-Type: text/html");
                         <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                         <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                     </ul>
-=======
                 <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
                 <ul class="right hide-on-med-and-down ">
                     <li><a href="#">Java Servlets</a></li>
                     <li><a href="#">PHP</a></li>
                 </ul>
->>>>>>> 5070aea2c55ab27e5dcb473aefe3a2a8c0b4793b
 
                 </ul>
             </div>
@@ -193,27 +190,25 @@ header("Content-Type: text/html");
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Company Bio</h5>
-                        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                        <h5 class="white-text">ScriptCademy</h5>
+                        <p class="grey-text text-lighten-4">We are a team of third-year BS Information Technology in Saint Louis University taking up Web Systems and Technologies.</p>
 
 
                     </div>
                     <div class="col l3 s12">
-                        <h5 class="white-text">Settings</h5>
+                        <h5 class="white-text">Course Notes</h5>
                         <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
+                            <li><a class="white-text" href="#!">Java Servlets</a></li>
+                            <li><a class="white-text" href="#!">PHP (Hypertext Processing)</a></li>
+                            <li><a class="white-text" href="#!">NodeJS</a></li>
                         </ul>
                     </div>
                     <div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
+                        <h5 class="white-text">Quizzes</h5>
                         <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
+                            <li><a class="white-text" href="#!">Java Servlets</a></li>
+                            <li><a class="white-text" href="#!">PHP (Hypertext Processing)</a></li>
+                            <li><a class="white-text" href="#!">NodeJS</a></li>
                         </ul>
                     </div>
                 </div>
