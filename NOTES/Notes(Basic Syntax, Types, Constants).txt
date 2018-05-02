@@ -1779,3 +1779,543 @@ Casting literal strings and variables to binary strings:
 	$binary = (binary) $string;
 	$binary = b"binary string";
 	?>
+======================================================================================================================
+VARIABLES
+VARIABLES
+
+Basics
+	Variables are represented by a dollar sign followed by the variable name which also case-sensitive.
+
+* The $ is a special variable that can't be assigned.
+
+	<?php
+	$var = 'Bob';
+	$Var = 'Joe';
+	echo "$var, $Var";      // outputs "Bob, Joe"
+
+	$4site = 'not yet';     // invalid; starts with a number
+	$_4site = 'not yet';    // valid; starts with an underscore
+	$täyte = 'mansikka';    // valid; 'ä' is (Extended) ASCII 228.
+	?>
+
+When assign an expression to a variable, the entire value of the original expression is copied into the destination variable.
+
+There is also another way of assigning a value to variables by reference. simply prepend an ampersand (&) to the beginning of the variable which is being assigned (the source variable). For instance, the following code snippet outputs 'My name is Bob' twice: 
+
+	<?php
+	$foo = 'Bob';              // Assign the value 'Bob' to $foo
+	$bar = &$foo;              // Reference $foo via $bar.
+	$bar = "My name is $bar";  // Alter $bar...
+	echo $bar;
+	echo $foo;                 // $foo is altered too.
+	?>
+
+One important thing to note is that only named variables may be assigned by reference.
+
+	<?php
+	$foo = 25;
+	$bar = &$foo;      // This is a valid assignment.
+	$bar = &(24 * 7);  // Invalid; references an unnamed expression.
+
+	function test()
+	{
+	   return 25;
+	}
+
+	$bar = &test();    // Invalid.
+	?>
+
+Initializing variables is a good practice. Uninitialized variables have a  default value of their type like boolenas default to FALSE, integers and floats default to zero string are set as an empty string and arrays become to an empty array.
+
+Default values of uninitialized variables
+	
+	<?php
+	// Unset AND unreferenced (no use context) variable; outputs NULL
+var_dump($unset_var);
+
+	// Boolean usage; outputs 'false' (See ternary operators for more on this syntax)
+	echo($unset_bool ? "true\n" : "false\n");
+
+	// String usage; outputs 'string(3) "abc"'
+	$unset_str .= 'abc';
+	var_dump($unset_str);
+
+	// Integer usage; outputs 'int(25)'
+	$unset_int += 25; // 0 + 25 => 25
+	var_dump($unset_int);
+
+	// Float/double usage; outputs 'float(1.25)'
+	$unset_float += 1.25;
+	var_dump($unset_float);
+
+	// Array usage; outputs array(1) {  [3]=>  string(3) "def" }
+	$unset_arr[3] = "def"; // array() + array(3 => "def") => array(3 => "def")
+	var_dump($unset_arr);
+
+	// Object usage; creates new stdClass object (see 	http://www.php.net/manual/en/reserved.classes.php)
+	// Outputs: object(stdClass)#1 (1) {  ["foo"]=>  string(3) "bar" }
+	$unset_obj->foo = 'bar';
+	var_dump($unset_obj);
+	?>
+
+Relying on the default value of an uninitialized variable is problematic in the case of including one file into another which uses the same variable name. It is also a major security risk with register_globals turned on. E_NOTICE level error is issued in case of working with uninitialized variables, however not in the case of appending elements to the uninitialized array. isset() language construct can be used to detect if a variable has been already initialized.
+
+PREDEFINED VARIABLES
+	-  PHP provides a large number of predefined variables to any script which it runs. Many of these variables, however, cannot be fully documented as they are dependent upon which server is running, the version and setup of the server, and other factors. Some of these variables will not be available when PHP is run on the command line. For a listing of these variables, please see the section on Reserved Predefined Variables.
+
+From version 4.1.0 onward, PHP provides an additional set of predefined arrays containing variables from the web server (if applicable), the environment, and user input. These new arrays are rather special in that they are automatically global--i.e., automatically available in every scope. For this reason, they are often known as "superglobals". (There is no mechanism in PHP for user-defined superglobals.) The superglobals are listed below; however, for a listing of their contents and further discussion on PHP predefined variables and their natures, please see the section Reserved Predefined Variables. Also, you'll notice how the older predefined variables ($HTTP_*_VARS) still exist. As of PHP 5.0.0, the long PHP predefined variable arrays may be disabled with the register_long_arrays directive.
+
+* Notes: Variable variables
+	- Superglobals cannot be used as variable variables inside functions o class methods.
+
+* Note: Even though both the superglobal and HHTP*VARS can exis at the same time; they are not identical, so modifyung one will not change the other. 
+
+If certain variables in variables_order are not set, their appropriate PHP predefined arrays are also left empty.
+
+VARIABLE SCOPE
+
+	- is the context within which it is defined. For the most part all PHP variables only have a single scope. This single scope spans included and required files as well. For exampl
+
+	<?php
+	$a = 1;
+	include 'b.inc';
+	?>
+
+$a variable will be available within the included b.inc script. However, within user-defined functions a local function scope is introduced and it is limited only to the local function scope.
+
+<?php
+$a = 1; /* global scope */ 
+
+	function test()
+	{ 
+	    echo $a; /* reference to local scope variable */ 
+	} 
+
+	test();
+	?>
+
+This script will not produce any output because the echo statement refers to a local version of the $a variable, and it has not been assigned a value within this scope. This can cause some problems in that people may inadvertently change a global variable. In PHP global variables must be declared global inside a function if they are going to be used in that function.
+
+The global keyword
+
+Using global
+	<?php
+	$a = 1;
+	$b = 2;
+
+	function Sum()
+	{
+	    global $a, $b;
+
+	    $b = $a + $b;
+	} 
+
+	Sum();
+	echo $b;
+	?>
+
+Declaring $a and $b global within the function, having an output 3. There is no limit to the number of global variables that can be manipulated by a function. 
+
+Next is the second way to accessing the variables within the global scope which is use the special PHP defined $global array. 
+
+Using $GLOBALS instead of global
+
+	<?php
+	$a = 1;
+	$b = 2;
+
+	function Sum()
+	{
+	    $GLOBALS['b'] = $GLOBALS['a'] + $GLOBALS['b'];
+	} 
+
+	Sum();
+	echo $b;
+	?>
+
+The $GLOBALS array is an associative array with the name of the global variable being the key and the contents of that variable being the value of the array element. Notice how $GLOBALS exists in any scope, this is because $GLOBALS is a superglobal. Here's an example demonstrating the power of superglobals:
+
+Example demonstrating superglobals and scope
+	
+	<?php
+	function test_global()
+	{
+ 	   // Most predefined variables aren't "super" and require 
+	    // 'global' to be available to the functions local scope.
+ 	   global $HTTP_POST_VARS;
+    
+  	  echo $HTTP_POST_VARS['name'];
+    
+  	  // Superglobals are available in any scope and do 
+  	  // not require 'global'. Superglobals are available 
+	    // as of PHP 4.1.0, and HTTP_POST_VARS is now
+  	  // deemed deprecated.
+  	  echo $_POST['name'];
+	}
+
+	?>
+
+*Note: Using global keyword outside a function can be used if the file is included from inside a function.
+
+Using static variables
+
+Static Variable exists only in a local function scope, but it doesn't lose its value when out of the scope. And important feature of variable scoping.
+
+Example demonstrating need for static variables
+
+	<?php
+	function test()
+	{	
+	    $a = 0;
+ 	   echo $a;
+	    $a++;
+	}
+	?>
+
+This function is quite useless since every time it is called it sets $a to 0 and prints 0. The $a++ which increments the variable serves no purpose since as soon as the function exits the $a variable disappears. To make a useful counting function which will not lose track of the current count, the $a variable is declared static:
+
+Example use of static variables
+
+	<?php
+	function test()
+	{
+	    static $a = 0;
+	    echo $a;
+	    $a++;
+	}
+	?>
+
+Now when the value of $a called it will be printed the value and increment it.
+
+The static variable can be used as a recursive function. Recursive is where it calls itself repeatedly but make sure to have a proper way of ending this infinite loop.
+
+Static variables with recursive functions
+
+	<?php
+	function test()
+	{
+	    static $count = 0;
+
+	    $count++;
+	    echo $count;
+	    if ($count < 10) {
+	        test();
+	    }
+	    $count--;
+	}
+	?>
+
+*Note: Static declarations are resolved in compile-time.
+
+References with global and static variables
+	- The Zend Engine 1, driving PHP 4, implements the static and global modifier for variables in terms of references. For example, a true global variable imported inside a function scope with the global statement actually creates a reference to the global variable.
+
+	<?php
+	function test_global_ref() {
+	    global $obj;
+	    $obj = &new stdclass;
+	}
+
+	function test_global_noref() {
+	    global $obj;
+	    $obj = new stdclass;
+	}
+
+	test_global_ref();
+	var_dump($obj);
+	test_global_noref();
+	var_dump($obj);
+	?>
+
+The output is: 	NULL 
+		object(stdClass)(0){
+		}
+
+A similar behaviour applies to the static statement. References are not stored statically:
+
+	<?php
+	function &get_instance_ref() {
+ 	   static $obj;
+
+ 	   echo 'Static object: ';
+ 	   var_dump($obj);
+	    if (!isset($obj)) {
+	        // Assign a reference to the static variable
+	        $obj = &new stdclass;
+	    }
+	    $obj->property++;
+	    return $obj;
+	}
+
+	function &get_instance_noref() {
+	    static $obj;
+
+	    echo 'Static object: ';
+	    var_dump($obj);
+	    if (!isset($obj)) {
+	        // Assign the object to the static variable
+	        $obj = new stdclass;
+	    }
+	    $obj->property++;
+	    return $obj;
+	}
+
+	$obj1 = get_instance_ref();
+	$still_obj1 = get_instance_ref();
+	echo "\n";
+	$obj2 = get_instance_noref();
+	$still_obj2 = get_instance_noref();
+	?>
+
+The above example will output:
+	
+	Static object:NULL
+	Static object:NULL
+
+	Static object:NULL
+	Static object: object(stdClass)(1) {
+	["property"]=>
+	int(1)
+	}
+
+This example demonstrates that when assigning a reference to a static variable, it's not remembered when you call the &get_instance_ref() function a second time.
+
+VARIABLE VARIABLES
+
+	- Having a variable variable names is convenient and can be set and used dynamically. 
+
+	<?php
+	$a = 'hello';
+	?>
+
+	- A variable variable takes the value of a variable and treats that as the name of a variable. In the above example, hello, can be used as the name of a variable by using two dollar signs. i.e.
+
+	<?php
+	$$a = 'world';
+	?>	
+
+	- Two variables are now stored and defined in the PHP symbol tree: $a with contents " hello and $hello with contents "world". 
+
+	<?php
+	echo "$a ${$a}";
+	?>
+
+	-produces the exact same output as:
+
+	<?php
+	echo "$a $hello";
+	?>
+
+	- i.e. they both produce: hello world.
+
+/*
+In order to use variable variables with arrays, you have to resolve an ambiguity problem. That is, if you write $$a[1] then the parser needs to know if you meant to use $a[1] as a variable, or if you wanted $$a as the variable and then the [1] index from that variable. The syntax for resolving this ambiguity is: ${$a[1]} for the first case and ${$a}[1] for the second.
+
+Class properties may also be accessed using variable property names. The variable property name will be resolved within the scope from which the call is made. For instance, if you have an expression such as $foo->$bar, then the local scope will be examined for $bar and its value will be used as the name of the property of $foo. This is also true if $bar is an array access.
+*/
+
+Using curly braces delimit the property name. This is useful when accessing values  within a property that contains an array, when the property name is made of mulitple parts, or when the property name contains characters that are not otherwise valid (e.g. from json_decode() or SimpleXML).
+
+	Variable property example
+
+	<?php
+	class foo {
+	    var $bar = 'I am bar.';
+	    var $arr = array('I am A.', 'I am B.', 'I am C.');
+	    var $r   = 'I am r.';
+	}
+
+	$foo = new foo();
+	$bar = 'bar';
+	$baz = array('foo', 'bar', 'baz', 'quux');
+	echo $foo->$bar . "\n";
+	echo $foo->{$baz[1]} . "\n";
+
+	$start = 'b';
+	$end   = 'ar';
+	echo $foo->{$start . $end} . "\n";
+
+	$arr = 'arr';
+	echo $foo->{$arr[1]} . "\n";
+
+	?>
+
+The above example will output:
+
+	I am bar.
+	I am bar.
+	I am bar.
+	I am r.
+
+
+* Warning: Please note that variable variables cannot be used with PHP's Superglobal arrays within functions or class methods. The variable $this is also a special variable that cannot be referenced dynamically.
+
+VARIABLES FROM EXTERNAL SOURCES
+
+HTML Forms (GET and POST)
+
+	- When a form is submitted to a PHP script, the information from that form is automatically made available to the script. There are few ways to access this information, for example:
+
+A simple HTML form
+
+	<form action="foo.php" method="post">
+ 	   Name:  <input type="text" name="username" /><br />
+ 	   Email: <input type="text" name="email" /><br />
+	    <input type="submit" name="submit" value="Submit me!" />
+	</form>
+
+Accessing data from a simple POST HTML form
+
+	?php
+	echo $_POST['username'];
+	echo $_REQUEST['username'];
+	?>
+
+There are different ways of accessing user input in the older PHP versions. 
+
+Old methods of accessing user input
+
+	<?php
+	// WATCH OUT: these methods ARE NOT supported anymore.
+	// Valid ones were described above.
+
+	// Using import_request_variables() - this function has been removed in PHP 5.4.0
+	   import_request_variables('p', 'p_');
+ 	  echo $p_username;
+
+	// These long predefined variables were removed in PHP 5.4.0
+ 	  echo $HTTP_POST_VARS['username'];
+
+	// Using register_globals. This feature was removed in PHP 5.4.0
+ 	  echo $username;
+	?>
+
+/*
+Using a GET form is similar except you'll use the appropriate GET predefined variable instead. GET also applies to the QUERY_STRING (the information after the '?' in a URL). So, for example, http://www.example.com/test.php?id=3 contains GET data which is accessible with $_GET['id']. See also $_REQUEST.
+
+PHP also understands arrays in the context of form variables (see the related faq). You may, for example, group related variables together, or use this feature to retrieve values from a multiple select input. For example, let's post a form to itself and upon submission display the data:
+*/
+
+More complex from variables
+
+<?php
+if ($_POST) {
+    echo '<pre>';
+    echo htmlspecialchars(print_r($_POST, true));
+    echo '</pre>';
+}
+?>
+<form action="" method="post">
+    Name:  <input type="text" name="personal[name]" /><br />
+    Email: <input type="text" name="personal[email]" /><br />
+    Beer: <br />
+    <select multiple name="beer[]">
+        <option value="warthog">Warthog</option>
+        <option value="guinness">Guinness</option>
+        <option value="stuttgarter">Stuttgarter Schwabenbräu</option>
+    </select><br />
+    <input type="submit" value="submit me!" />
+</form>
+
+======================================================================================================================
+CONSTANTS
+
+	Constant is known as an identifier(name) for a simple value that cannot be changed during the execution of the script(except for magic constants because it is not actually a constants). A constant is case-sensitive that is why constant identifiers are always in uppercase.
+
+	The name of a constant follows the same rules as any label in PHP. A valid constant name starts with a letter or underscore, followed by any number of letters, numbers, or underscores. As a regular expression, it would be expressed thusly: [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
+
+Valid and invalid constant names
+
+Sample Code
+
+<?php
+
+// Valid constant names
+define("FOO",     "something");
+define("FOO2",    "something else");
+define("FOO_BAR", "something more");
+
+// Invalid constant names
+define("2FOO",    "something");
+
+// This is valid, but should be avoided:
+// PHP may one day provide a magical constant
+// that will break your script
+define("__FOO__", "something"); 
+
+?>
+
+The extent of a constant is global which explains that accessing constants everywhere is possible in your script having no regards to scope.
+
+Syntax
+
+You can determine a constant with the use of define() function or the keyword const as of PHP 5.3.0. However, the const keyword has a limit to be interpreted to an arbitrary expression. The constant cannot be changed anymore when it is defined already.
+
+Only scalar data can be included in constants prior to PHP 5.6 onwards, defining a constant as scalar expression is possible, also in defining an array constant. It is possible to define constants as a resource but must not be utilize always because it can cause unexpected results.
+
+In getting the value of a constant, it can be done by identifying its name but you cannot prepend a constant with a $ unlike with variables. Utilization of function constant() to read a constant’s value if you like to acquire name directly is a good option. Use get_defined_constants() to get a list of all defined constants.
+
+PHP concludes that you mean the name of the constant itself if undefined constant is being utilized like as if you called it as a string (CONSTANT vs. “CONSTANT”). An error level E_NOTICE will be issued when this happens. This does not apply to (fully) qualified constants, which will raise a fatal error if undefined. Use the defined() function if you want to check a constant when it is set.
+
+The following are the differences of constants and variables with each other:
+
+	- A dollar sign ($) is not necessary in constants.
+	- In PHP 5.3, defining a constant can only be done with the use of define() function and not by simple assignment.
+	- Constants can be obtained anywhere with no regards to variable scoping rules.
+	- When the constants has been set already, it is not possible now to redefined or undefined it.
+	- Lastly, constants may only evaluate to scalar values. As of PHP 5.6 it is possible to define array constant using const keywords and as of PHP 7 array constants can also be defined using define() You may use arrays in constant scalar expressions (for example, const FOO = array(1,2,3)[0];), but the end result must be a value of allowed type.
+
+Defining Constants
+
+Sample Code
+<?php
+define("CONSTANT", "Hello world.");
+echo CONSTANT; // outputs "Hello world."
+echo Constant; // outputs "Constant" and issues a notice.
+?>
+
+Defining Constants using the const keyword
+
+Sample Code
+<?php
+// Works as of PHP 5.3.0
+const CONSTANT = 'Hello World';
+
+echo CONSTANT;
+
+// Works as of PHP 5.6.0
+const ANOTHER_CONST = CONSTANT.'; Goodbye World';
+echo ANOTHER_CONST;
+
+const ANIMALS = array('dog', 'cat', 'bird');
+echo ANIMALS[1]; // outputs "cat"
+
+// Works as of PHP 7
+define('ANIMALS', array(
+    'dog',
+    'cat',
+    'bird'
+));
+echo ANIMALS[1]; // outputs "cat"
+?>
+
+Magic constants
+	
+A large number of predefined constants is given by PHP to any script which it runs but many of these constants are made by various extensions, and will only be present when those extensions are available either vial dynamic loading or because they have been compiled in.
+
+There are nine magical constants that change depending on where they are used. For example, the value of __LINE__ depends on the line that it's used on in your script. All these "magical" constants are resolved at compile time, unlike regular constants, which are resolved at runtime.
+
+							A few "magical" PHP constants
+	Name			Description
+	__LINE__		The current line number of the file.
+	__FILE__		The full path and filename of the file with symlinks resolved. If used inside an include, the name of the included file is returned.
+	__DIR__			The directory of the file. If used inside an include, the directory of the included file is returned. This is equivalent to dirname
+	(__FILE__). 		This directory name does not have a trailing slash unless it is the root directory.
+	__FUNCTION__		The function name.
+	__CLASS__		The class name. The class name includes the namespace it was declared in (e.g. Foo\Bar). Note that as of PHP 5.4 	__CLASS__ 		works also in traits. When used in a trait method, __CLASS__ is the name of the class the trait is used in.
+	__TRAIT__		The trait name. The trait name includes the namespace it was declared in (e.g. Foo\Bar).
+	__METHOD__		The class method name.
+	__NAMESPACE__		The name of the current namespace.
+	ClassName::class	The fully qualified class name. See also ::class.
+
+
