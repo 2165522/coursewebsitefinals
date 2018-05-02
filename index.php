@@ -13,6 +13,11 @@ header("Content-Type: text/html");
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <style>
+        i.waves-light {
+        color: waves-light;
+        }
+        </style>       
     </head>
 
     <body>
@@ -44,7 +49,7 @@ header("Content-Type: text/html");
                         <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                         <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                     </ul>
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
+                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4"></a>
                 <ul class="right hide-on-med-and-down ">
                     <li><a href="#">Java Servlets</a></li>
                     <li><a href="#">PHP</a></li>
@@ -66,14 +71,45 @@ header("Content-Type: text/html");
             <div class="section no-pad-bot">
                 <div class="container">
                     <div class="row">
-                        <div class="col s12 m6 l6">
+                        <div class="col s12 m6">
                             <h1 class="header white-text">Server-side Web Scripting Technologies</h1>
                         </div>
-
+            <div class="col s12 m6">
+                <div class="card white darken-1">
+                    <div class="card-content blue-text">
+                    <span class="card-title">Sign In</span>
+                        <hr>
+                        <div class="row">
+                        <form class="col s12">
+                          <div class="row">
+                            <div class="input-field col s6 m12">
+                              <i class="material-icons waves-light prefix">account_circle</i>
+                              <input id="icon_prefix" type="text" class="validate">
+                              <label for="icon_prefix">Username</label>
+                            </div>
+                            <div class="input-field col s6 m12">
+                              <i class="material-icons waves-light prefix">security</i>
+                              <input id="icon_prefix" type="password" class="validate">
+                              <label for="icon_prefix">Password</label>
+                            </div> 
+                            <div class="col s12 m6 offset-m4">
+                             <button class="btn waves-effect waves-light" type="submit" name="action">Sign In</button> 
+                            </div>
+                            <div class="col s6 m6 offset-m3">     
+                                <p> <br></p>
+                            </div>  
+                            <div class="col s6 m6 offset-m3">
+                             <a href="#signup.html">Create an account now!</a>      
+                            </div>  
+                          </div>
+                        </form>
+                    </div>        
                     </div>
-
                 </div>
             </div>
+                            </div>
+            </div>
+        </div>
             <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
         </div>
 
