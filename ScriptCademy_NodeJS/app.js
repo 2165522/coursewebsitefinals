@@ -23,7 +23,7 @@ fs.readFile('index.html', (err,html) => {
     });
 });
 
-//read css
+//read css file
 fs.readFile('./css/index.css', (err,css) => {
     if(err){
         throw err;
