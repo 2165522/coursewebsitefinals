@@ -1,7 +1,3 @@
-<?php
-header("HTTP/1.1 200 OK");
-header("Content-Type: text/html");
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,12 +7,12 @@ header("Content-Type: text/html");
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="css/materialize.min.css" type="text/css" rel="stylesheet">
+        <link href="css/style.css" type="text/css" rel="stylesheet">
         <style>
-        i.waves-light {
-        color: waves-light;
-        }
+            i.waves-light {
+                color: waves-light;
+            }
         </style>       
     </head>
 
@@ -28,10 +24,10 @@ header("Content-Type: text/html");
                 <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a class="dropdown-trigger" href="#!" data-target="servlets">Java Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
-
-                    <ul id='servlets' class='dropdown-content'>
-                        <li><a href="#!">one</a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="java">Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
+                    
+                    <ul id='java' class='dropdown-content'>
+                        <li><a href="http://localhost:8084/ScriptCademy/Registration">Introduction</a></li>
                         <li><a href="#!">two</a></li>
                         <li class="divider" tabindex="-1"></li>
                         <li><a href="#!">three</a></li>
@@ -40,21 +36,26 @@ header("Content-Type: text/html");
                     </ul>
 
                     <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
-
+                    
                     <ul id='php' class='dropdown-content'>
-                        <li><a href="#!">one</a></li>
+                        <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">Introduction</a></li>
+                        <li><a href="#!">Basic Syntax, Types</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a href="#!">three</a></li>
+                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                    </ul>
+                    
+                    <li><a class="dropdown-trigger" href="#!" data-target="node">NodeJS<i class="material-icons right">arrow_drop_down</i></a></li>
+                    
+                    <ul id='node' class='dropdown-content'>
+                        <li><a href="links/php_notes.php">Introduction</a></li>
                         <li><a href="#!">two</a></li>
                         <li class="divider" tabindex="-1"></li>
                         <li><a href="#!">three</a></li>
                         <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                         <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                     </ul>
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4"></a>
-                <ul class="right hide-on-med-and-down ">
-                    <li><a href="#">Java Servlets</a></li>
-                    <li><a href="#">PHP</a></li>
-                </ul>
-
                 </ul>
             </div>
         </nav>
@@ -68,49 +69,46 @@ header("Content-Type: text/html");
         <!-- Server-Side Web Scripting Technologies section-->
 
         <div id="index-banner" class="parallax-container valign-wrapper">
-            <div class="section no-pad-bot">
+            <div class="section">
                 <div class="container">
                     <div class="row">
                         <div class="col s12 m6">
                             <h1 class="header white-text">Server-side Web Scripting Technologies</h1>
+                            <h5 class="header white-text">Sign-in to take our Servlet, PHP, NodeJS Quizzes.</h5>
                         </div>
-            <div class="col s12 m6">
-                <div class="card white darken-1">
-                    <div class="card-content blue-text">
-                    <span class="card-title">Sign In</span>
-                        <hr>
-                        <div class="row">
-                        <form class="col s12">
-                          <div class="row">
-                            <div class="input-field col s6 m12">
-                              <i class="material-icons waves-light prefix">account_circle</i>
-                              <input id="icon_prefix" type="text" class="validate">
-                              <label for="icon_prefix">Username</label>
+                        <div class="col s12 m6">
+                            <div class="card white darken-1">
+                                <div class="card-content blue-text">
+                                    <span class="card-title">Sign In</span>
+                                    <hr>
+                                    <div class="row">
+                                        <form class="col s12">
+                                            <div class="row">
+                                                <div class="input-field col s12 m12">
+                                                    <i class="material-icons waves-light prefix">account_circle</i>
+                                                    <input id="icon_prefix" type="text" class="validate">
+                                                    <label for="icon_prefix">Username</label>
+                                                </div>
+                                                <div class="input-field col s12 m12">
+                                                    <i class="material-icons waves-light prefix">security</i>
+                                                    <input id="icon_prefix" type="password" class="validate">
+                                                    <label for="icon_prefix">Password</label>
+                                                </div> 
+                                            </div>
+                                        </form>
+
+                                        <div class="col s12 m12">
+                                            <button style="margin-bottom: 15px;" class="btn waves-effect waves-light" type="submit" name="action">Sign In</button><br>
+                                            <a href="http://localhost:8084/ScriptCademy/Registration">Create an account now!</a> 
+                                        </div>
+                                    </div>        
+                                </div>
                             </div>
-                            <div class="input-field col s6 m12">
-                              <i class="material-icons waves-light prefix">security</i>
-                              <input id="icon_prefix" type="password" class="validate">
-                              <label for="icon_prefix">Password</label>
-                            </div> 
-                            <div class="col s12 m6 offset-m4">
-                             <button class="btn waves-effect waves-light" type="submit" name="action">Sign In</button> 
-                            </div>
-                            <div class="col s6 m6 offset-m3">     
-                                <p> <br></p>
-                            </div>  
-                            <div class="col s6 m6 offset-m3">
-                             <a href="#signup.html">Create an account now!</a>      
-                            </div>  
-                          </div>
-                        </form>
-                    </div>        
+                        </div>
                     </div>
                 </div>
             </div>
-                            </div>
-            </div>
-        </div>
-            <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
+            <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
         </div>
 
         <!--   Servlet Section   -->
@@ -161,22 +159,22 @@ header("Content-Type: text/html");
         <!-- PHP section-->
 
 
- <div id="index-banner" class="parallax-container valign-wrapper">
+        <div id="index-banner" class="parallax-container valign-wrapper">
             <div class="section no-pad-bot">
                 <div class="container">
                     <div class="row">
                         <div class="col s12 m6 l6">
                             <h1 class="header white-text">PHP (Hypertext Preprocessor)</h1>
-                         
+
                         </div>
-                        
+
                     </div>
 
                 </div>
             </div>
-            <div class="parallax"><img src="./img/background2.jpg" alt="Unsplashed background img 1"></div>
+            <div class="parallax"><img src="./img/background2.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
         </div>
-        
+
 
         <!--   PHP Section   -->
         <div class="container">
@@ -259,15 +257,14 @@ header("Content-Type: text/html");
         <script src="js/bin/materialize.min.js"></script>
         <script src="js/bin/init.js"></script>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $('.dropdown-trigger').dropdown();
             });
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $('.collapsible').collapsible();
             });
         </script>
     </body>
 
 </html>
-
 
