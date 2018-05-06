@@ -128,7 +128,9 @@ header("Content-Type: text/html");
                 <div class="row">
 
                     <div class="col s12 m6">
+                    
                         <div class="icon-block">
+                               
                             <h2 class="center brown-text"><i class="material-icons">subject</i></h2>
                             <h5 class="center">Review Course Notes</h5>
 
@@ -137,7 +139,7 @@ header("Content-Type: text/html");
                             <!-- Link of review-->
 
                             <ul class="center">
-                                <li><a href="links/notes.php" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Review</a></li>
+                                <li><a href="links/servletnotes.php" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Review</a></li>
                             </ul>
 
                         </div>
