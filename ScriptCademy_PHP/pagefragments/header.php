@@ -21,7 +21,7 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="dropdown-trigger" href="#!" data-target="java">Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
-                    
+
                     <ul id='java' class='dropdown-content'>
                         <li><a href="http://localhost:8084/ScriptCademy/Registration">one</a></li>
                         <li><a href="#!">two</a></li>
@@ -32,7 +32,7 @@
                     </ul>
 
                     <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
-                    
+
                     <ul id='php' class='dropdown-content'>
                         <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">one</a></li>
                         <li><a href="#!">two</a></li>
@@ -41,9 +41,9 @@
                         <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                         <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                     </ul>
-                    
+
                     <li><a class="dropdown-trigger" href="#!" data-target="node">NodeJS<i class="material-icons right">arrow_drop_down</i></a></li>
-                    
+
                     <ul id='node' class='dropdown-content'>
                         <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">one</a></li>
                         <li><a href="#!">two</a></li>
@@ -51,6 +51,18 @@
                         <li><a href="#!">three</a></li>
                         <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                         <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                    </ul>
+
+                    <li><a class="dropdown-trigger" href="#!" data-target="acc">Account<i class="material-icons right">arrow_drop_down</i></a></li>
+
+                    <ul id='acc' class='dropdown-content'>
+                        <li><a href="#">
+                            <?php
+                            echo $_SESSION['username'];
+                            ?>
+                            </a> 
+                        </li>
+                        <li><a href="../links/logout.php">Logout</a></li>
                     </ul>
                 </ul>
 
