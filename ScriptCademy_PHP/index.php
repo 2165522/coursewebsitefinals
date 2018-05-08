@@ -1,9 +1,14 @@
+<?php
+header("HTTP/1.1 200 OK");
+header("Content-Type: text/html");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Learn Server-side Web Scripting</title>
+        <title>ScriptCademy</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,70 +18,19 @@
             i.waves-light {
                 color: waves-light;
             }
-        </style>       
+        </style>
     </head>
 
     <body>
-        <!-- Navigation -->
-
-        <nav class="grey lighten-2" role="navigation">
-            <div class=" nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="dropdown-trigger" href="#!" data-target="java">Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
-                    
-                    <ul id='java' class='dropdown-content'>
-                        <li><a href="http://localhost:8084/ScriptCademy/Registration">Introduction</a></li>
-                        <li><a href="#!">two</a></li>
-                        <li class="divider" tabindex="-1"></li>
-                        <li><a href="#!">three</a></li>
-                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                    </ul>
-
-                    <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
-                    
-                    <ul id='php' class='dropdown-content'>
-                        <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">Introduction</a></li>
-                        <li><a href="#!">Basic Syntax, Types</a></li>
-                        <li class="divider" tabindex="-1"></li>
-                        <li><a href="#!">three</a></li>
-                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                    </ul>
-                    
-                    <li><a class="dropdown-trigger" href="#!" data-target="node">NodeJS<i class="material-icons right">arrow_drop_down</i></a></li>
-                    
-                    <ul id='node' class='dropdown-content'>
-                        <li><a href="links/php_notes.php">Introduction</a></li>
-                        <li><a href="#!">two</a></li>
-                        <li class="divider" tabindex="-1"></li>
-                        <li><a href="#!">three</a></li>
-                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                    </ul>
-                </ul>
-            </div>
-        </nav>
-        <ul class="sidenav" id="mobile-demo">
-            <li class="light-blue-text text-darken-4"><div class="container"><h5>Course Notes</h5></div></li>
-            <li><a href="!#" class="dropdown-trigger" data-target="servlets">Java Servlets</a></li>
-            <li><a href="#">PHP</a></li>
-            <li><a href="#">Javascript</a></li>
-        </ul>
-
-        <!-- Server-Side Web Scripting Technologies section-->
-
         <div id="index-banner" class="parallax-container valign-wrapper">
             <div class="section">
                 <div class="container">
                     <div class="row">
                         <div class="col s12 m6">
-                            <h1 class="header white-text">Server-side Web Scripting Technologies</h1>
-                            <h5 class="header white-text">Sign-in to take our Servlet, PHP, NodeJS Quizzes.</h5>
+                            <h1 class="header white-text">ScriptCademy</h1>
+                            <h5 class="header white-text">Sign-in to learn different Server-side Web Scripting Technologies</h5>
                         </div>
-                        <div class="col s12 m6">
+                        <div class="col s12 m5 offset-m1">
                             <div class="card white darken-1">
                                 <div class="card-content blue-text">
                                     <span class="card-title">Sign In</span>
@@ -93,133 +47,29 @@
                                                     <i class="material-icons waves-light prefix">security</i>
                                                     <input id="icon_prefix" type="password" class="validate">
                                                     <label for="icon_prefix">Password</label>
-                                                </div> 
+                                                </div>
+                                                <div class="col s12 m6 offset-m4">
+                                                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign In</button>
+                                                </div>
+                                                <div class="col s12 m2 offset-m2">
+                                                    <p> <br></p>
+                                                </div>
+                                                <div class="col s12 m10 offset-m1">
+                                                    <a href="links/signup.php">Create an account now!</a>
+                                                </div>
                                             </div>
                                         </form>
-
-                                        <div class="col s12 m12">
-                                            <button style="margin-bottom: 15px;" class="btn waves-effect waves-light" type="submit" name="action">Sign In</button><br>
-                                            <a href="http://localhost:8084/ScriptCademy/Registration">Create an account now!</a> 
-                                        </div>
-                                    </div>        
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
+            <div class="parallax"><img style="filter: brightness(40%)" src="img/background1.jpg" alt="Unsplashed background img 1"></div>
         </div>
 
-        <!--   Servlet Section   -->
-        <div class="container">
-            <div class="section">
-
-
-
-                <div class="row">
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">subject</i></h2>
-                            <h5 class="center">Review Course Notes</h5>
-
-                            <p class="center light">Take time in reviewing java servlets.</p>
-
-                            <!-- Link of review-->
-
-                            <ul class="center">
-                                <li><a href="links/notes.php" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Review</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <!-- Take the quiz -->
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">border_color</i></h2>
-                            <h5 class="center">Take the quiz</h5>
-
-                            <p class="center light">Test your knowledge about java servlets.</p>
-
-                            <!-- Take the quiz link -->                                                        
-                            <ul class="center">
-                                <li><a href="#" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Quiz</a></li>
-                            </ul>                        
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <!-- PHP section-->
-
-
-        <div id="index-banner" class="parallax-container valign-wrapper">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s12 m6 l6">
-                            <h1 class="header white-text">PHP (Hypertext Preprocessor)</h1>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="parallax"><img src="./img/background2.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
-        </div>
-
-
-        <!--   PHP Section   -->
-        <div class="container">
-            <div class="section">
-
-
-
-                <div class="row">
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">subject</i></h2>
-                            <h5 class="center">Review Course Notes</h5>
-
-                            <p class="center light">Take time in reviewing php scripts.</p>
-
-                            <!-- Link of review-->
-
-                            <ul class="center">
-                                <li><a href="./links/PHP.html" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Review</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <!-- Take the quiz -->
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">border_color</i></h2>
-                            <h5 class="center">Take the quiz</h5>
-
-                            <p class="center light">Test your knowledge about php scripting.</p>
-
-                            <!-- Take the quiz link -->                                                        
-                            <ul class="center">
-                                <li><a href="#" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Quiz</a></li>
-                            </ul>                        
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>  
+        
 
         <footer class="page-footer light-blue darken-4">
             <div class="container">
@@ -248,23 +98,20 @@
                     </div>
                 </div>
             </div>
-
         </footer>
-
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/bin/materialize.min.js"></script>
         <script src="js/bin/init.js"></script>
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('.dropdown-trigger').dropdown();
             });
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('.collapsible').collapsible();
             });
+
         </script>
     </body>
-
 </html>
-
