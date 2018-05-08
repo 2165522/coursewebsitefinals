@@ -16,7 +16,7 @@ include("../pagefragments/header.php");
                     </div>
                 </div>
             </div>
-            <div class="parallax"><img style="filter: brightness(40%)" src="../img/background1.jpg" alt="Unsplashed background img 1"></div>
+            <div class="parallax"><img style="filter: brightness(40%)" src="../img/back1.jpg" alt="Unsplashed background img 1"></div>
         </div>
 
         <!--   Servlet Section   -->

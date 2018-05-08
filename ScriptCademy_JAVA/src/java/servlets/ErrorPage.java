@@ -7,6 +7,13 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Earl
  */
-@WebServlet(name = "Registration", urlPatterns = {"/Registration"})
-public class Registration extends HttpServlet {
+@WebServlet(name = "ErrorPage", urlPatterns = {"/ErrorPage"})
+public class ErrorPage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,14 +40,19 @@ public class Registration extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher header = request.getRequestDispatcher("pagefragments/header.html");
-        RequestDispatcher footer = request.getRequestDispatcher("pagefragments/footer.html");
-        try (PrintWriter out = response.getWriter()) {
 
-            header.include(request, response);
-            out.println("<h1>Servlet Registration at " + request.getContextPath() + "</h1>");
-            footer.include(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("pagefragments/header.html");
+        rd.include(request, response);
+
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<div class='container'>");
+            out.println("<h4>Username is already existing.</h4>");
+            out.println("<a href='http://localhost:8084/ScriptCademy_JAVA'>Go back.</a>");
+            out.println("</div>");
         }
+
+        rd = request.getRequestDispatcher("pagefragments/footer.html");
+        rd.include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
