@@ -1,0 +1,126 @@
+<html>
+    <head>
+    <title>Node JS</title>
+    </head>
+    <body>
+        <h1>Node JS</h1>
+    <span class="anchor" id="css2"></span>
+        <div class="cont" id="css">
+            <h3>Assertion Testing</h3>
+            <ul>
+                <li>Class: assert.AssertionError</li>
+                <ul>
+                    <li>A subclass of Error that indicates the failure of an assertion.  All errors thrown by the assert module will be instances of the AssertionError class.</li>
+                </ul>
+                <li>new assert.AssertionError(options)</li>
+                <ul>
+                    <li>options &lt;Object&gt;</li>
+                    <ul>
+                        <li>message &lt;string&gt; = error message is going to be set to this value.</li>
+                    </ul>
+                    <li>actual &lt;any&gt;</li>
+                    <ul>
+                        <li>actual property on the error instance is going to contain this value.</li>
+                    </ul>
+                    <li>expected &lt;any&gt;</li>
+                    <ul>
+                        <li>expected property on the error instance is going to contain this value.</li>
+                    </ul>
+                    <li>operator &lt;string&gt;</li>
+                    <ul>
+                        <li>used to indicate what operation was used for comparison.</li>
+                    </ul>
+                    <li>stackStartFn &lt;function&gt;</li>
+                    <ul>
+                        <li>if provided, the generated stack trace is going to remove all frames up to the provided function.</li>
+                    </ul>
+                </ul>
+                <li>All instances contain the built-in Error properties (message and name) and:</li>
+                <ul>
+                    <li>actual &lt;any&gt;</li>
+                    <ul>
+                        <li>set to the actual value in case</li>
+                        <li>Example:</li>
+                        <div class="code-sample">
+                            <span class="indent"></span>
+                            assert.strictEqual()
+                        </div>
+                    </ul>
+                    <li>expected &lt;any&gt;</li>
+                    <ul>
+                    <li>Set to the expected value in case</li>
+                    </ul>
+                    <li>generatedMessage &lt;boolean&gt;</li>
+                    <ul>
+                        <li>Indicates if the message was auto-generated (true) or not.</li>
+                    </ul>
+                    <li>code &lt;string&gt;</li>
+                    <ul>
+                        <li>This is always set to the string ERR_ASSERTION to indicate that the error is actually an assertion error.</li>
+                    </ul>
+                    <li>operator &lt;string&gt;</li>
+                    <ul>
+                        <li>Set to the passed in operator value.</li>
+                    </ul>
+                    <span class="anchor" id="sampcode2"></span>
+                    <a href="#sampcode2" onclick="toggle_visibility('sampcode1');">Sample Code</a> 
+                    <div class="code-sample" id="sampcode1">
+                    const assert = require('assert');<br>
+                    <span class="comment">// Generate an AssertionError to compare the error message later:</span><br>
+                    const { message } = new assert.AssertionError({<br>
+                    actual: 1,<br>
+                    expected: 2,<br>
+                    operator: 'strictEqual'<br>
+                    });<br>
+                    <span class="comment">// Verify error output:</span><br>
+                    try {<br>
+                    assert.strictEqual(1, 2);<br>
+                    } catch (err) {<br>
+                    assert(err instanceof assert.AssertionError);<br>
+                    assert.strictEqual(err.message, message);<br>
+                    assert.strictEqual(err.name, 'AssertionError<br> [ERR_ASSERTION]');<br>
+                    assert.strictEqual(err.actual, 1);<br>
+                    assert.strictEqual(err.expected, 2);<br>
+                    assert.strictEqual(err.code, 'ERR_ASSERTION');<br>
+                    assert.strictEqual(err.operator, 'strictEqual');<br>
+                    assert.strictEqual(err.generatedMessage, true);<br>
+                    }<br>
+                    </div>
+                </ul>
+                <li>Strict Mode</li>
+                <ul>
+                    <li>When using the strict mode, any assert function will use the equality used in the strict function mode. So assert.deepEqual() will, for example, work the same as assert.deepStrictEqual().</li>
+                    <li>On top of that, error messages which involve objects produce an error diff instead of displaying both objects. That is not the case for the legacy mode.</li>
+                    <span class="anchor" id="sampcode4"></span>
+                    <a href="#sampcode4" onclick="toggle_visibility('sampcode3');">Sample Code</a> 
+                    <div class="code-sample" id="sampcode3">
+                        const assert = require('assert').strict;
+                    </div>
+                    <li>Example error diff (the expected, actual, and Lines skipped will be on a single row):</li>
+                    <span class="anchor" id="sampcode6"></span>
+                    <a href="#sampcode6" onclick="toggle_visibility('sampcode5');">Sample Code</a> 
+                    <div class="code-sample" id="sampcode5">
+                        const assert = require('assert').strict;
+                        assert.deepEqual([[[1, 2, 3]], 4, 5], [[[1, 2, '3']], 4, 5]);
+                    </div>
+                    <li>AssertionError [ERR_ASSERTION]: Input A expected to deepStrictEqual input B:</li>
+                    <ul>
+                        <li>+ expected<br>
+                        - actual</li>
+                        <li>... Lines skipped<br>
+                        [<br>
+                        [<br>
+                        ...<br>
+                        2,<br>
+                        -     3<br>
+                        +     '3'<br>
+                        ],<br>
+                        ...<br>
+                        5<br>
+                        ]</li>
+                    </ul>
+                </ul>
+            </ul>
+        </div>
+    </body>
+</html>
