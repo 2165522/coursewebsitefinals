@@ -65,7 +65,7 @@ if (isset($_POST['action'])){
                                                     <p> <br></p>
                                                 </div>
                                                 <div class="col s12 m12">
-                                                    <a href="links/signup.php">Create an account now!</a>
+                                                    <a href="http://localhost:8084/ScriptCademy_JAVA/">Create an account now!</a>
                                                 </div>
                                             </div>
                                         </form>

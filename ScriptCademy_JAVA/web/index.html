@@ -21,193 +21,75 @@
 
         <nav class="grey lighten-2" role="navigation">
             <div class=" nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="dropdown-trigger" href="#!" data-target="servlets">Java Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
-
-                    <ul id='servlets' class='dropdown-content'>
-                        <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">one</a></li>
-                        <li><a href="#!">two</a></li>
-                        <li class="divider" tabindex="-1"></li>
-                        <li><a href="#!">three</a></li>
-                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                    </ul>
-
-                    <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
-                    `
-                    <ul id='php' class='dropdown-content'>
-                        <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">one</a></li>
-                        <li><a href="#!">two</a></li>
-                        <li class="divider" tabindex="-1"></li>
-                        <li><a href="#!">three</a></li>
-                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                    </ul>
-                </ul>
+                <a id="logo-container" href="http://localhost/coursewebsitefinals/ScriptCademy_PHP" class="brand-logo light-blue-text text-darken-4">ScriptCademy</a>
             </div>
         </nav>
-        <ul class="sidenav" id="mobile-demo">
-            <li class="light-blue-text text-darken-4"><div class="container"><h5>Course Notes</h5></div></li>
-            <li><a href="!#" class="dropdown-trigger" data-target="servlets">Java Servlets</a></li>
-            <li><a href="#">PHP</a></li>
-            <li><a href="#">Javascript</a></li>
-        </ul>
+
 
         <!-- Server-Side Web Scripting Technologies section-->
 
-        <div id="index-banner" class="parallax-container valign-wrapper">
-            <div class="section">
-                <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <h5>Sign Up</h5>
+                    <hr>
                     <div class="row">
-                        <div class="col s12 m6">
-                            <h1 class="header white-text">Server-side Web Scripting Technologies</h1>
-                        </div>
-                        <div class="col s12 m6">
-                            <div class="card white darken-1">
-                                <div class="card-content blue-text">
-                                    <span class="card-title">Sign In</span>
-                                    <hr>
-                                    <div class="row">
-                                        <form class="col s12">
-                                            <div class="row">
-                                                <div class="input-field col s12 m12">
-                                                    <i class="material-icons waves-light prefix">account_circle</i>
-                                                    <input id="icon_prefix" type="text" class="validate">
-                                                    <label for="icon_prefix">Username</label>
-                                                </div>
-                                                <div class="input-field col s12 m12">
-                                                    <i class="material-icons waves-light prefix">security</i>
-                                                    <input id="icon_prefix" type="password" class="validate">
-                                                    <label for="icon_prefix">Password</label>
-                                                </div> 
-                                            </div>
-                                        </form>
-
-                                        <div class="col s12 m12">
-                                            <button style="margin-bottom: 15px;" class="btn waves-effect waves-light" type="submit" name="action">Sign In</button><br>
-                                            <a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/signup.php">Create an account now!</a> 
-                                        </div>
-                                    </div>        
+                        <form action="Register" method="POST" class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons waves-light prefix">person</i>
+                                    <input name="fname" type="text" class="validate">
+                                    <label for="icon_prefix">First Name</label>
                                 </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons waves-light prefix">perm_identity</i>
+                                    <input name="lname" type="text" class="validate">
+                                    <label for="icon_prefix">Last Name</label>
+                                </div>
+                                <div class="input-field col s12 m12">
+                                    <i class="material-icons waves-light prefix">account_circle</i>
+                                    <input name="uname" type="text" class="validate">
+                                    <label for="icon_prefix">Username</label>
+                                </div>
+                                <div class="input-field col s12 m12">
+                                    <i class="material-icons waves-light prefix">email</i>
+                                    <input name="email" type="email" class="validate">
+                                    <label for="icon_prefix">Email</label>
+                                </div>
+                                <div class="input-field col s12 m12">
+                                    <i class="material-icons waves-light prefix">security</i>
+                                    <input name="pword" type="password" class="validate">
+                                    <label for="icon_prefix">Password</label>
+                                </div> 
+                                <!--
+                                <div class="input-field col s12 m12">
+                                    <i class="material-icons waves-light prefix">lock</i>
+                                    <input id="icon_prefix" type="password" class="validate">
+                                    <label for="icon_prefix">Confirm Password</label>
+                                </div>
+                                <div class="col s12 m12">
+                                    <form action="#">
+                                        <div class="file-field input-field col s12 m12">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" multiple>
+                                            </div>
+                                            <div class="file-path-wrapper col s12 m9">
+                                                <input class="file-path validate" type="text" placeholder="Upload profile image">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col s12 m6 offset-m4">
+                                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign me up!</button> 
+                                </div>	-->	
+                                <input type="submit" name="submit">
                             </div>
-                        </div>
-                    </div>
+                        </form>
+                    </div>        
                 </div>
-            </div>
-            <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
-        </div>
-
-        <!--   Servlet Section   -->
-        <div class="container">
-            <div class="section">
-
-
-
-                <div class="row">
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">subject</i></h2>
-                            <h5 class="center">Review Course Notes</h5>
-
-                            <p class="center light">Take time in reviewing java servlets.</p>
-
-                            <!-- Link of review-->
-
-                            <ul class="center">
-                                <li><a href="links/notes.php" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Review</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <!-- Take the quiz -->
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">border_color</i></h2>
-                            <h5 class="center">Take the quiz</h5>
-
-                            <p class="center light">Test your knowledge about java servlets.</p>
-
-                            <!-- Take the quiz link -->                                                        
-                            <ul class="center">
-                                <li><a href="#" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Quiz</a></li>
-                            </ul>                        
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
         </div>
-
-        <!-- PHP section-->
-
-
-        <div id="index-banner" class="parallax-container valign-wrapper">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s12 m6 l6">
-                            <h1 class="header white-text">PHP (Hypertext Preprocessor)</h1>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="parallax"><img src="./img/background2.jpg" alt="Unsplashed background img 1"></div>
-        </div>
-
-
-        <!--   PHP Section   -->
-        <div class="container">
-            <div class="section">
-
-
-
-                <div class="row">
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">subject</i></h2>
-                            <h5 class="center">Review Course Notes</h5>
-
-                            <p class="center light">Take time in reviewing php scripts.</p>
-
-                            <!-- Link of review-->
-
-                            <ul class="center">
-                                <li><a href="./links/PHP.html" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Review</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <!-- Take the quiz -->
-
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center brown-text"><i class="material-icons">border_color</i></h2>
-                            <h5 class="center">Take the quiz</h5>
-
-                            <p class="center light">Test your knowledge about php scripting.</p>
-
-                            <!-- Take the quiz link -->                                                        
-                            <ul class="center">
-                                <li><a href="#" class="btn-large waves-effect waves-light #80cbc4 teal lighten-3">Quiz</a></li>
-                            </ul>                        
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>  
 
         <footer class="page-footer light-blue darken-4">
             <div class="container">
@@ -250,6 +132,9 @@
             });
             $(document).ready(function () {
                 $('.collapsible').collapsible();
+            });
+            $(document).ready(function () {
+                M.updateTextFields();
             });
         </script>
     </body>
