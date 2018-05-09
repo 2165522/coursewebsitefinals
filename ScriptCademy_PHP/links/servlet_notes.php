@@ -1,49 +1,115 @@
 <?php
-
-header("HTTP/1.1 200 OK");
-header("Content-Type: text/html");
-include("../pagefragments/header.html");
+include("../pagefragments/header.php");
 
 ?>
-<div id="index-banner" class="parallax-container valign-wrapper">
-            <div class="section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s12 m12">
-                            <h1 class="header center white-text">Java Servlets</h1>
-                        </div>
-                        
-                    </div>
+<nav class="grey lighten-2" role="navigation">
+    <div class="nav-wrapper container">
+        <a href="../index.php" class="brand-logo">ScriptCademy</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="dropdown-trigger" href="#!" data-target="java">Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
+
+            <ul id='java' class='dropdown-content'>
+                <li><a href="#introduction">Introduction</a></li>
+            </ul>
+
+            <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
+
+            <ul id='php' class='dropdown-content'>
+                <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a href="#!">three</a></li>
+                <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+            </ul>
+
+            <li><a class="dropdown-trigger" href="#!" data-target="node">NodeJS<i class="material-icons right">arrow_drop_down</i></a></li>
+
+            <ul id='node' class='dropdown-content'>
+                <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/notes.php">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a href="#!">three</a></li>
+                <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+            </ul>
+
+            <li><a class="dropdown-trigger" href="#!" data-target="acc">Account<i class="material-icons right">arrow_drop_down</i></a></li>
+
+            <ul id='acc' class='dropdown-content'>
+                <li><a href="#">
+                    <?php
+                    echo $_SESSION['username'];
+                    ?>
+                    </a> 
+                </li>
+                <li><a href="../links/logout.php">Logout</a></li>
+            </ul>
+        </ul>
+
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+</ul>
+<div id="index-banner" class="notes_header parallax-container valign-wrapper">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h1 class="header right white-text">What is a Servlet?</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="../img/back1.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m8 l8 main-content">
+                    <p>Java objects that are intended to play the role of server components in client-server communications.</p>
+                    
+                    <p>part of the Java EE specification<br><span><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/package-summary.html">(see Java Servlet API for more details)</a></span>.</p>
+                </div>
+                <div class="col m4 l4 hide-on-small">
+                    <img style="width: 300px;" src="../img/java_ee.png">
                 </div>
             </div>
-            <div class="parallax"><img src="../img/background1.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
         </div>
-<div class="row">
-    <div class="col l12 s12 m12">
+    </div>
+</div>
+<div id="index-banner" class="notes_header parallax-container valign-wrapper">
+    <div class="section">
         <div class="container">
-            <ul class="collapsible expandable">
-                <li>
-                    <div class="collapsible-header active"><i class="material-icons">arrow_drop_down</i>Introduction</div>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>Java objects that are intended to play the role of server components in client-server communications.</li>
-                            <li>handles client request by generating responses to such requests..</li>
-                            <li>part of the Java EE specification (see Java Servlet API for more details)..</li>
-                            <li>hosted in a 'servlet container' that provides the environment in which the servlet runs, as well as controls the 'servlet lifecycle'..</li>
-                    </div>
-                    <!-- Start of Second-->
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Servlet Lifecycle</div>
-                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>HTTPServlet</div>
-                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                </li>
-            </ul>
+            <div class="row">
+                <div class="col s12 m12">
+                    <h1 class="header left white-text">What does it do?</h1>
+                </div>
+
+            </div>
         </div>
-    </div> 
+    </div>
+    <div class="parallax"><img src="../img/back1.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="section">
+            <div class="row"> 
+                <div class="col s12 m10 l10 offset-m2 offset-l2 main-content">
+                    <p>handles client request by generating responses to such requests.</p>
+                    <p>hosted in a 'servlet container' that provides the environment in which the servlet runs, as well as controls the 'servlet lifecycle'.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
