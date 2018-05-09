@@ -1,0 +1,34 @@
+SERVLET QUIZ
+
+1. Servlets are included in what platform of Java Development Kit?
+	a. Standard Edition
+	b. Enterprise Edition *
+	c. Micro Edition
+	d. Web Edition
+
+2. A servlet is instantiated in the class Constructor.
+	a. TRUE *
+	b. FALSE
+
+3. In what method is the Servlet initialized?
+	a. start() method
+	b. init() method *
+	c. build() method
+	d. service() method
+
+4. In what method is the Servlet dropped?
+	a. destroy() method *
+	b. drop() method
+	c. remove() method
+	d. delete() method
+
+5. The service() method is used in ________?
+	a. client requests *
+	b. server responses
+
+6. One example of an application server which runs HTTPServlets
+	a. Internet Information Services
+	b. WAMP Server
+	c. Apache Tomcat *
+
+7. 
