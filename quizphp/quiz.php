@@ -29,25 +29,25 @@
     <div class="container row mt-1">
         <div class="col s12" id="content">
          <?php
-            if (isset($_POST['quiz'])) {
-                $quiz = $_POST['quiz'];
+            if (isset($_GET['quiz'])) {
+                $quiz = $_GET['quiz'];
             }
 
             echo '<h1>'.$quiz.'</h1>';
 
-            $con=mysqli_connect("localhost","root","","webtek");
-            $qry = 'SELECT * from quiz natural join questions where quiz_title="'.$quiz.'";';
+            $con=mysqli_connect("localhost","root","","scriptcademy");
+            $qry = 'SELECT * from topics natural join questions where topic="'.$quiz.'";';
             $result=mysqli_query($con,$qry);
 
 
             echo '<form action="calculate.php" method="post">';
                 while($row = mysqli_fetch_array($result)){
-                    $arrangeQuest = range(0, 3);
-                    shuffle($arrangeQuest);
+                    $questions = range(0, 3);
+                    shuffle($questions);
                     echo 
                     '<div><h4>'.$row[3].') '.$row[4].'</h4></div>';
                     for($i = 0; $i < 4; $i++){
-                        echo '<input class="rad" type="radio" name="'.$row[3].'" value="'.$row[$arrangeQuest[$i]+5].'"required>'.$row[$arrangeQuest[$i]+5].'</br>';
+                        echo '<input class="rad" type="radio" name="'.$row[3].'" value="'.$row[$questions[$i]+5].'"required>'.$row[$questions[$i]+5].'</br>';
 
                     }
                 }

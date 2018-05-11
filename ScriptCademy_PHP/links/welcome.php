@@ -35,7 +35,7 @@ include("../pagefragments/header.php");
 
                 <ul id='java' class='dropdown-content'>
                     <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/servlet_notes">Review Notes</a></li>
-                    <li><a href="#">Take the Quiz</a></li>
+                    <li><a href="quiz?quiz=Servlets">Take the Quiz</a></li>
                 </ul>
 
                 <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -91,7 +91,7 @@ include("../pagefragments/header.php");
                 <h1>Servlets</h1>
                 <div class="row">
                     <div class="col s12 m4 offset-m8 l4 offset-l8">
-                        <img style="width: 300px;" src="../img/java.png">
+                        <img class="logos" src="../img/java.png">
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@ include("../pagefragments/header.php");
                 <h1>PHP (Hypertext Preprocessor)</h1>
                 <div class="row">
                     <div class="col s12 m4 l4">
-                        <img style="width: 300px;" src="../img/php.png">
+                        <img class="logos" src="../img/php.png">
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@ include("../pagefragments/header.php");
                 <h1>NodeJS</h1>
                 <div class="row">
                     <div class="col s12 m4 offset-m4 l4 offset-l4">
-                        <img style="width: 300px;" src="../img/nodejs.png">
+                        <img class="logos" src="../img/nodejs.png">
                     </div>
                 </div>
             </div>

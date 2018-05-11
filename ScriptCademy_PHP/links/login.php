@@ -58,13 +58,13 @@ if (isset($_POST['action'])){
                                                     <input name="password" id="inputPassword" type="password" class="validate" required>
                                                     <label for="icon_prefix">Password</label>
                                                 </div>
-                                                <div class="col s12 m6 offset-m3">
+                                                <div class="col s12 m6 offset-m4">
                                                     <button class="btn waves-effect waves-light" type="submit" name="action">Sign In</button>
                                                 </div>
                                                 <div class="col s12 m6 offset-m3">
                                                     <p> <br></p>
                                                 </div>
-                                                <div class="col s12 m12">
+                                                <div class="col s12 m12 offset-m3">
                                                     <a href="http://localhost:8084/ScriptCademy_JAVA/">Create an account now!</a>
                                                 </div>
                                             </div>
