@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webtek</title>
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/override.css">
+</head>
+
+<body>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper blue">
+        <span class="brand-logo center">Webtek</span>
+      </div>
+    </nav>
+  </div>
+  
+  <div class="container row mt-1">
+   <h1>JavaScript Quiz</h1>
+    <div class="col s8">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">#1</span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, accusantium.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">link1</a>
+          <a href="#">link2</a>
+          <a href="#">link3</a>
+          <a href="#">link4</a>
+        </div>
+      </div>
+    </div>
+    <div class="col s4">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Take a Quiz</span>
+          <div class="flex flex-column">
+            <button class="btn waves-effect my-1 red">JavaScript</button>
+            <button class="btn waves-effect my-1 purple lighten-2">PHP</button>
+            <button class="btn waves-effect my-1 green">Node.js</button>
+          </div>
+          <div class="center my-1">
+            <button class="btn waves-effect waves-light blue">Make a Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Useful Links</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="fixed-action-btn">
+    <a href="#" class="btn-floating btn-large red">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>-->
+  <script src="js/materialize.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    $(function() {
+      $('.fixed-action-btn').floatingActionButton();
+    });
+  </script>
+</body>
+
+</html>

@@ -99,4 +99,13 @@ p {
     text-indent: 2em;
 }
 
+.code-sample {
+ border-radius: 25px;
+ background-color:gainsboro;
+
+}
+.code-comment{
+    color: darkgray;
+}
+
 
