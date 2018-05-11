@@ -1,0 +1,49 @@
+1.Considered as the simplest type in which it only gives a correct value whether it’s TRUE or FALSE.
+a. Integer *
+b. String
+c. float
+
+2. also known as "floats", "doubles", or "real numbers"
+a. Integer 
+b. String
+c. float *
+
+3. simplest type of loop in PHP
+a. While *
+b. For
+c. do-while
+
+4.represented by a dollar sign followed by the variable name which also case-sensitive.
+a. control structure
+b. variable*
+c. PHP tags
+
+5.tells to the PHP the start and stop of the code and interpret the code inside.
+a. control structure
+b. variable
+c. PHP tags*
+
+6.  progression of character that are same as a byte. PHP just backings a 256-character set and does not offer local Unicode bolster.
+a.String*
+b.Nan
+c.float
+
+7.known as an identifier(name) for a simple value that cannot be changed during the execution of the script(except for magic constants because it is not actually a constants).
+a.Constants*
+b.Control structure
+c.Php Tags
+
+8. Represents any number of various value and ought not be contrasted with different qualities, including itself 
+a. String
+b. Nan*
+c. float
+
+9. works only on arrays and objects
+a.while
+b.else
+c.foreach*
+
+10. the truth expression is checked at the end of each iteration instead of in the beginning
+a.while
+b.do-while*
+c.for
