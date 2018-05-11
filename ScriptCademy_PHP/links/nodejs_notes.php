@@ -51,7 +51,6 @@ include("../pagefragments/header.php");
         </div>
     </nav>
 </div>
-
 <ul class="sidenav" id="mobile-demo">
     <li><a href="sass.html">Sass</a></li>
     <li><a href="badges.html">Components</a></li>
@@ -78,10 +77,154 @@ include("../pagefragments/header.php");
             <div class="row">
                 <div class="col s12 m8 l8 main-content">
                     <p>Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.</p>
+                    <p>It is free and it is  available on different platforms such as Windows, Linux, Mac OS X, etc.</p>
                     <p><span><a href="https://nodejs.org/en/docs/">(see NodeJS Documentation for more details)</a></span>.
                 </div>
                 <div class="col m4 l4 hide-on-small">
                     <img style="width: 300px;" src="../img/nodejs.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="index-banner" class="notes_header parallax-container valign-wrapper">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h1 class="header right white-text">What does it look like?</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="../img/back4.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m8 l8 main-content">
+                    <p>It looks something like this:</p>
+                    <div class = "code-sample">
+                        <div class = "code-comment">
+                            //Sample Code
+                        </div>
+                        var http = require('http');<br>
+                        <br>
+                        http.createServer(function (req, res) {<br>
+                        res.writeHead(200, {'Content-Type': 'text/html'});<br>
+                        res.end('Sample Statement');<br>
+                        }).listen(8080);<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="index-banner" class="notes_header parallax-container valign-wrapper">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h1 class="header left white-text">Why NodeJS?</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="../img/back3.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m8 l8 main-content">
+                    <p>Compared to PHP and ASP, here's how NodeJS handles file request:</p>
+                    <ul>
+                        <li><b>First:</b> It sends task to the computer's file system.</li>
+                        <li><b>Second:</b> It is always ready to handle the next request.</li>
+                        <li><b>Third:</b> The server returns the content to the client after the file system has opened and read the file.</li>
+                    </ul>
+                    <p>NodeJS continues with the next request and get rid of waiting.</p>
+                    <p>NodeJS is memory-efficient because it runs non-blocking, asynchronously programming, single-threaded.</p>
+                </div>
+                <div class="col m4 l4 hide-on-small">
+                    <img style="width: 300px;" src="../img/nodejs_3.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="index-banner" class="notes_header parallax-container valign-wrapper">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h1 class="header right white-text">What does it do?</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="../img/back2.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m8 l8 main-content">
+                    <ul>
+                        <li>It can collect form data.</li>
+                    </ul>
+                    <ul>
+                        <li>It can produce dynamic page content.</li>
+                    </ul> 
+                    <ul>
+                        <li>It can add, delete, modify data in your database.</li>
+                    </ul>
+                    <ul>
+                        <li>It can create, open, close, read, write, and delete files on the server</li>
+                    </ul>
+                </div>
+                <div class="col m4 l4 hide-on-small">
+                    <img style="width: 300px;" src="../img/nodejs_2.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="index-banner" class="notes_header parallax-container valign-wrapper">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h1 class="header left white-text">NodeJS Modules</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="../img/back2.jpg" alt="Unsplashed background img 1" style="filter: brightness(60%)";></div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m8 l8 main-content">
+                    <p>Each file is being considered as separate module in Node.js module system.</p>
+                    <ul>
+                        <li><b>Built-in Modules:</b> NodeJS has a set of built-in modules which you can use without additional installation.</li>
+                        <li>Code looks like this:</li>
+                    <div class = "code-sample">
+                    const builtin = require('module').builtinModules;
+                    </div>
+                    </ul>
+                    <p><span><a href="https://nodejs.org/dist/latest-v10.x/docs/api/modules.html#modules_module_builtinmodules">(see NodeJS Documentation for more details)</a></span>.
+                </div>
+                <div class="col m4 l4 hide-on-small">
+                    <img style="width: 300px;" src="../img/nodejs_4.png">
                 </div>
             </div>
         </div>
