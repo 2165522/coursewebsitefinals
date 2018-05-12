@@ -10,9 +10,21 @@ nav ul a,
 nav .brand-logo {
     color: #444;
 }
+.avatar{
+    width: 45px; 
+    margin-top:8px;
+}
+
+.foot {
+    margin-top: 20px;
+}
 
 p {
     line-height: 2rem;
+}
+
+.slider-css {
+    height: 80vh !important;
 }
 
 .sidenav-trigger {
@@ -58,6 +70,13 @@ p {
 
 }
 
+@media only screen and (max-width : 375px) {
+    img {
+        width: 100vw !important;
+    }
+
+}
+
 .icon-block {
     padding: 0 15px;
 }
@@ -66,11 +85,13 @@ p {
 }
 
 footer.page-footer {
+    margin-top: 50px !important;
     margin: 0;
 }
 
 .main-content{
     font-size: 2em;
+    text-align: justify;
 }
 
 p {
