@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make a Quiz</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+</head>
+
+<body>
+  <nav class="navbar border border-bottom bg-dark border-0">
+    <h1 class="navbar-brand lead text-light m-0">Quiz Maker</h1>
+  </nav>
+  <div class="container mt-5 p-4 border">
+    <form method="post" autocomplete="off">
+      <div class="form-group row">
+        <label for="title" class="col-2 col-form-label">Topic:</label>
+        <div class="col-3">
+          <select name="topic" class="custom-select">
+            <option value="js" selected>JavaScript</option>
+            <option value="php">PHP</option>
+            <option value="node">Node.js</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+      </div>
+      <h2 class="text-center">Question</h2>
+      <div class="form-group row">
+        <div class="col-12">
+          <input type="text" class="form-control" id="one" placeholder="Question..." name="question" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container">
+          <div class="row">
+            <h3 class="text-center col-8">Choices</h3>
+            <h3 class="text-center col-4">Answer Key</h3>
+            <div class="form-group row col-8">
+              <label for="choiceA" class="col-1 col-form-label">a</label>
+              <div class="col-11">
+                <input type="text" class="form-control" id="choiceA" placeholder="Answer 1" name="ans1" required>
+              </div>
+            </div>
+            <div class="col-4 text-center container-fluid">
+              <select name="keyAns" class="custom-select">
+                <option value="a" selected>a</option>
+                <option value="b">b</option>
+                <option value="c">c</option>
+                <option value="d">d</option>
+              </select>
+            </div>
+            <div class="form-group row col-8">
+              <label for="choiceA" class="col-1 col-form-label">b</label>
+              <div class="col-11">
+                <input type="text" class="form-control" id="choiceA" placeholder="Answer 2" name="ans2" required>
+              </div>
+            </div>
+            <div class="form-group row col-8">
+              <label for="choiceA" class="col-1 col-form-label">c</label>
+              <div class="col-11">
+                <input type="text" class="form-control" id="choiceA" placeholder="Answer 3" name="ans3" required>
+              </div>
+            </div>
+            <div class="form-group row col-8">
+              <label for="choiceA" class="col-1 col-form-label">d</label>
+              <div class="col-11">
+                <input type="text" class="form-control" id="choiceA" placeholder="Answer 4" name="ans4" required>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <input type="submit" class="btn btn-primary float-right mt-4" name="submit" value="Add question">
+      </div>
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
