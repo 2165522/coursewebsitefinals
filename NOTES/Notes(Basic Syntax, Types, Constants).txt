@@ -1,8 +1,7 @@
 BASIC SYNTAX
 
 PHP tags
-	- When PHP parses a file, it looks for opening and closing tags, which are <?php and ?> which tell PHP to start and stop interpreting the code between them.
-	- If pure PHP code it is preferable to used the PHP closing tag, this will prevents accidental whitespace or new lines being added after the PHP closing tag. Causing different effects because PHP will start output buffering when there is no intention from the programmer to send and output at that point in the script.
+	- When PHP parse and encounter the <?php and ?> I tells to the PHP the start and stop of the code and interpret the code inside. 
 
 <?php
  echo "Hello World";
@@ -16,46 +15,21 @@ PHP tags
 ========================================================================
 Escaping from HTML
 
-<p>This is going to be ignored by PHP and displayed by the browser. </p>
+<p>PHP will ignore this and browser will display p>
 
-<?php echo 'While this is going to be parsed.';?>
+<?php echo 'This will analyze ';?>
 
-<p> This will also be ignored by PHP and displayed by the browser. </p>
+<p> PHP will ignore this and browser will display </p>
 
-	- when the PHP interpreter hits the ?> closing tags, it simply starts outputting whatever it finds until it hits another opening tag unless in the middle of a conditional statement in which case the interpreter will determine the outcome of the conditional before making a decision of what to skip over.
+	- when the PHP finish analyze the code and hits the ?> closing tags, it simply start to display whatever it finds . When condition is not what expected the PHP will skip the blocks
 
-	Advanced escaping using conditions
-		<?php if ($expression == true): ?>
-  			This will show if the expression is true.
-		<?php else: ?>
-  			Otherwise this will show.
-		<?php endif; ?>
-	
-	- PHP will skip the blocks where the condition is not met. PHP skips them according to the condition since the PHP interpreter will jump over blocks contained within a condition that is not met.
+*Also note that if you imbedded PHP inside the XML or XHTML is required to put a <?php?>to comply with the standards .
+1.  <?php echo 'when attach the PHP into XML or XHTML it is requires to use these tags'; ?>
 
-	- In PHP 5, there are up to five different pairs of opening and closing tags available in PHP, depending on how PHP is configured. Two of these, <?php ?> and <script language="php"> </script>, are always available. There is also the short echo tag <?= ?>, which is always available in PHP 5.4.0 and later.
-
-*Also note that if you are embedding PHP within XML or XHTML you will need to use the <?php ?> tags to remain compliant with standards.
-
-	-PHP 7 removes support for ASP tags and <script language="php"> tags. As such, we recommend only using <?php ?> and <?= ?> when writing PHP code to maximise compatibility.
-
-1.  <?php echo 'if you want to serve PHP code in XHTML or XML documents,
-                use these tags'; ?>
-
-2.  You can use the short echo tag to <?= 'print this string' ?>.
-    It's always enabled in PHP 5.4.0 and later, and is equivalent to
-    <?php echo 'print this string' ?>.
-
-3.  <? echo 'this code is within short tags, but will only work '.
+2.  <? echo 'this code is within short tags, but will only work '.
             'if short_open_tag is enabled'; ?>
 
-4.  <script language="php">
-        echo 'some editors (like FrontPage) don\'t
-              like processing instructions within these tags';
-    </script>
-    This syntax is removed in PHP 7.0.0.
-
-5.  <% echo 'You may optionally use ASP-style tags'; %>
+3.  <% echo 'This ASP-style tags are optional'; %>
     Code within these tags <%= $variable; %> is a shortcut for this code <% echo $variable; %>
     Both of these syntaxes are removed in PHP 7.0.0.
 
@@ -68,49 +42,33 @@ Instruction Separation
 
 	- You do not need to used a semicolon to terminating the last line of a PHP block. The closing tag for the block will include the immediately trailing newline if one is present.
 
-<?php
-    echo 'This is a test';
-?>
 
-<?php echo 'This is a test' ?>
+<?php echo 'This is a Test' ?>
 
 <?php echo 'We omitted the last closing tag';
 
-*Using a closing tag is optional but and some cases this is helpful when usung include or require, so unwanted whitespace will not occur at the end of files, and you will still be able to add headers to the response later.
+*Note: in order not to have a unwanted whitespace it is helpful and needed to use a closing tag.
 
-========================================================================
+
 Comments
 
-<?php
-    echo 'This is a test'; // This is a one-line c++ style comment
-    /* This is a multi line comment
-       yet another line of comment */
-    echo 'This is yet another test';
-    echo 'One Final Test'; # This is a one-line shell-style comment
-?>
 
-	-The “one-l ine” comment style remarks only PHP codes either the current block or the end of the line, whichever comes first, meaning HTML code with // … ?> or # … ?> before them will be printed; having ?> on the other hand breaks out PHP mode returning it to HTML mode while // or # doesn’t affect it. The asp_tags configuration directive acts the same with // %> and # %> when being enabled but the </script> tag cannot break out PHP mode in a one-line comment.
-
-====================================================================================================================================================
+	-The “one-line” comment style remarks only PHP codes either the current block or the end of the line, whichever comes first, meaning HTML code with // … ?> or # … ?> before them will be printed; having ?> on the other hand breaks out PHP mode returning it to HTML mode while // or # doesn’t affect it. The asp_tags configuration directive acts the same with // %> and # %> when being enabled but the </script> tag cannot break out PHP mode in a one-line comment.
 
 TYPES
 
 Introduction
 
-PHP supports ten primitive types. 
+This ten primitive types supports by the PHP. 
 
 Four Scalar types:
 
 	- boolean
 		- Considered as the simplest type in which it only gives a correct value whether it’s TRUE or FALSE.
 
-	SYNTAX
-	<?php
-	$foo = True; // assign the value TRUE to $foo
-	?>
-	
+	SYNTAX	
 	Converting to Boolean 
-		- In converting a value to boolean, (bool) or (boolean) casts is being used but sometimes the cast is dispensable because the value will be converted right away by an operator or control structure requiring a boolean argument.
+		- Value converting to boolean, (bool) or (boolean) casts is being used but sometimes the cast is dispensable because the value can be converted right away by an operator or control structure requiring a boolean argument.
 
 		- When converting to boolean, the following values are considered FALSE:
 
@@ -123,7 +81,7 @@ Four Scalar types:
 			- SimpleXML objects created from empty tags
 			- Every other value is considered TRUE (including any resource and NAN).
 
-	*-1 is considered TRUE, like any other non-zero (whether negative or positive) number!
+	*like other non-zero number -1 is considered TRUE.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -149,7 +107,7 @@ Can also be preceded by a sign (- or +).
 	$a = 0b11111111; // binary number (equivalent to 255 decimal)
 	?>
 
-Formally, the structure for integer literals is:
+The formal structure for integer: 
 
 decimal     : [1-9][0-9]*
             | 0
@@ -165,134 +123,28 @@ integer     : [+-]?decimal
             | [+-]?octal
             | [+-]?binary
 
-Integer Overflow
-
-	- Number that exceeds the integer type experienced by the PHP will be interpreted as a float likewise with the operation having a number beyond the bounds of the integer type will return a float.
-
-Integer overflow on a 32-bit system
-
-	<?php
-	$large_number = 2147483647;
-	var_dump($large_number);                     // int(2147483647)
-
-	$large_number = 2147483648;
-	var_dump($large_number);                     // float(2147483648)
-
-	$million = 1000000;
-	$large_number =  50000 * $million;
-	var_dump($large_number);                     // float(50000000000)
-	?>	
-
-Integer overflow on a 64-bit system
-
-	<?php
-	$large_number = 9223372036854775807;
-	var_dump($large_number);                     // int(9223372036854775807)
-
-	$large_number = 9223372036854775808;
-	var_dump($large_number);                     // float(9.2233720368548E+18)
-
-	$million = 1000000;
-	$large_number =  50000000000000 * $million;
-	var_dump($large_number);                     // float(5.0E+19)
-	?>
-
-		- There is no integer division operator in PHP. 1/2 yields the float 0.5. The value can be casted to an integer to round it towards zero, or the round() function provides finer control over rounding.
-
-Converting to Integer
-
-	From booleans 
-		FALSE will yield 0 (zero), and TRUE will yield 1 (one).
-
-	From floating point numbers 
-		When converting from float to integer, the number will be rounded towards zero.
-
-	- CCasts such as (int) or (integer) is used when converting a value to integer but in some parts of it, cast is not necessary because the value will automatically be converted when an operator requires an integer argument. Intval() function can converts a value to integer also.
-If a resource is converted to an integer, then the result will be the unique resource number assigned to the resource by PHP at runtime.
-
-*Never cast an unknown fraction to integer, as this can sometimes lead to unexpected results.
-
-<?php
-echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
-?>
-
---------------------------------------------------------------------------------------------------------------------------------------------------
-
 - float (floating-point number, aka double)
-		- Floating point numbers which are also known as "floats", "doubles", or "real numbers" can be classified using any of the following syntaxes:
-			<?php
-			$a = 1.234; 
-			$b = 1.2e3; 
-			$c = 7E-10;
-				?>
+		- Floating point numbers which are also known as "floats", "doubles", or "real numbers" can be classified applying this following syntaxes:
+			
 	Formally:
 
 		LNUM          [0-9]+
 		DNUM          ([0-9]*[\.]{LNUM}) | ({LNUM}[\.][0-9]*)
 		EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
-	- The size of a float is platform-dependent, although a maximum of ~1.8e308 with a precision of roughly 14 decimal digits is a common value (the 64 bit IEEE format).
-
-	Converting to float
-		- Other types of values conversion is being done by converting first the value to integer then to float. As of PHP 5, a notice is thrown if an object is converted to float.
-
-	Comparing Float
-		- Equality is difficult to be done sometimes with testing floating point values because of how it is being illustrated internally but knowing the differentiation of floating point values that works around these limitations has a way.
-
-		- In testing the floating point values for equality, upper bound on the relative error due to rounding known as the machine epsilon or unit roundoff used, making it as the smallest acceptable difference in calculations.
-
-		$a and $b are equal to 5 digits of precision.
-
-			<?php
-			$a = 1.23456789;
-			$b = 1.23456780;
-			$epsilon = 0.00001;
-
-			if(abs($a-$b) < $epsilon) {
-			    echo "true";
-			}
-			?>
-
+	
 	Nan
-	- Some numeric operations can result in a value represented by the constant NAN. This result represents an undefined value in floating-point calculations. Any loose or strict comparisons of this value against any other value, including itself, but except TRUE, will have a result of FALSE.
-
-	- NAN represents any number of different values and should not be compared to other values, including itself instead it should be checked for using is_nan().
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
-	- string(not done)
-		-A string is a series of character that are same as a byte. PHP only supports a 256-character set and does not offer native Unicode support.
-
-	SYNTAX
+	- Some numeric operations can bring about a value represented  by the constant NAN. 
+- NAN Represents any number of various value and ought not be contrasted with different qualities, including itself rather it ought to be checked for utilizing is_nan().
+	
+- STRING
+		- A string is a progression of character that are same as a byte. PHP just backings a 256-character set and does not offer local Unicode bolster.
+	Syntax
 		- single quoted
-			- Simplest way in knowing a string is to enclose it in a single quotes(the character ‘)
-
-			- In specifying a literal single quote, escape it with a backslash (\) and to specify a literal backslash, double it (\\).All other instances of backslash will be treated as a literal backslash. Meaning, the other escape sequences you might be used to, such as \r or \n, will be output literally as specified rather than having any special meaning.
-
-	<?php
-	echo 'this is a simple string';
-
-	echo 'You can also have embedded newlines in 
-	strings this way as it is
-	okay to do';
-
-	// Outputs: Arnold once said: "I'll be back"
-	echo 'Arnold once said: "I\'ll be back"';
-
-	// Outputs: You deleted C:\*.*?
-	echo 'You deleted C:\\*.*?';
-
-	// Outputs: You deleted C:\*.*?
-	echo 'You deleted C:\*.*?';
-
-	// Outputs: This will not expand: \n a newline
-	echo 'This will not expand: \n a newline';
-
-	// Outputs: Variables do not $expand $either
-	echo 'Variables do not $expand $either';
-	?>
+			- enclose the string in a single quote is the simplest way (the Character ‘)
 
 		- double quoted
-			- PHP will interpret the following escape sequences for special characters if the string is enclosed in double-quotes (‘’)
+			- When the string is inside of double quotes(‘’) the PHP interpret this. 
 
 			Escaped characters
 
@@ -308,483 +160,7 @@ echo (int) ( (0.1+0.7) * 10 ); // echoes 7!
 	\"		double-quote
 	\[0-7]{1,3}	the sequence of characters matching the regular 	expression is a character in octal notation, which silently overflows to fit in a byte (e.g. "\400" === "\000")
 	\x[0-9A-Fa-f]{1,2}	the sequence of characters matching the regular expression is a character in hexadecimal notation
-	\u{[0-9A-Fa-f]+}	the sequence of characters matching the regular expression is a Unicode codepoint, which will be output to the string as that codepoint's UTF-8 representation (added in PHP 7.0.0)
-
-Avoiding any other character in single quoted strings will result in the backslash being printed too. The backslash in \{$var} had not been printed before in PHP 5.1.1.
-
-		- heredoc syntax
-			- Another way of delimiting strings is the herodic syntax: <<<. An identifier is given after this operator then a newline. The string itself follows, and then the same identifier again to close the quotation.
-
-			- The closing identifier must begin in the first column of the line. Also, the identifier must follow the same naming rules as any other label in PHP: it must contain only alphanumeric characters and underscores, and must start with a non-digit character or underscore.
-
-Invalid example
-	<?php
-	class foo {
-	    public $bar = <<<EOT
-	bar
-	    EOT;
-	}
-	// Identifier must not be indented
-	?>
-
-Valid example
-
-	<?php
-	class foo {
-	    public $bar = <<<EOT
-	bar
-	EOT;
-	}
-	?>
-
-	- Herodic text acts like a double-quoted string but having no double quotes. It tells us that herodic is not too necessary to be escapes but the listed escape codes above can still be used. Variables are expanded, but the same care must be taken when expressing complex variables inside a heredoc as with strings.
-
-Herodoc string quoting example
-
-	<?php
-	$str = <<<EOD
-	Example of string
-	spanning multiple lines
-	using heredoc syntax.
-	EOD;
-
-	/* More complex example, with variables. */
-	class foo
-	{
- 	   var $foo;
- 	   var $bar;
-
-	   function __construct()
-	   {
-	        $this->foo = 'Foo';
-	        $this->bar = array('Bar1', 'Bar2', 'Bar3');
- 	   }
-	}
-
-	foo = new foo();
-	$name = 'MyName';
-
-	echo <<<EOT
-	My name is "$name". I am printing some $foo->foo.
-	Now, I am printing some {$foo->bar[1]}.
-	This should print a capital 'A': \x41
-	EOT;
-	?>
-
-The above example will output:
-
-	My name is "MyName". I am printing some Foo.
-	Now, I am printing some Bar2.
-	This should print a capital 'A': A
-
-	- Using the Herodic syntax to pass data to function arguments is also possible.
-
-Heredoc in arguments example
-	<?php
-	var_dump(array(<<<EOD
-	foobar!
-	EOD
-	));
-	?>
-	- It is possible to initialize static variables and class properties/constants using the Heredoc syntax when reaching PHP 5.3.0.
-
-Using Heredoc to initialize static values
-
-	<?php
-	// Static variables
-	function foo()
-	{
-	    static $bar = <<<LABEL
-	Nothing in here...
-	LABEL;
-	}
-
-	// Class properties/constants
-	class foo
-	{
- 	   const BAR = <<<FOOBAR
-	Constant example
-	FOOBAR;
-
-	    public $baz = <<<FOOBAR
-	Property example
-	FOOBAR;
-	}
-	?>
-
-	- Herodic identifier’s opening can be enclosed in PHP 5.3.0 with double quotes by choice.
-
-Using double qoutes in Heredoc
-
-	<?php
-	echo <<<"FOOBAR"
-	Hello World!
-	FOOBAR;
-	?>
-
-		- nowdoc syntax 
-			- While herodocs are double-quoted strings, nowdocs are single-quoted strings but the parsing is not done inside it. Its construct is good for embedding PHP code or other language without escaping. It shares some features in common with the SGML <![CDATA[ ]]> construct, in that it declares a block of text which is not for parsing.
-
-			- A nowdoc sequence is the same as the herodocs but the identifier is enclosed in single quotes which follows(example: <<<’EOT’. Rules in herodoc can also be used with nowdoc identifiers, especially those regarding the appearance of the closing identifier.
-
-Nowdoc string quoting example
-
-	<?php
-	$str = <<<'EOD'
-	Example of string
-	spanning multiple lines
-	using nowdoc syntax.
-	EOD;
-
-	/* More complex example, with variables. */
-	class foo
-	{
- 	   public $foo;
-	    public $bar;
-
- 	   function __construct()
- 	   {
- 	       $this->foo = 'Foo';
- 	       $this->bar = array('Bar1', 'Bar2', 'Bar3');
- 	   }
-	}
-
-	$foo = new foo();
-	$name = 'MyName';
-
-	echo <<<'EOT'
-	My name is "$name". I am printing some $foo->foo.
-	Now, I am printing some {$foo->bar[1]}.
-	This should not print a capital 'A': \x41
-	EOT;
-	?>
-
-The above example will output:
-
-	My name is "$name". I am printing some $foo->foo.
-	Now, I am printing some {$foo->bar[1]}.
-	This should not print a capital 'A': \x41
-
-Static data example
-
-	<?php
-	class foo {
-	    public $bar = <<<'EOT'
-	bar
-	EOT;
-	}
-	?>
-
-Variable parsing
-	- When a string is specified in double quotes or with heredoc, variables are parsed within it.
-
-	- Simple and complex are the two categories of syntax. Considering that simple syntax as the simplest and most convenient, it also provides a way to embed variable, an array value, or an object property in a string with a minimum of effort while the complex syntax can be identified base on the curly braces surrounding the expression. To further analyse the difference of the two we sighted some examples to be considered:
-
-	Simple syntax
-		- The parser will greedily take as many tokens as possible to form a valid variable name when a dollar sign ($) is encountered. In specifying clearly the end of the name, enclose the variable name in curly braces ({}).
-
-	<?php
-	$juice = "apple";
-
-	echo "He drank some $juice juice.".PHP_EOL;
-	// Invalid. "s" is a valid character for a variable name, but the variable is $juice.
-	echo "He drank some juice made of $juices.";
-	// Valid. Explicitly specify the end of the variable name by enclosing it in braces:
-	echo "He drank some juice made of ${juice}s.";
-	?>
-
-The above example will output:
-
-	He drank some apple juice.
-	He drank some juice made of .
-	He drank some juice made of apples.
-
-	- Also, an array index or an object property can be parsed. The closing square bracket(]) indicates the end of the index with array indices. Rules in object properties can be applied also in simple variables.
-
-Simple syntax example
-
-	<?php
-	$juices = array("apple", "orange", "koolaid1" => "purple");
-
-	echo "He drank some $juices[0] juice.".PHP_EOL;
-	echo "He drank some $juices[1] juice.".PHP_EOL;
-	echo "He drank some $juices[koolaid1] juice.".PHP_EOL;
-
-	class people {
-	   public $john = "John Smith";
- 	   public $jane = "Jane Smith";
- 	   public $robert = "Robert Paulsen";
-    
- 	   public $smith = "Smith";
-	}
-
-	$people = new people();
-
-	echo "$people->john drank some $juices[0] juice.".PHP_EOL;
-	echo "$people->john then said hello to $people->jane.".PHP_EOL;
-	echo "$people->john's wife greeted $people->robert.".PHP_EOL;
-	echo "$people->robert greeted the two $people->smiths."; // Won't work
-	?>
-
-The above example will output:
-
-	He drank some apple juice.
-	He drank some orange juice.
-	He drank some purple juice.
-	John Smith drank some apple juice.
-	John Smith then said hello to Jane Smith.
-	John Smith's wife greeted Robert Paulsen.
-	Robert Paulsen greeted the two .
-
-Negative numeric indices
-
-	<?php
-	$string = 'string';
-	echo "The character at index -2 is $string[-2].", PHP_EOL;
-	$string[-3] = 'o';
-	echo "Changing the character at index -3 to o gives $string.", PHP_EOL;
-	?>
-
-The above example will output:
-
-	The character at index -2 is n.
-	Changing the character at index -3 to o gives strong.
-
-For anything more complex, you should use the complex syntax.
-
-Complex (curly) syntax
-
-	- Any scalar variable, array element or object property with a string representation can be included via this syntax. Simply write the expression the same way as it would appear outside the string, and then wrap it in { and }. Since { can not be escaped, this syntax will only be recognised when the $ immediately follows the {. Use {\$ to get a literal {$. The access to class properties is also possible with the use of variables that are within strings with the use of the syntax.
-
-	<?php
-	// Show all errors
-	error_reporting(E_ALL);
-
-	$great = 'fantastic';
-
-	// Won't work, outputs: This is { fantastic}
-	echo "This is { $great}";
-
-	// Works, outputs: This is fantastic
-	echo "This is {$great}";
-
-	// Works
-	echo "This square is {$square->width}00 centimeters broad."; 
-
-
-	// Works, quoted keys only work using the curly brace syntax
-	echo "This works: {$arr['key']}";
-
-
-	// Works
-	echo "This works: {$arr[4][3]}";
-
-	// This is wrong for the same reason as $foo[bar] is wrong  outside a string.
-	// In other words, it will still work, but only because PHP first looks for a
-	// constant named foo; an error of level E_NOTICE (undefined constant) will be
-	// thrown.
-	echo "This is wrong: {$arr[foo][3]}"; 
-
-	// Works. When using multi-dimensional arrays, always use braces around arrays
-	// when inside of strings
-	echo "This works: {$arr['foo'][3]}";
-
-	// Works.
-	echo "This works: " . $arr['foo'][3];
-
-	echo "This works too: {$obj->values[3]->name}";
-
-	echo "This is the value of the var named $name: {${$name}}";
-
-	echo "This is the value of the var named by the return value of getName(): {${getName()}}";
-
-	echo "This is the value of the var named by the return value of \$object->getName(): {${$object->getName()}}";
-
-	// Won't work, outputs: This is the return value of getName(): {getName()}
-	echo "This is the return value of getName(): {getName()}";
-	?>
-
-It is also possible to access class properties using variables within strings using this syntax.
-
-	<?php
-	class foo {
-	    var $bar = 'I am bar.';
-	}
-
-	$foo = new foo();
-	$bar = 'bar';
-	$baz = array('foo', 'bar', 'baz', 'quux');
-	echo "{$foo->$bar}\n";
-	echo "{$foo->{$baz[1]}}\n";
-	?>
-
-The above example will output:
-
-	I am bar.
-	I am bar.
-
-
-	<?php
-	// Show all errors.
-	error_reporting(E_ALL);
-
-	class beers {
-	    const softdrink = 'rootbeer';
- 	   public static $ale = 'ipa';
-	}
-
-	$rootbeer = 'A & W';
-	$ipa = 'Alexander Keith\'s';
-
-	// This works; outputs: I'd like an A & W
-	echo "I'd like an {${beers::softdrink}}\n";
-
-	// This works too; outputs: I'd like an Alexander Keith's
-	echo "I'd like an {${beers::$ale}}\n";
-	?>
-
-String access and modification by character
-
-	- With the use of square array brackets, Characters within strings may be accessed and modified by stating the zero-based offset of the chosen character after the string , as shown in  $str[42]. Think of a string as an array of characters for this purpose. The functions substr() and substr_replace() can be utilized when you want to replace more than 1 character.
-
-	Some string examples
-	
-	<?php
-	// Get the first character of a string
-	$str = 'This is a test.';
-	$first = $str[0];
-
-	// Get the third character of a string
-	$third = $str[2];
-
-	// Get the last character of a string.
-	$str = 'This is still a test.';
-	$last = $str[strlen($str)-1]; 
-
-	// Modify the last character of a string
-	$str = 'Look at the sea';
-	$str[strlen($str)-1] = 'e';
-
-	?>
-
-String offsets must be integers or integer-like strings in PHP 5.4. If not, a warning will be thrown. Previously an offset like “foo” was silently cast to 0.
-
-Differences between PHP 5.3 and PHP 5.4
-
-	<?php
-	$str = 'abc';
-
-	var_dump($str['1']);
-	var_dump(isset($str['1']));
-
-	var_dump($str['1.0']);
-	var_dump(isset($str['1.0']));
-
-	var_dump($str['x']);
-	var_dump(isset($str['x']));
-
-	var_dump($str['1x']);
-	var_dump(isset($str['1x']));
-	?>
-	Output of the above example in PHP 5.3:
-
-	string(1) "b"
-	bool(true)
-	string(1) "b"
-	bool(true)
-	string(1) "a"
-	bool(true)
-	string(1) "b"
-	bool(true)
-	Output of the above example in PHP 5.4:
-
-	string(1) "b"
-	bool(true)
-
-	Warning: Illegal string offset '1.0' in /tmp/t.php on line 7
-	string(1) "b"
-	bool(false)
-
-	Warning: Illegal string offset 'x' in /tmp/t.php on line 9
-	string(1) "a"
-	bool(false)
-	string(1) "b"
-	bool(false)
-
-* Note:
-Accessing variables of other types (not including arrays or objects implementing the appropriate interfaces) using [] or {} silently returns NULL.
-
-Useful functions and operators
-
-	- Strings may be concatenated using the '.' (dot) operator. Note that the '+' (addition) operator will not work for this. There are a number of useful functions for string manipulation.
-
-Converting to string 
-
-	- A value can be converted to a string using the (string) cast or the strval() function. String conversion is automatically done in the scope of an expression where a string is needed. This happens when using the echo or print functions, or when a variable is compared to a string. The sections on Types and Type Juggling will make the following clearer.
-
-	- A boolean TRUE value is converted to the string "1". Boolean FALSE is converted to "" (the empty string). This allows conversion back and forth between boolean and string values.
-
-	- An integer or float is converted to a string representing the number textually (including the exponent part for floats). Floating point numbers can be converted using exponential notation (4.1E+6).
-
-	- Arrays are always converted to the string "Array"; because of this, echo and print can not by themselves show the contents of an array. To view a single element, use a construction such as echo $arr['foo']. 
-
-	- In order to convert objects to string magic method __toString must be used.
-
-	- Resources are always converted to strings with the structure "Resource id #1", where 1 is the resource number assigned to the resource by PHP at runtime. While the exact structure of this string should not be relied on and is subject to change, it will always be unique for a given resource within the lifetime of a script being executed (ie a Web request or CLI process) and won't be reused. To get a resource's type, use the get_resource_type() function.
-
-	- NULL is always converted to an empty string.
-
-	- As stated above, directly converting an array, object, or resource to a string does not provide any useful information about the value beyond its type. 
-
-	- Most PHP values can also be converted to strings for permanent storage. This method is called serialization, and is performed by the serialize() function. If the PHP engine was built with WDDX support, PHP values can also be serialized as well-formed XML text.
-
-String conversion to numbers
-
-	- The outcome value and type is being known when a string is evaluated in a numeric context.
-
-	- The string will be analysed as an integer if the string doesn’t have any of the characters ‘.’, ‘e’, or ‘E’ with the numeric value fits into integer type limits(as defined by PHP_INT_MAX). It will also be evaluated in other cases as float.
-
-	- The value is given by the initial portion of the string. If the string starts with valid numeric data, this will be the value used. Otherwise, the value will be 0 (zero). Valid numeric data is an optional sign, followed by one or more digits (optionally containing a decimal point), followed by an optional exponent. The exponent is an 'e' or 'E' followed by one or more digits.
-	
-	<?php
-	$foo = 1 + "10.5";                // $foo is float (11.5)
-	$foo = 1 + "-1.3e3";              // $foo is float (-1299)
-	$foo = 1 + "bob-1.3e3";           // $foo is integer (1)
-	$foo = 1 + "bob3";                // $foo is integer (1)
-	$foo = 1 + "10 Small Pigs";       // $foo is integer (11)
-	$foo = 4 + "10.2 Little Piggies"; // $foo is float (14.2)
-	$foo = "10.0 pigs " + 1;          // $foo is float (11)
-	$foo = "10.0 pigs " + 1.0;        // $foo is float (11)     
-	?>
-
-To test any of the examples in this section, cut and paste the examples and insert the following line to see what's going on:
-
-	<?php
-	echo "\$foo==$foo; type is " . gettype ($foo) . "<br />\n";
-	?>
-	- Do not expect to get the code of one character by converting it to integer, as is done in C. Use the ord() and chr() functions to convert between ASCII codes and characters.
-
-Details of the String Type
-
-	- The string in PHP is implemented as an array of bytes and an integer indicating the length of the buffer. It has no information about how those bytes translate to characters, leaving that task to the programmer. There are no limitations on the values the string can be composed of; in particular, bytes with value 0 (“NUL bytes”) are allowed anywhere in the string (however, a few functions, said in this manual not to be “binary safe”, may hand off the strings to libraries that ignore data after a NUL byte.)
-
-	- This nature of the string type explains why there is no separate “byte” type in PHP – strings take this role. Functions that return no textual data – for instance, arbitrary data read from a network socket – will still return strings.
-
-	- Given that PHP does not dictate a specific encoding for strings, one might wonder how string literals are encoded. For instance, is the string "á" equivalent to "\xE1" (ISO-8859-1), "\xC3\xA1" (UTF-8, C form), "\x61\xCC\x81" (UTF-8, D form) or any other possible representation? The answer is that string will be encoded in whatever fashion it is encoded in the script file. Thus, if the script is written in ISO-8859-1, the string will be encoded in ISO-8859-1 and so on. However, this does not apply if Zend Multibyte is enabled; in that case, the script may be written in an arbitrary encoding (which is explicity declared or is detected) and then converted to a certain internal encoding, which is then the encoding that will be used for the string literals. Note that there are some constraints on the encoding of the script (or on the internal encoding, should Zend Multibyte be enabled) – this almost always means that this encoding should be a compatible superset of ASCII, such as UTF-8 or ISO-8859-1. Note, however, that state-dependent encodings where the same byte values can be used in initial and non-initial shift states may be problematic.
-
-	- Of course, in order to be useful, functions that operate on text may have to make some assumptions about how the string is encoded. Unfortunately, there is much variation on this matter throughout PHP’s functions:
-
- 		- Some functions assume that the string is encoded in some (any) single-byte encoding, but they do not need to interpret those bytes as specific characters. This is case of, for instance, substr(), strpos(), strlen() or strcmp(). Another way to think of these functions is that operate on memory buffers, i.e., they work with bytes and byte offsets.
-
-		- Other functions are passed the encoding of the string, possibly they also assume a default if no such information is given. This is the case of htmlentities() and the majority of the functions in the mbstring extension.
-
-		- Others use the current locale (see setlocale()), but operate byte-by-byte. This is the case of strcasecmp(), strtoupper() and ucfirst(). This means they can be used only with single-byte encodings, as long as the encoding is matched by the locale. For instance strtoupper("á") may return "Á" if the locale is correctly set and á is encoded with a single byte. If it is encoded in UTF-8, the correct result will not be returned and the resulting string may or may not be returned corrupted, depending on the current locale.
-
-		- Finally, they may just assume the string is using a specific encoding, usually UTF-8. This is the case of most functions in the intl extension and in the PCRE extension (in the last case, only when the u modifier is used). Although this is due to their special purpose, the function utf8_decode() assumes a UTF-8 encoding and the function utf8_encode() assumes an ISO-8859-1 encoding.
-
-		- Ultimately, this means writing correct programs using Unicode depends on carefully avoiding functions that will not work and that most likely will corrupt the data and using instead the functions that do behave correctly, generally from the intl and mbstring extensions. However, using functions that can handle Unicode encodings is just the beginning. No matter the functions the language provides, it is essential to know the Unicode specification. For instance, a program that assumes there is only uppercase and lowercase is making a wrong assumption.
-
------------------------------------------------------------------------------------------------------------------------------------------------------
+	\u{[0-9A-Fa-f]+}		the arrangement of characters coordinating the general expression is a Unicode codepoint, which will be yield to the string as that codepoint's UTF-8 portrayal.
 
 Four compound types:	
 	- array
@@ -792,663 +168,44 @@ Four compound types:
 
 	Syntax
 		Specifying with array()
-Array is created with the help of array() language construct. It takes any number of comma-separated key => value pairs as arguments.
-
-	array(
-  	  key  => value,
+Array is made with the assistance of array() language construct. It takes any number of comma-isolated key => value matches as arguments.
+	array (
+  	  key => value,
  	   key2 => value2,
   	  key3 => value3,
 	    ...
 	)
 
-	- The comma after the last array element is not much needed. This is being done for single-line arrays, i.e. array(1,2) is preferred over array(1,2).  At the same time, the trailing comma is usually being used for multi-line arrays because it lets easier addition of new elements at the end.
+	- The comma after the last array component isn't genuinely necessary. This is being improved the situation single-line array, i.e. array (1,2) is favored over array(1,2). In the meantime, the trailing comma is generally being utilized for multi-line array since it lets simpler expansion of new components elements at the end.
 
 A simple array
 
-	<?php
-	$array = array(
- 	   "foo" => "bar",
-	    "bar" => "foo",
-	);
-
-	// as of PHP 5.4
-	$array = [
-	    "foo" => "bar",
- 	   "bar" => "foo",
-	];
-	?>
-
 	The key can either be an integer or a string. The value can be of any type.
 
-	Additionally the following key casts will occur:
-		?Strings that has a valid decimal integer will be cast to the integer type unless the number is preceded by a + sign.
+	Additionally, the following key casts will occur:
+		? Strings that has a valid decimal integer will be cast to the integer type unless the number is preceded by a + sign.
 			Example:
 				The key "8" will actually be stored under 8. On the other hand "08" will not be cast, as it isn't a valid decimal integer.
-		?Floats are also cast to integers meaning that the fractional part will be truncated.
+		Floats are also cast to integers meaning that the fractional part will be truncated.
 			Example:
 				The key 8.7 will actually be stored under 8.
-		?Bools are cast to integers, too
+		Bools are cast to integers, too
 			Example:
 				The key true will actually be stored under 1 and the key false under 0.
-		?Null will be cast to the empty string
+		Null will be cast to the empty string
 			Example:
 				The key null will actually be stored under "".
-		?Arrays and objects cannot be used as keys. Doing so will result in a warning: Illegal offset type.
-The last one will be used if a multiple elements in array declaration uses same key.
+		Arrays and objects cannot be used as keys. Doing so will result in a warning: Illegal offset type.
 
-Type Casting and Overwriting example
-	<?php
-	$array = array(
-	    1    => "a",
-	    "1"  => "b",
-	    1.5  => "c",
-	    true => "d",
-	);
-	var_dump($array);
-	?>
-	The above example will output:
-
-	array(1) {
-	  [1]=>
-	  string(1) "d"
-	}
-
-As all keys are cast to 1, all values will be overwritten to all new elements as the “d” values will only be left over.
-
-PHP cannot differentiate indexed and associative arrays while integer and string keys can be contained by PHP arrays.
-
-Mixed integer and string keys 
-
-	<?php
-	$array = array(
-	    "foo" => "bar",
-	    "bar" => "foo",
- 	   100   => -100,
- 	   -100  => 100,
-	);
-	var_dump($array);
-	?>
-
-The above example will output:
-
-	array(4) {
-	  ["foo"]=>
-	  string(3) "bar"
-	  ["bar"]=>
-	  string(3) "foo"
-	  [100]=>
-	  int(-100)
-	  [-100]=>
-	  int(100)
-	}
-
-Indexed arrays without key
-
-	<?php
-	$array = array("foo", "bar", "hello", "world");
-	var_dump($array);
-	?>
-
-The above example will output:
-
-	array(4) {
-	  [0]=>
-	  string(3) "foo"
-	  [1]=>
-	  string(3) "bar"
-	  [2]=>
- 	 string(5) "hello"
- 	 [3]=>
-	  string(5) "world"
-	}	
-
-It is possible to specify the key only for some elements and leave it out for others.
-
-Keys not on all elements
-
-	<?php
-	$array = array(
- 	        "a",
-	         "b",
-	    6 => "c",
- 	        "d",
-	);
-	var_dump($array);
-	?>
-
-The above example will output:
-
-	array(4) {
-	  [0]=>
-  	string(1) "a"
- 	 [1]=>
- 	 string(1) "b"
-	  [6]=>
- 	 string(1) "c"
-	  [7]=>
- 	 string(1) "d"
-	}
-
-The last value “d” was assigned the key 7, this is because the largest integer key before that was 6.
-
-Accessing array elements with square bracket syntax
-
-	- Array elements can be accessed using the array[key] syntax.
-
-Accessing array elements
-
-	<?php
-	$array = array(
-	    "foo" => "bar",
- 	   42    => 24,
- 	   "multi" => array(
-	         "dimensional" => array(
- 	            "array" => "foo"
- 	        )
- 	   )
-	);
-
-	var_dump($array["foo"]);
-	var_dump($array[42]);
-	var_dump($array["multi"]["dimensional"]["array"]);
-	?>
-
-The above example will output:
-
-	string(3) "bar"
-	int(24)
-	string(3) "foo"
-
-*Note:
-Both square brackets and curly braces can be used interchangeably for accessing array elements (e.g. $array[42] and $array{42} will both do the same thing in the example above).
-
-Array Dereferencing 
-
-	<?php
-	function getArray() {
-	    return array(1, 2, 3);
-	}
-
-	// on PHP 5.4
-	$secondElement = getArray()[1];
-
-	// previously
-	$tmp = getArray();
-	$secondElement = $tmp[1];
-
-	// or
-	list(, $secondElement) = getArray();
-	?>
-
-*Note:
-Attempting to access an array key which has not been defined is the same as accessing any other undefined variable: an E_NOTICE-level error message will be issued, and the result will be NULL.
-
-*Note:
-Array dereferencing a scalar value which is not a string silently yields NULL, i.e. without issuing an error message.
-
-Creating/modifying with square bracket syntax
-
-	 - An existing array can be known by clearly setting values in it. 
-
-	 - Assigning values to the array is a way of doing it specifying key brackets. Empty pair of brackets ([]) is the outcome of a key being removed.
-
-	$arr[key] = value;
-	$arr[] = value;
-	// key may be an integer or string
-	// value may be any value of any type
-
-	- Other ways in creating an array is when $arr doesn’t exist rather it is being created. However, this method is not much advisable because $arr already has some value for example a string from request variable, thus [] will change its role in becoming now the string access operator because its value stayed in place.
-
-	- In changing a value in particular, use the elements key in assigning a new value. On the other hand, when removing a key/value pair, call the unset() function on it.
-
-	<?php
-	$arr = array(5 => 1, 12 => 2);
-
-	$arr[] = 56;    // This is the same as $arr[13] = 56;
-               		// at this point of the script
-
-	$arr["x"] = 42; // This adds a new element to
-        	        // the array with key "x"
-                
-	unset($arr[5]); // This removes the element from the array
-
-	unset($arr);    // This deletes the whole array
-	?>
-
-*Note:
-	As mentioned above, if no key is specified, the maximum of the existing integer indices is taken, and the new key will be that maximum value plus 1 (but at least 0). If no integer indices exist yet, the key will be 0 (zero).
-
-	Note that the maximum integer key used for this need not currently exist in the array. It need only have existed in the array at some time since the last time the array was re-indexed. The following example illustrates:
-
-	<?php
-	// Create a simple array.
-	$array = array(1, 2, 3, 4, 5);
-	print_r($array);
-
-	// Now delete every item, but leave the array itself intact:
-	foreach ($array as $i => $value) {
- 	   unset($array[$i]);
-	}
-	print_r($array);
-
-	// Append an item (note that the new key is 5, instead of 0).
-	$array[] = 6;
-	print_r($array);
-
-	// Re-index:
-	$array = array_values($array);
-	$array[] = 7;
-	print_r($array);
-	?>
-
-The above example will output:
-
-	Array
-	(
- 	   [0] => 1
-	   [1] => 2
- 	   [2] => 3
- 	   [3] => 4
- 	   [4] => 5
-	)
-	Array
-	(
-	)
-	Array
-	(
-  	  [5] => 6
-	)
-	Array
-	(
-	    [0] => 6
-	    [1] => 7
-	)
-
-Useful functions
-	
-	- The foreach control structure exists specifically for arrays. It provides an easy way to traverse an array.
-
-*Note:
-
-The unset() function allows removing keys from an array. Be aware that the array will not be reindexed. If a true "remove and shift" behavior is desired, the array can be reindexed using the array_values() function.
-
-	<?php
-	$a = array(1 => 'one', 2 => 'two', 3 => 'three');
-	unset($a[2]);
-	/* will produce an array that would have been defined as
-	   $a = array(1 => 'one', 3 => 'three');
-	   and NOT
- 	  $a = array(1 => 'one', 2 =>'three');
-	*/
-
-	$b = array_values($a);
-	// Now $b is array(0 => 'one', 1 =>'three')
-	?>
-
-Array do's and don'ts
-
-Why is $foo{bar] wrong?
-
-	- $foo[bar] works out but this is wrong for a reason that this code has an undefined constant (bar). PHP automatically changes a bare string(unquoted that do not correspond to any known symbol) with those containing a bare string. Having no particular constant named bar will be replaced in the string bar and will be used in PHP.
-
-*Note: This does not mean to always quote the key. Do not quote keys which are constants or variables, as this will prevent PHP from interpreting them.
-	<?php
-	error_reporting(E_ALL);
-	ini_set('display_errors', true);
-	ini_set('html_errors', false);
-	// Simple array:
-	$array = array(1, 2);
-	$count = count($array);
-	for ($i = 0; $i < $count; $i++) {
-	    echo "\nChecking $i: \n";
-	    echo "Bad: " . $array['$i'] . "\n";
-	    echo "Good: " . $array[$i] . "\n";
-	    echo "Bad: {$array['$i']}\n";
- 	   echo "Good: {$array[$i]}\n";
-	}
-	?>
-
-The above example will output:
-
-	Checking 0: 
-	Notice: Undefined index:  $i in /path/to/script.html on line 9
-	Bad: 
-	Good: 1
-	Notice: Undefined index:  $i in /path/to/script.html on line 11
-	Bad: 
-	Good: 1
-
-	Checking 1: 
-	Notice: Undefined index:  $i in /path/to/script.html on line 9
-	Bad: 
-	Good: 2
-	Notice: Undefined index:  $i in /path/to/script.html on line 11
-	Bad: 
-	Good: 2
-	More examples to demonstrate this behaviour:
-	<?php
-	// Show all errors
-	error_reporting(E_ALL);
-
-	$arr = array('fruit' => 'apple', 'veggie' => 'carrot');
-
-	// Correct
-	print $arr['fruit'];  // apple
-	print $arr['veggie']; // carrot
-
-	// Incorrect.  This works but also throws a PHP error of level E_NOTICE because
-	// of an undefined constant named fruit
-	// 
-	// Notice: Use of undefined constant fruit - assumed 'fruit' in...
-	print $arr[fruit];    // apple
-
-	// This defines a constant to demonstrate what's going on.  The value 'veggie'
-	// is assigned to a constant named fruit.
-define('fruit', 'veggie');
-
-	// Notice the difference now
-	print $arr['fruit'];  // apple
-	print $arr[fruit];    // carrot
-
-	// The following is okay, as it's inside a string. Constants are not looked for
-	// within strings, so no E_NOTICE occurs here
-	print "Hello $arr[fruit]";      // Hello apple
-
-	// With one exception: braces surrounding arrays within strings allows constants
-	// to be interpreted
-	print "Hello {$arr[fruit]}";    // Hello carrot
-	print "Hello {$arr['fruit']}";  // Hello apple
-
-	// This will not work, and will result in a parse error, such as:
-	// Parse error: parse error, expecting T_STRING' or T_VARIABLE' or T_NUM_STRING'
-	// This of course applies to using superglobals in strings as well
-	print "Hello $arr['fruit']";
-	print "Hello $_GET['foo']";
-
-	// Concatenation is another option
-	print "Hello " . $arr['fruit']; // Hello apple
-	?>
-
-	- Uses will be shown instantly when error_reporting is set to E_NOTICE level errors when setting it to E_ALL for example.
-
-	- That is why what is inside the brackets (‘[‘ and ‘]’) must be an expression as being stated in the syntax section.
-
-	<?php
-	echo $arr[somefunc($bar)];
-	?>
-
-	- This is an example of using a function return value as the array index. PHP also knows about constants:
-
-	<?php
-	$error_descriptions[E_ERROR]   = "A fatal error has occurred";
-	$error_descriptions[E_WARNING] = "PHP issued a warning";
-	$error_descriptions[E_NOTICE]  = "This is just an informal notice";
-	?>
-
-
-	- Note that E_ERROR is also a valid identifier, just like bar because E_ERROR equals 1, etc.(as shown in the first example).
-
-	<?php
-	$error_descriptions[1] = "A fatal error has occurred";
-	$error_descriptions[2] = "PHP issued a warning";
-	$error_descriptions[8] = "This is just an informal notice";
-	?>
-
-So why is it bad then?
-
-	- PHP team might want to add another constant or keyword, or constant in other code may interfere at some point in the future. As an example, words like empty and default is somewhat wrong for use because they are reserved keywords.
-
-Converting to array
-
-	- Transforming a value to an array results in an array with a single element with index zero and the value of the scalar which was converted, with that (array)$scalarValue is exactly the same as array($scalarValue).
-
-	- If an object is converted to an array, the result is an array whose elements are the object's properties. The keys are the member variable names, with a few notable exceptions: integer properties are unaccessible; private variables have the class name prepended to the variable name; protected variables have a '*' prepended to the variable name. These prepended values have null bytes on either side. This can result in some unexpected behaviour.
-
-	<?php
-
-	class A {
-	    private $A; // This will become '\0A\0A'
-	}
-
-	class B extends A {
-	    private $A; // This will become '\0B\0A'
- 	   public $AA; // This will become 'AA'
-	}
-
-	var_dump((array) new B());
-	?>
-
-Even though one of them is actually named ‘\0A\0A’ it appears as if they have two keys named ‘AA’.
-
-Comparing 
-
-	- It is possible to compare arrays with the array_diff() function and with array operators.
-
-Examples
-The array type in PHP is very versatile.
-
-	<?php
-	// This:
-	$a = array( 'color' => 'red',
-  	          'taste' => 'sweet',
- 	           'shape' => 'round',
-  	          'name'  => 'apple',
-   	         4        // key will be 0
-    	      );
-
-	$b = array('a', 'b', 'c');
-
-	// . . .is completely equivalent with this:
-	$a = array();
-	$a['color'] = 'red';
-	$a['taste'] = 'sweet';
-	$a['shape'] = 'round';
-	$a['name']  = 'apple';
-	$a[]        = 4;        // key will be 0
-
-	$b = array();
-	$b[] = 'a';
-	$b[] = 'b';
-	$b[] = 'c';
-
-	// After the above code is executed, $a will be the array
-	// array('color' => 'red', 'taste' => 'sweet', 'shape' => 'round', 
-	// 'name' => 'apple', 0 => 4), and $b will be the array 
-	// array(0 => 'a', 1 => 'b', 2 => 'c'), or simply array('a', 'b', 'c').
-	?>
-
-Using array()
-
-	<?php
-	// Array as (property-)map
-	$map = array( 'version'    => 4,
-	              'OS'         => 'Linux',
- 	             'lang'       => 'english',
-  	            'short_tags' => true
- 	           );
- 	           
-	// strictly numerical keys
-	$array = array( 7,
- 	               8,
-   	             0,
-  	              156,
-   	             -10
-   	           );
-	// this is the same as array(0 => 7, 1 => 8, ...)
-
-	$switching = array(         10, // key = 0
-                    5    =>  6,
-                    3    =>  7, 
-                    'a'  =>  4,
-                            11, // key = 6 (maximum of integer-indices was 5)
-                    '8'  =>  2, // key = 8 (integer!)
-                    '02' => 77, // key = '02'
-                    0    => 12  // the value 10 will be overwritten by 12
-                  );
-                  
-	// empty array
-	$empty = array();         
-	?>
-
-Collection 
-
-	<?php
-	$colors = array('red', 'blue', 'green', 'yellow');
-
-	foreach ($colors as $color) {
-	    echo "Do you like $color?\n";
-	}
-
-	?>
-
-The above example will output:
-
-	Do you like red?
-	Do you like blue?
-	Do you like green?
-	Do you like yellow?
-
-It is possible to change the values of the array by passing them by reference.
-
-Changing element in the loop 
-	
-	<?php
-	foreach ($colors as &$color) {
- 	   $color = strtoupper($color);
-	}
-	unset($color); /* ensure that following writes to
-	$color will not modify the last array element */
-
-	print_r($colors);
-	?>
-
-The above example will output:
-
-	Array
-	(
-  	  [0] => RED
- 	   [1] => BLUE
- 	   [2] => GREEN
- 	   [3] => YELLOW
-	)
-
-This example creates a one-based array.
-
-One-based index
-
-	<?php
-	$firstquarter  = array(1 => 'January', 'February', 'March');
-	print_r($firstquarter);
-	?>
-
-The above example will output:
-
-	Array 
-	(
-	    [1] => 'January'
-	    [2] => 'February'
-	    [3] => 'March'
-	)
-
-Filling an array
-
-	<?php
-	// fill an array with all items from a directory
-	$handle = opendir('.');
-	while (false !== ($file = readdir($handle))) {
-  	  $files[] = $file;
-	}
-	closedir($handle); 
-	?>
-	
-	Arrays are ordered but can be changed by using various sorting functions. In counting the number of items in an array, count() function can be utilized.
-
-Sorting an array
-
-	<?php
-	sort($files);
-	print_r($files);
-	?>
-
-	Since the value of an array can portray anything, it can become another array also. This makes the creation of recursive and multi-dimensional arrays possible.
-
-Recursive and multi-dimensional arrays
-
-	<?php
-	$fruits = array ( "fruits"  => array ( "a" => "orange",
-                                       "b" => "banana",
-                                       "c" => "apple"
-                                     ),
-                  "numbers" => array ( 1,
-                                       2,
-                                       3,
-                                       4,
-                                       5,
-                                       6
-                                     ),
-                  "holes"   => array (      "first",
-                                       5 => "second",
-                                            "third"
-                                     )
-                );
-
-	// Some examples to address values in the array above 
-		echo $fruits["holes"][5];    // prints "second"
-		echo $fruits["fruits"]["a"]; // prints "orange"
-	unset($fruits["holes"][0]);  // remove "first"
-
-	// Create a new multi-dimensional array
-	$juices["apple"]["green"] = "good"; 
-	?>
-
-Array assignment always involves value copying. Use the reference operator to copy an array by reference.
-
-	<?php
-	$arr1 = array(2, 3);
-	$arr2 = $arr1;
-	$arr2[] = 4; // $arr2 is changed,
- 	            // $arr1 is still array(2, 3)
-             
-	$arr3 = &$arr1;
-	$arr3[] = 4; // now $arr1 and $arr3 are the same
-	?>
-
---------------------------------------------------------------------------------------------------------------------------------------------------
 
 	- object
 		- To create a new object, use the new statement to instantiate a class:
-	<?php
-	class foo
-	{
-   	 function do_foo()
-    	{
-        echo "Doing foo."; 
-    	}
-	}
-
-	$bar = new foo;
-	$bar->do_foo();
-	?>
 Converting to object
 	- Object to Object – Not modified
 	- Value of any other type to Object – instance of the stdClass built-in class created
 	- NULL – instance is Empty
 	- Array that is being transformed to an object having properties named by keys and corresponding values, with the exception of numeric keys which will be inaccessible unless iterated.
 
-	<?php
-	$obj = (object) array('1' => 'foo');
-	var_dump(isset($obj->{'1'})); // outputs 'bool(false)'
-	var_dump(key($obj)); // outputs 'int(1)'
-	?>
-
-For any other value, a member variable named scalar will contain the value.
-
-	<?php
-	$obj = (object) 'ciao';
-	echo $obj->scalar;  // outputs 'ciao'
-	?>	
-
---------------------------------------------------------------------------------------------------------------------------------------------------
 	- callable
 		- - Call_user_func() or usort() are just few functions that takes user-defined callback functions as parameter. Callback functions, object methods and statistic class methods can not only be simple functions.
 
@@ -1466,170 +223,15 @@ For any other value, a member variable named scalar will contain the value.
 
 	- A method of an instantiated object is transferred as an array having an object at index 0 and the method name at index 1. Protected and private methods are allowed to access from within a class.
 
-	- Static class methods can also be transferred with no instantiating object of that class by passing a class name instead of an object at index 0. As of PHP 5.2.3, it is possible to pass ‘ClassName::methodName’.
-
- 	- Aside from the usual user-defined function, anonymous functions can be passed to a callback parameter.
-
-Callback function examples
-
-	<?php
-
-	// An example callback function
-	function my_callback_function() {
-	    echo 'hello world!';
-	}
-
-	// An example callback method
-	class MyClass {
-	    static function myCallbackMethod() {
-	        echo 'Hello World!';
-	    }
-	}
-
-	// Type 1: Simple callback
-	call_user_func('my_callback_function');
-
-	// Type 2: Static class method call
-	call_user_func(array('MyClass', 'myCallbackMethod'));
-
-	// Type 3: Object method call
-	$obj = new MyClass();
-	call_user_func(array($obj, 'myCallbackMethod'));
-
-	// Type 4: Static class method call (As of PHP 5.2.3)
-	call_user_func('MyClass::myCallbackMethod');
-
-	// Type 5: Relative static class method call (As of PHP 5.3.0)
-	class A {
- 	   public static function who() {
- 	       echo "A\n";
- 	   }
-	}
-
-	class B extends A {
- 	   public static function who() {
-	        echo "B\n";
-	    }
-	}
-
-	call_user_func(array('B', 'parent::who')); // A
-
-	// Type 6: Objects implementing __invoke can be used as callables (since PHP 5.3)
-	class C {
-   	 public function __invoke($name) {
-  	      echo 'Hello ', $name, "\n";
-  	  }
-	}	
-
-	$c = new C();
-	call_user_func($c, 'PHP!');
-	?>
-
-Callback example using a Closure
-
-	<?php
-	// Our closure
-	$double = function($a) {
-	    return $a * 2;
-	};
-
-	// This is our range of numbers
-	$numbers = range(1, 5);
-
-	// Use the closure as a callback here to
-	// double the size of each element in our
-	// range
-	$new_numbers = array_map($double, $numbers);
-
-	print implode(' ', $new_numbers);
-	?>
-	The above example will output:
-	2 4 6 8 10
-
---------------------------------------------------------------------------------------------------------------------------------------------------
 	- iterable
 		- A pseudo- type established in PHP 7.1 that takes any array or object implementing the Traversable interface in which this two are iterable using foreach and can be utilized with yield from within a generator.
 
 	Using Iterables 
 		-Iterables as a parameter can be a great help specially in knowing that a particular function needs a set of values but a part of it does not give much attention about the form of the value set because it will be utilized with foreach. A TypeError will be thrown if a value is not an array or instance.
 
-Iterable parameter type example
-	<?php
-
-	function foo(iterable $iterable) {
-    		foreach ($iterable as $value) {
-        	// ...
-    		} 
-	}
-
-	?>
-
-Iterable parameter default value example
-	<?php
-
-	function foo(iterable $iterable = []) {
-    		// ...
-	}
-
-	?>
-
 Iterable can also be used as a return type to indicate a function will return an iterable value. If the returned value is not an array or instance of Traversable, a TypeError will be thrown.
 
-Iterable return type example 
-	<?php
-
-	function bar(): iterable {
-    		return [1, 2, 3];
-	}
-
-	?>
-
-Functions declaring iterable as a return type may also be generators.
-
-Iterable generator return type example
-	<?php
-
-	function gen(): iterable {
-    		yield 1;
-    		yield 2;
-	    	yield 3;
-	}
-
-	?>
-
-Iterable Type Variance
-
-	- Classes extending or implementing may broaden methods using array or Traversable as parameter types to iterable or narrow return types from iterable to array or Traversable.
-
-Iterable type variance example
-
-	<?php
-
-	interface Example {
-    		public function method(array $array): iterable;
-	}
-
-	class ExampleImplementation implements Example {
-    		public function method(iterable $iterable): array {
-        		// Parameter broadened and return type narrowed.
-    		}
-	}
-
-	?>
-
-=================================================================================================================================================
-And Finally two special types:
-
-	- resource 
-		-Considered as a special variable holding a reference to an external resource, that are created and used by special functions.
-
-Converting to resource
-	- As resource variables hold special handles to opened files, database connections, image canvas areas and the like, converting to a resource makes no sense.
-
-Freeing Resources
-	- A resource with no more references to it is detected automatically, and it is freed by the garbage collector. For this reason, it is rarely necessary to free the memory manually with the help of reference- counting system.
--------------------------------------------------------------------------------------------------------------------------------------------------
-	- NULL
+NULL
 		- It represents a variable having no value and the only possible value of type null.
 
 	Variable that is null to be considered are as follows:
@@ -1640,16 +242,6 @@ Freeing Resources
 Syntax
 	- There is only one value of type null, and that is the case-insensitive constant NULL.
 	
-	<?php
-	$var = NULL;       
-	?>
-
-Casting to Null
-	- Casting a variable to null using (unset) $var will not remove the variable or unset its value. It will only return a NULL value.
-
-==================================================================================================================================================
-This manual also introduces some pseudo-types for readability reasons:
-
 PSEUDO TYPE
 	- They are keywords that are being used in the PHP documentation in knowing the types or values an argument can have but they are not primitives of the PHP language. Thus, pseudo types as typehints cannot be utilize in your own custom functions.
 
@@ -1659,57 +251,15 @@ PSEUDO TYPE
 Example:
 gettype() – accepts all PHP types
 str_replace – accepts string and arrays
---------------------------------------------------------------------------------------------------------------------------------------------------
 	- number
 		- It tells that a parameter can be either integer or float.
---------------------------------------------------------------------------------------------------------------------------------------------------
 
 	- callback (aka callable)
 		-Before callable type was introduced by PHP 5.4, callback pseudo type was first used in the documentation, having it exactly the same.
---------------------------------------------------------------------------------------------------------------------------------------------------
 	- array| object
 		- array|object indicates that a parameter can be either array or object.
---------------------------------------------------------------------------------------------------------------------------------------------------
 	- void
 		-Return type – the return value is useless
-Parameter list – the function doesn’t accept any parameters
-
-…
-$... in function prototypes means and so on, this variable name is used when a function can take an endless number of arguments.
-
---------------------------------------------------------------------------------------------------------------------------------------------------
-
-And the pseudo-variable $ ....
-
-	- Some References to the type " double " may remain in the manual. Consider double the same as float.
-
-*Note: To check the type and value of an expression, use the var_dump() function.
-
-To get a human-readable representation of a type for debugging, use the gettype() function. To check for a certain type, do not use gettype(), but rather the is_type functions. Some examples:
-
-	<?php
-	$a_bool = TRUE;   // a boolean
-	$a_str  = "foo";  // a string
-	$a_str2 = 'foo';  // a string
-	$an_int = 12;     // an integer
-
-	echo gettype($a_bool); // prints out:  boolean
-	echo gettype($a_str);  // prints out:  string
-
-	// If this is an integer, increment it by four
-	if (is_int($an_int)) {
- 	   $an_int += 4;
-	}
-
-	// If $a_bool is a string, print it out
-	// (does not print out anything)
-	if (is_string($a_bool)) {
-	    echo "String: $a_bool";
-	}
-	?>
-
-Note that a variable may be evaluated with different values in certain situations, depending on what type it is at the time. For more information, see the section on Type Juggling. The type comparison tables may also be useful, as they show examples of various type-related comparisons.
-=========================================================================
 
 TYPE JUGGLING
 
@@ -1717,40 +267,15 @@ TYPE JUGGLING
 
 	- Multiplication operator ‘x’ is an example for PHP automatic type conversion. If either operand is a float, then both operands are evaluated as floats and the outcome will also be a float if not, the operands will be interpreted as integers and the result will also be an integer. Remember that there will be no change in the types of operands themselves, only on how the operands are assessed and the type of expression itself that has a change.
 	
-	<?php
-	$foo = "1";  // $foo is string (ASCII 49)
-	$foo *= 2;   // $foo is now an integer (2)
-	$foo = $foo * 1.3;  // $foo is now a float (2.6)
-	$foo = 5 * "10 Little Piggies"; // $foo is integer (50)
-	$foo = 5 * "10 Small Pigs";     // $foo is integer (50)
-	?>
-
-If the last two examples above seem odd, see String conversion to numbers.
-
-To make an evaluation of a variable with a certain type, see the section on Type casting. Likewise, to change the type of a variable, see settype() function.
-
-In making a try for an example in this section, use var_dump() function.
-
 *Note:
-The behaviour of an automatic conversion to array is currently undefined.
-Also, because PHP supports indexing into strings via offsets using the same syntax as array indexing, the following example holds true for all PHP versions:
+The behaviour of an automatic conversion to array is currently undefined.
+Also, because PHP supports indexing into strings via offsets using the same syntax as array indexing, the following example holds true for all PHP versions:
 
-	<?php
-	$a    = 'car'; // $a is a string
-	$a[0] = 'b';   // $a is still a string
-	echo $a;       // bar
-	?>
-
-See the section titled String access by character for more information.
+See the section titled String access by character for more information.
 
 Type Casting
 
 	- Type casting works well on PHP like in C: the name of the desired type being chosen is written in parentheses before the variable that will be cast.
-
-	<?php
-	$foo = 10;   // $foo is an integer
-	$bar = (boolean) $foo;   // $bar is a boolean
-	?>
 
 The casts allowed are:
 
@@ -1761,24 +286,7 @@ The casts allowed are:
 (array) - cast to array
 (object) - cast to object
 (unset) - cast to NULL
-
-(binary) casting and b prefix forward support was added in PHP 5.2.1. Remember that (binary) and (string) are both important but must not always depend on.
-
-The (unset) cast has been deprecated as of PHP 7.2.0. The (unset) cast is the same as NULL in assigning a value to the variable or call. However, (unset) cast is removed as it reaches PHP 8.0.0.
-
-Note that tabs and spaces are allowed inside the parentheses, so the following are functionally equivalent:
 	
-	<?php
-	$foo = (int) $bar;
-	$foo = ( int ) $bar;
-	?>
-
-Casting literal strings and variables to binary strings:
-	
-	<?php
-	$binary = (binary) $string;
-	$binary = b"binary string";
-	?>
 ======================================================================================================================
 VARIABLES
 VARIABLES
@@ -1788,89 +296,14 @@ Basics
 
 * The $ is a special variable that can't be assigned.
 
-	<?php
-	$var = 'Bob';
-	$Var = 'Joe';
-	echo "$var, $Var";      // outputs "Bob, Joe"
-
-	$4site = 'not yet';     // invalid; starts with a number
-	$_4site = 'not yet';    // valid; starts with an underscore
-	$täyte = 'mansikka';    // valid; 'ä' is (Extended) ASCII 228.
-	?>
-
 When assign an expression to a variable, the entire value of the original expression is copied into the destination variable.
 
 There is also another way of assigning a value to variables by reference. simply prepend an ampersand (&) to the beginning of the variable which is being assigned (the source variable). For instance, the following code snippet outputs 'My name is Bob' twice: 
 
-	<?php
-	$foo = 'Bob';              // Assign the value 'Bob' to $foo
-	$bar = &$foo;              // Reference $foo via $bar.
-	$bar = "My name is $bar";  // Alter $bar...
-	echo $bar;
-	echo $foo;                 // $foo is altered too.
-	?>
-
-One important thing to note is that only named variables may be assigned by reference.
-
-	<?php
-	$foo = 25;
-	$bar = &$foo;      // This is a valid assignment.
-	$bar = &(24 * 7);  // Invalid; references an unnamed expression.
-
-	function test()
-	{
-	   return 25;
-	}
-
-	$bar = &test();    // Invalid.
-	?>
-
 Initializing variables is a good practice. Uninitialized variables have a  default value of their type like boolenas default to FALSE, integers and floats default to zero string are set as an empty string and arrays become to an empty array.
-
-Default values of uninitialized variables
-	
-	<?php
-	// Unset AND unreferenced (no use context) variable; outputs NULL
-var_dump($unset_var);
-
-	// Boolean usage; outputs 'false' (See ternary operators for more on this syntax)
-	echo($unset_bool ? "true\n" : "false\n");
-
-	// String usage; outputs 'string(3) "abc"'
-	$unset_str .= 'abc';
-	var_dump($unset_str);
-
-	// Integer usage; outputs 'int(25)'
-	$unset_int += 25; // 0 + 25 => 25
-	var_dump($unset_int);
-
-	// Float/double usage; outputs 'float(1.25)'
-	$unset_float += 1.25;
-	var_dump($unset_float);
-
-	// Array usage; outputs array(1) {  [3]=>  string(3) "def" }
-	$unset_arr[3] = "def"; // array() + array(3 => "def") => array(3 => "def")
-	var_dump($unset_arr);
-
-	// Object usage; creates new stdClass object (see 	http://www.php.net/manual/en/reserved.classes.php)
-	// Outputs: object(stdClass)#1 (1) {  ["foo"]=>  string(3) "bar" }
-	$unset_obj->foo = 'bar';
-	var_dump($unset_obj);
-	?>
-
-Relying on the default value of an uninitialized variable is problematic in the case of including one file into another which uses the same variable name. It is also a major security risk with register_globals turned on. E_NOTICE level error is issued in case of working with uninitialized variables, however not in the case of appending elements to the uninitialized array. isset() language construct can be used to detect if a variable has been already initialized.
 
 PREDEFINED VARIABLES
 	-  PHP provides a large number of predefined variables to any script which it runs. Many of these variables, however, cannot be fully documented as they are dependent upon which server is running, the version and setup of the server, and other factors. Some of these variables will not be available when PHP is run on the command line. For a listing of these variables, please see the section on Reserved Predefined Variables.
-
-From version 4.1.0 onward, PHP provides an additional set of predefined arrays containing variables from the web server (if applicable), the environment, and user input. These new arrays are rather special in that they are automatically global--i.e., automatically available in every scope. For this reason, they are often known as "superglobals". (There is no mechanism in PHP for user-defined superglobals.) The superglobals are listed below; however, for a listing of their contents and further discussion on PHP predefined variables and their natures, please see the section Reserved Predefined Variables. Also, you'll notice how the older predefined variables ($HTTP_*_VARS) still exist. As of PHP 5.0.0, the long PHP predefined variable arrays may be disabled with the register_long_arrays directive.
-
-* Notes: Variable variables
-	- Superglobals cannot be used as variable variables inside functions o class methods.
-
-* Note: Even though both the superglobal and HHTP*VARS can exis at the same time; they are not identical, so modifyung one will not change the other. 
-
-If certain variables in variables_order are not set, their appropriate PHP predefined arrays are also left empty.
 
 VARIABLE SCOPE
 
@@ -1894,259 +327,14 @@ $a = 1; /* global scope */
 	test();
 	?>
 
-This script will not produce any output because the echo statement refers to a local version of the $a variable, and it has not been assigned a value within this scope. This can cause some problems in that people may inadvertently change a global variable. In PHP global variables must be declared global inside a function if they are going to be used in that function.
-
-The global keyword
-
-Using global
-	<?php
-	$a = 1;
-	$b = 2;
-
-	function Sum()
-	{
-	    global $a, $b;
-
-	    $b = $a + $b;
-	} 
-
-	Sum();
-	echo $b;
-	?>
-
-Declaring $a and $b global within the function, having an output 3. There is no limit to the number of global variables that can be manipulated by a function. 
-
-Next is the second way to accessing the variables within the global scope which is use the special PHP defined $global array. 
-
-Using $GLOBALS instead of global
-
-	<?php
-	$a = 1;
-	$b = 2;
-
-	function Sum()
-	{
-	    $GLOBALS['b'] = $GLOBALS['a'] + $GLOBALS['b'];
-	} 
-
-	Sum();
-	echo $b;
-	?>
-
-The $GLOBALS array is an associative array with the name of the global variable being the key and the contents of that variable being the value of the array element. Notice how $GLOBALS exists in any scope, this is because $GLOBALS is a superglobal. Here's an example demonstrating the power of superglobals:
-
-Example demonstrating superglobals and scope
-	
-	<?php
-	function test_global()
-	{
- 	   // Most predefined variables aren't "super" and require 
-	    // 'global' to be available to the functions local scope.
- 	   global $HTTP_POST_VARS;
-    
-  	  echo $HTTP_POST_VARS['name'];
-    
-  	  // Superglobals are available in any scope and do 
-  	  // not require 'global'. Superglobals are available 
-	    // as of PHP 4.1.0, and HTTP_POST_VARS is now
-  	  // deemed deprecated.
-  	  echo $_POST['name'];
-	}
-
-	?>
-
-*Note: Using global keyword outside a function can be used if the file is included from inside a function.
-
-Using static variables
-
-Static Variable exists only in a local function scope, but it doesn't lose its value when out of the scope. And important feature of variable scoping.
-
-Example demonstrating need for static variables
-
-	<?php
-	function test()
-	{	
-	    $a = 0;
- 	   echo $a;
-	    $a++;
-	}
-	?>
-
-This function is quite useless since every time it is called it sets $a to 0 and prints 0. The $a++ which increments the variable serves no purpose since as soon as the function exits the $a variable disappears. To make a useful counting function which will not lose track of the current count, the $a variable is declared static:
-
-Example use of static variables
-
-	<?php
-	function test()
-	{
-	    static $a = 0;
-	    echo $a;
-	    $a++;
-	}
-	?>
-
-Now when the value of $a called it will be printed the value and increment it.
-
-The static variable can be used as a recursive function. Recursive is where it calls itself repeatedly but make sure to have a proper way of ending this infinite loop.
-
-Static variables with recursive functions
-
-	<?php
-	function test()
-	{
-	    static $count = 0;
-
-	    $count++;
-	    echo $count;
-	    if ($count < 10) {
-	        test();
-	    }
-	    $count--;
-	}
-	?>
-
-*Note: Static declarations are resolved in compile-time.
-
-References with global and static variables
-	- The Zend Engine 1, driving PHP 4, implements the static and global modifier for variables in terms of references. For example, a true global variable imported inside a function scope with the global statement actually creates a reference to the global variable.
-
-	<?php
-	function test_global_ref() {
-	    global $obj;
-	    $obj = &new stdclass;
-	}
-
-	function test_global_noref() {
-	    global $obj;
-	    $obj = new stdclass;
-	}
-
-	test_global_ref();
-	var_dump($obj);
-	test_global_noref();
-	var_dump($obj);
-	?>
-
-The output is: 	NULL 
-		object(stdClass)(0){
-		}
-
-A similar behaviour applies to the static statement. References are not stored statically:
-
-	<?php
-	function &get_instance_ref() {
- 	   static $obj;
-
- 	   echo 'Static object: ';
- 	   var_dump($obj);
-	    if (!isset($obj)) {
-	        // Assign a reference to the static variable
-	        $obj = &new stdclass;
-	    }
-	    $obj->property++;
-	    return $obj;
-	}
-
-	function &get_instance_noref() {
-	    static $obj;
-
-	    echo 'Static object: ';
-	    var_dump($obj);
-	    if (!isset($obj)) {
-	        // Assign the object to the static variable
-	        $obj = new stdclass;
-	    }
-	    $obj->property++;
-	    return $obj;
-	}
-
-	$obj1 = get_instance_ref();
-	$still_obj1 = get_instance_ref();
-	echo "\n";
-	$obj2 = get_instance_noref();
-	$still_obj2 = get_instance_noref();
-	?>
-
-The above example will output:
-	
-	Static object:NULL
-	Static object:NULL
-
-	Static object:NULL
-	Static object: object(stdClass)(1) {
-	["property"]=>
-	int(1)
-	}
-
-This example demonstrates that when assigning a reference to a static variable, it's not remembered when you call the &get_instance_ref() function a second time.
-
 VARIABLE VARIABLES
 
 	- Having a variable variable names is convenient and can be set and used dynamically. 
 
-	<?php
-	$a = 'hello';
-	?>
 
 	- A variable variable takes the value of a variable and treats that as the name of a variable. In the above example, hello, can be used as the name of a variable by using two dollar signs. i.e.
-
-	<?php
-	$$a = 'world';
-	?>	
-
 	- Two variables are now stored and defined in the PHP symbol tree: $a with contents " hello and $hello with contents "world". 
-
-	<?php
-	echo "$a ${$a}";
-	?>
-
-	-produces the exact same output as:
-
-	<?php
-	echo "$a $hello";
-	?>
-
-	- i.e. they both produce: hello world.
-
-/*
 In order to use variable variables with arrays, you have to resolve an ambiguity problem. That is, if you write $$a[1] then the parser needs to know if you meant to use $a[1] as a variable, or if you wanted $$a as the variable and then the [1] index from that variable. The syntax for resolving this ambiguity is: ${$a[1]} for the first case and ${$a}[1] for the second.
-
-Class properties may also be accessed using variable property names. The variable property name will be resolved within the scope from which the call is made. For instance, if you have an expression such as $foo->$bar, then the local scope will be examined for $bar and its value will be used as the name of the property of $foo. This is also true if $bar is an array access.
-*/
-
-Using curly braces delimit the property name. This is useful when accessing values  within a property that contains an array, when the property name is made of mulitple parts, or when the property name contains characters that are not otherwise valid (e.g. from json_decode() or SimpleXML).
-
-	Variable property example
-
-	<?php
-	class foo {
-	    var $bar = 'I am bar.';
-	    var $arr = array('I am A.', 'I am B.', 'I am C.');
-	    var $r   = 'I am r.';
-	}
-
-	$foo = new foo();
-	$bar = 'bar';
-	$baz = array('foo', 'bar', 'baz', 'quux');
-	echo $foo->$bar . "\n";
-	echo $foo->{$baz[1]} . "\n";
-
-	$start = 'b';
-	$end   = 'ar';
-	echo $foo->{$start . $end} . "\n";
-
-	$arr = 'arr';
-	echo $foo->{$arr[1]} . "\n";
-
-	?>
-
-The above example will output:
-
-	I am bar.
-	I am bar.
-	I am bar.
-	I am r.
-
 
 * Warning: Please note that variable variables cannot be used with PHP's Superglobal arrays within functions or class methods. The variable $this is also a special variable that cannot be referenced dynamically.
 
@@ -2156,67 +344,6 @@ HTML Forms (GET and POST)
 
 	- When a form is submitted to a PHP script, the information from that form is automatically made available to the script. There are few ways to access this information, for example:
 
-A simple HTML form
-
-	<form action="foo.php" method="post">
- 	   Name:  <input type="text" name="username" /><br />
- 	   Email: <input type="text" name="email" /><br />
-	    <input type="submit" name="submit" value="Submit me!" />
-	</form>
-
-Accessing data from a simple POST HTML form
-
-	?php
-	echo $_POST['username'];
-	echo $_REQUEST['username'];
-	?>
-
-There are different ways of accessing user input in the older PHP versions. 
-
-Old methods of accessing user input
-
-	<?php
-	// WATCH OUT: these methods ARE NOT supported anymore.
-	// Valid ones were described above.
-
-	// Using import_request_variables() - this function has been removed in PHP 5.4.0
-	   import_request_variables('p', 'p_');
- 	  echo $p_username;
-
-	// These long predefined variables were removed in PHP 5.4.0
- 	  echo $HTTP_POST_VARS['username'];
-
-	// Using register_globals. This feature was removed in PHP 5.4.0
- 	  echo $username;
-	?>
-
-/*
-Using a GET form is similar except you'll use the appropriate GET predefined variable instead. GET also applies to the QUERY_STRING (the information after the '?' in a URL). So, for example, http://www.example.com/test.php?id=3 contains GET data which is accessible with $_GET['id']. See also $_REQUEST.
-
-PHP also understands arrays in the context of form variables (see the related faq). You may, for example, group related variables together, or use this feature to retrieve values from a multiple select input. For example, let's post a form to itself and upon submission display the data:
-*/
-
-More complex from variables
-
-<?php
-if ($_POST) {
-    echo '<pre>';
-    echo htmlspecialchars(print_r($_POST, true));
-    echo '</pre>';
-}
-?>
-<form action="" method="post">
-    Name:  <input type="text" name="personal[name]" /><br />
-    Email: <input type="text" name="personal[email]" /><br />
-    Beer: <br />
-    <select multiple name="beer[]">
-        <option value="warthog">Warthog</option>
-        <option value="guinness">Guinness</option>
-        <option value="stuttgarter">Stuttgarter Schwabenbräu</option>
-    </select><br />
-    <input type="submit" value="submit me!" />
-</form>
-
 ======================================================================================================================
 CONSTANTS
 
@@ -2224,38 +351,9 @@ CONSTANTS
 
 	The name of a constant follows the same rules as any label in PHP. A valid constant name starts with a letter or underscore, followed by any number of letters, numbers, or underscores. As a regular expression, it would be expressed thusly: [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
 
-Valid and invalid constant names
-
-Sample Code
-
-<?php
-
-// Valid constant names
-define("FOO",     "something");
-define("FOO2",    "something else");
-define("FOO_BAR", "something more");
-
-// Invalid constant names
-define("2FOO",    "something");
-
-// This is valid, but should be avoided:
-// PHP may one day provide a magical constant
-// that will break your script
-define("__FOO__", "something"); 
-
-?>
-
-The extent of a constant is global which explains that accessing constants everywhere is possible in your script having no regards to scope.
-
 Syntax
 
 You can determine a constant with the use of define() function or the keyword const as of PHP 5.3.0. However, the const keyword has a limit to be interpreted to an arbitrary expression. The constant cannot be changed anymore when it is defined already.
-
-Only scalar data can be included in constants prior to PHP 5.6 onwards, defining a constant as scalar expression is possible, also in defining an array constant. It is possible to define constants as a resource but must not be utilize always because it can cause unexpected results.
-
-In getting the value of a constant, it can be done by identifying its name but you cannot prepend a constant with a $ unlike with variables. Utilization of function constant() to read a constant’s value if you like to acquire name directly is a good option. Use get_defined_constants() to get a list of all defined constants.
-
-PHP concludes that you mean the name of the constant itself if undefined constant is being utilized like as if you called it as a string (CONSTANT vs. “CONSTANT”). An error level E_NOTICE will be issued when this happens. This does not apply to (fully) qualified constants, which will raise a fatal error if undefined. Use the defined() function if you want to check a constant when it is set.
 
 The following are the differences of constants and variables with each other:
 
@@ -2264,40 +362,6 @@ The following are the differences of constants and variables with each other:
 	- Constants can be obtained anywhere with no regards to variable scoping rules.
 	- When the constants has been set already, it is not possible now to redefined or undefined it.
 	- Lastly, constants may only evaluate to scalar values. As of PHP 5.6 it is possible to define array constant using const keywords and as of PHP 7 array constants can also be defined using define() You may use arrays in constant scalar expressions (for example, const FOO = array(1,2,3)[0];), but the end result must be a value of allowed type.
-
-Defining Constants
-
-Sample Code
-<?php
-define("CONSTANT", "Hello world.");
-echo CONSTANT; // outputs "Hello world."
-echo Constant; // outputs "Constant" and issues a notice.
-?>
-
-Defining Constants using the const keyword
-
-Sample Code
-<?php
-// Works as of PHP 5.3.0
-const CONSTANT = 'Hello World';
-
-echo CONSTANT;
-
-// Works as of PHP 5.6.0
-const ANOTHER_CONST = CONSTANT.'; Goodbye World';
-echo ANOTHER_CONST;
-
-const ANIMALS = array('dog', 'cat', 'bird');
-echo ANIMALS[1]; // outputs "cat"
-
-// Works as of PHP 7
-define('ANIMALS', array(
-    'dog',
-    'cat',
-    'bird'
-));
-echo ANIMALS[1]; // outputs "cat"
-?>
 
 Magic constants
 	
@@ -2309,13 +373,11 @@ There are nine magical constants that change depending on where they are used. F
 	Name			Description
 	__LINE__		The current line number of the file.
 	__FILE__		The full path and filename of the file with symlinks resolved. If used inside an include, the name of the included file is returned.
-	__DIR__			The directory of the file. If used inside an include, the directory of the included file is returned. This is equivalent to dirname
+	__DIR__			The directory of the file. If used inside an include, the directory of the included file is returned. This is equivalent to dirname
 	(__FILE__). 		This directory name does not have a trailing slash unless it is the root directory.
 	__FUNCTION__		The function name.
-	__CLASS__		The class name. The class name includes the namespace it was declared in (e.g. Foo\Bar). Note that as of PHP 5.4 	__CLASS__ 		works also in traits. When used in a trait method, __CLASS__ is the name of the class the trait is used in.
-	__TRAIT__		The trait name. The trait name includes the namespace it was declared in (e.g. Foo\Bar).
+	__CLASS__		The class name. The class name includes the namespace it was declared in (e.g. Foo\Bar). Note that as of PHP 5.4 	__CLASS__ 		works also in traits. When used in a trait method, __CLASS__ is the name of the class the trait is used in.
+	__TRAIT__		The trait name. The trait name includes the namespace it was declared in (e.g. Foo\Bar).
 	__METHOD__		The class method name.
 	__NAMESPACE__		The name of the current namespace.
-	ClassName::class	The fully qualified class name. See also ::class.
-
-
+	ClassName::class	The fully qualified class name. See also ::class.
