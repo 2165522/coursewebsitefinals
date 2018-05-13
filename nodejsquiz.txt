@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NODEJS QUIZ
 
 1. Thrown in response to improper JavaScript language syntax?
@@ -59,3 +60,66 @@ NODEJS QUIZ
 	b. OS 
 	c. Path 
 	d. Net
+=======
+NODEJS QUIZ
+
+1. Thrown in response to improper JavaScript language syntax?
+	a. <RangeError>
+	b. <SyntaxError> *
+	c. <ReferenceError>
+	d. <TypeError>
+
+2. Thrown when passing argument to a wrong type
+	a. <RangeError>
+	b. <SyntaxError> 
+	c. <ReferenceError>
+	d. <TypeError> *
+
+3. Thrown when a value is not within expected range
+	a. <RangeError>*
+	b. <SyntaxError> 
+	c. <ReferenceError>
+	d. <TypeError> 
+
+4. This gives a cryptographic functionality including a set of wrappers
+	a. Console 
+	b. Debugger
+	c. Cluster
+	d. Crypto *
+
+5. ______ comes in when a user needs the Node.js to handle the load because a single Node.js runs in a single thread only.
+	a. Console 
+	b. Debugger
+	c. Cluster *
+	d. Crypto 
+
+6. This module tracks lifetime asynchronous resources made inside a Node.js application?
+	a. Async Hooks *
+	b. Buffer
+	c. Assert
+	d. Command Line Options
+
+7. A part of the Node.js API enabling connection with octet streams in TCP streams, file system operations and other context
+	a. Async Hooks 
+	b. Buffer *
+	c. Assert
+	d. Command Line Options
+
+8. This module gives utilities for working with file and directory paths
+	a. Modules
+	b. OS
+	c. Path *
+	d. Net
+
+9. This module gives a number of operating system-related utility methods.
+	a. Modules
+	b. OS *
+	c. Path 
+	d. Net
+
+10. Each file is being considered as separate module in Node.js module system?
+	a. Modules *
+	b. OS 
+	c. Path 
+	d. Net
+>>>>>>> 4204c46257bf0b2eb2feb9be106907b8c21d53f9
