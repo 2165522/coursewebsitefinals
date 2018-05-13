@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `scriptcademy` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `scriptcademy`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: scriptcademy
 -- ------------------------------------------------------
--- Server version	5.7.14
+-- Server version	5.1.53-community-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,9 +23,8 @@ DROP TABLE IF EXISTS `questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questions` (
-  `q_id` int(11) NOT NULL,
-  `topic_id` int(11) NOT NULL,
-  `q_no` int(11) NOT NULL,
+  `q_id` int(11) NOT NULL AUTO_INCREMENT,
+  `topic` varchar(45) NOT NULL,
   `question` varchar(200) NOT NULL,
   `choice1` varchar(45) DEFAULT 'null',
   `choice2` varchar(45) DEFAULT 'null',
@@ -35,10 +32,8 @@ CREATE TABLE `questions` (
   `choice4` varchar(45) DEFAULT 'null',
   `answer` varchar(45) NOT NULL,
   PRIMARY KEY (`q_id`),
-  UNIQUE KEY `q_id_UNIQUE` (`q_id`),
-  KEY `topic_id_idx` (`topic_id`),
-  CONSTRAINT `topic_id` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`topid_id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY `q_id_UNIQUE` (`q_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,8 +42,31 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,1,1,'Servlets are included in what platform of Java Development Kit?','Standard Edition','Enterprise Edition','Micro Edition','Web Edition','Enterprise Edition'),(2,1,2,'A servlet is instantiated in the class Constructor.','TRUE','FALSE','null','null','TRUE'),(3,1,3,'In what method is the Servlet initialized?','start() method','init() method','build() method','service() method','init() method'),(4,1,4,'In what method is the Servlet dropped?','destroy() method','drop() method','remove() method','delete() method','destroy() method'),(5,1,5,'The service() method is used in ________?','client requests','server responses','null','null','client requests'),(6,1,6,'One example of an application server which runs HTTPServlets','Internet Information Services','WAMP Server','Apache Tomcat','null','Apache Tomcat');
+INSERT INTO `questions` VALUES (1,'Servlets','Servlets are included in what platform of Java Development Kit?','Standard Edition','Enterprise Edition','Micro Edition','Web Edition','Enterprise Edition'),(2,'Servlets','A servlet is instantiated in the class Constructor.','TRUE','FALSE','None of the choices','Both true','TRUE'),(3,'Servlets','In what method is the Servlet initialized?','start() method','init() method','build() method','service() method','init() method'),(4,'Servlets','In what method is the Servlet dropped?','destroy() method','drop() method','remove() method','delete() method','destroy() method'),(5,'Servlets','The service() method is used in ________?','client requests','server responses','None of the choices','Both server and client','client requests'),(6,'Servlets','One example of an application server which runs HTTPServlets','Internet Information Services','WAMP Server','Apache Tomcat','DNS Server','Apache Tomcat'),(7,'PHP','PHP is a powerful web scripting technology','TRUE','FALSE','None of the choices','Both true','TRUE'),(8,'PHP','You don\'t need to use a semicolon to terminate the last line of a PHP block.','TRUE','FALSE','None of the choices','Both true','FALSE'),(9,'PHP','In PHP, variables are represented by a dollar sign followed by the variable name which is also case-sensitive.','TRUE','FALSE','None of the choices','Both true','TRUE'),(10,'PHP','It is known as an identifier(name) for a simple value that cannot be changed during the execution of the script?','Constant','Variable','Data Type','Class','Constant'),(11,'PHP','Also known as closures, allow the creation of functions which have no specified name?','Anonymous function','Variable function','Internal function','Built-in function','Anonymous function'),(12,'PHP','Means to access the same variable content by different names?','Predefined Variables','References','Generators','Exceptions','References'),(13,'PHP','Allows you to write code that uses foreach to iterate over a set of data?','Predefined Variables','References','Generators','Exceptions','Generators'),(14,'PHP','References that allows you to make two variables refer to the same content?','Asigning references','Passing references','Returning by references','None of the above','Asigning references'),(15,'PHP','The heart of a generator function is the _____ keyword.','Yield','Generate','Catch','None of the above','Yiend'),(16,'PHP','It is thrown when an error occurs while mathematical operations are being performed?','ArithmeticError','AssertionError','DivisionByZeroError','None of the above','ArithmeticErrror'),(17,'Servlets','Object representation of the HTTP reponse generated by the servlet and sent back to the requesting client.','HTTPServletResponse','HTTPServletRequest','initialization','instantiation','HTTPServletResponse'),(18,'Servlets','Object representation of the HTTP request sent by the client and received by the servlet.','HTTPServletResponse','HTTPServletRequest','initialization','instantiation','HTTPServletRequest'),(19,'Servlets','Used to set information in the response message.','HTTPServletResponse','HTTPServletRequest','initialization','instantiation','HTTPServletResponse'),(20,'Servelts','The web container facilitates the conversion to and from the HTTP request/response message to HTTPServletRequest/HTTPServletResponse.','True','False','Both true','None of the choices','True'),(21,'NodeJS','Thrown in response to improper JavaScript language syntax?','<RangeError>','<SyntaxError>','<ReferenceError>','<TypeError>','<SyntaxError>'),(22,'NodeJS','Thrown when passing argument to a wrong type','<RangeError>','<SyntaxError>','<ReferenceError>','<TypeError>','<TypeError>'),(23,'NodeJS','Thrown when a value is not within expected range','<RangeError>','<SyntaxError>','<ReferenceError>','<TypeError>','<RangeError>'),(24,'NodeJS','This gives a cryptographic functionality including a set of wrappers','Console','Debugger','Cluster','Crypto','Crypto'),(25,'NodeJS','______ comes in when a user needs the Node.js to handle the load because a single Node.js runs in a single thread only.','Console','Debugger','Cluster','Crypto','Cluster'),(26,'NodeJS','This module tracks lifetime asynchronous resources made inside a Node.js application?','Async Hooks','Buffer','Assert','Command Line Options','Async Hooks'),(27,'NodeJS','A part of the Node.js API enabling connection with octet streams in TCP streams, file system operations and other context','Async Hooks','Buffer','Assert','Command Line Options','Buffer'),(28,'NodeJS','This module gives utilities for working with file and directory paths','Modules','OS','Path','Net','Net'),(29,'NodeJS','This module gives a number of operating system-related utility methods.','Modules','OS','Path','Net','OS'),(30,'NodeJS','Each file is being considered as separate module in Node.js module system?','Modules','OS','Path','Net','Modules');
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `quiz_scores`
+--
+
+DROP TABLE IF EXISTS `quiz_scores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `quiz_scores` (
+  `topic_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `score` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `quiz_scores`
+--
+
+LOCK TABLES `quiz_scores` WRITE;
+/*!40000 ALTER TABLE `quiz_scores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `quiz_scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -89,6 +107,9 @@ CREATE TABLE `user_accounts` (
   `username` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
+  `servlets_score` varchar(45) DEFAULT NULL,
+  `php_score` varchar(45) DEFAULT NULL,
+  `nodejs_score` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -100,13 +121,9 @@ CREATE TABLE `user_accounts` (
 
 LOCK TABLES `user_accounts` WRITE;
 /*!40000 ALTER TABLE `user_accounts` DISABLE KEYS */;
-INSERT INTO `user_accounts` VALUES (1,'Earl','Rimando','earlcapitan','ejamrimando@gmail.com','password'),(2,'Ray','Servidad','benz','sfasd@gmail.com','password'),(3,'Vincent','Ibalio','beanie','dafs@gmail.com','password'),(4,'Test','Lang','testlang','test@gmail.com','password'),(5,'Ray','Servidad','benzservidad','dasdsa@gmail.com','password');
+INSERT INTO `user_accounts` VALUES (1,'Earl','Rimando','earlcapitan','ejamrimando@gmail.com','password','6/6',NULL,NULL),(2,'Ray','Servidad','benz','sfasd@gmail.com','password',NULL,NULL,NULL),(3,'Vincent','Ibalio','beanie','dafs@gmail.com','password',NULL,NULL,NULL),(4,'Test','Lang','testlang','test@gmail.com','password',NULL,NULL,NULL),(5,'Ray','Servidad','benzservidad','dasdsa@gmail.com','password',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user_accounts` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'scriptcademy'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -117,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-12  5:24:55
+-- Dump completed on 2018-05-14  1:21:54

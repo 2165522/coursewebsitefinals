@@ -5,6 +5,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     header("location: login.php");
     exit;
 }
+include("../config/dbconnect.php");
+
 include("../pagefragments/header.php");
 ?>
 <div class="navbar-fixed">
@@ -55,6 +57,24 @@ include("../pagefragments/header.php");
         <div class="section">
             <div class="col s12 m4 l3">
                 <img class="profileavatar" src="../img/avatar.png" alt="" class="circle responsive-img">
+                <form action="#" method="post" enctype='multipart/form-data'>
+                    <div class="file-field input-field">
+                        <div class="row">
+                            <div class="col s8 offset-s2 m8 offset-m2 l8 offset-l2  blue darken-1 btn">
+                                <span>Choose image</span>
+                                <input type="file" name="file">
+                            </div>
+                            <div class="col s8 offset-s2 m8 offset-m2 l8 offset-l2 file-path-wrapper">
+                                <input class="file-path validate" type="text">
+
+                                <button class="btn  blue darken-1" type="submit" name="uploadimage">Upload
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
             </div>
             <div class="col s12 m8 l9">
                 <h3>Account Information:</h3>
@@ -63,18 +83,16 @@ include("../pagefragments/header.php");
                 <h5><span><i class="small material-icons">email</i></span>Email address: <span style="font-weight: 300;"><?php echo $_SESSION['email']; ?></span></h5>
                 <br>
                 <hr>
-                <a class="blue darken-4 btn">Edit account information</a>
                 <h3>Quiz Scores:</h3>
                 <div class="row">
                     <div class="col s12 m5 l6">
                         <?php 
-                        include("../config/dbconnect.php");
 
                         $query = "select * from user_accounts where user_id =".$_SESSION['user_id'].";";
-                        
+
                         $result = mysqli_query($con, $query);
                         $row = mysqli_fetch_assoc($result);
-                        
+
                         $servlets_score = $row['servlets_score'];
                         $php_score = $row['php_score'];
                         $nodejs_score = $row['nodejs_score'];

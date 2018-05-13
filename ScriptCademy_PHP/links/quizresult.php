@@ -76,7 +76,7 @@ include("../pagefragments/header.php");
 
         $counter = 0;
         while($row = mysqli_fetch_array($result)){
-            if($row[8] == $ans[$counter]){
+            if($row[7] == $ans[$counter]){
                 $score++; 
             }
             $counter++;

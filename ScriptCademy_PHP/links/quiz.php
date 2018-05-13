@@ -66,13 +66,17 @@ include("../pagefragments/header.php");
 
 
         echo '<form action="quizresult.php" method="post">';
-        while($row = mysqli_fetch_array($result)){
-            $questions = range(0, 3);
-            shuffle($questions);
-            echo 
-                '<div><h5>'.$row[2].') '.$row[3].'</h5></div>';
-            for($i = 0; $i < 4; $i++){
-                echo '<p><label><input name="'.$row[2].'" type="radio" value="'.$row[$questions[$i]+4].'" required/> <span>'.$row[$questions[$i]+4].'</span></label></p>';
+        $j = 1;
+        while ($j < mysqli_num_rows($result)-1){
+            while($row = mysqli_fetch_array($result)){
+                $questions = range(0, 3);
+                shuffle($questions);
+                echo
+                    '<div><h5>'.$j.') '.$row[2].'</h5></div>';
+                for($i = 0; $i < 4; $i++){
+                    echo '<p><label><input name="'.$j.'" type="radio" value="'.$row[$questions[$i]+3].'" required/> <span>'.$row[$questions[$i]+3].'</span></label></p>';
+                }
+                $j++;
             }
         }
         echo '
