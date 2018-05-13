@@ -28,8 +28,6 @@ if(isset($_POST['uploadimage'])){
 
         $query = 'update user_accounts set image = "'.$image.'" where user_id = '.$_SESSION['user_id'].';';
         mysqli_query($con,$query);
-        
-        header("profile.php");
     }
 }
 ?>

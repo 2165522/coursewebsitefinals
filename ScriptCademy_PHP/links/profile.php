@@ -45,6 +45,8 @@ include("../pagefragments/nav.php");
                         mysqli_query($con,$query);
 
                     }
+
+                    header("profile.php");
                 }
                 ?>
                 <form action="#" method="post" enctype='multipart/form-data'>
