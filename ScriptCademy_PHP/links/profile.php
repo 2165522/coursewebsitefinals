@@ -5,58 +5,48 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     header("location: login.php");
     exit;
 }
-include("../config/dbconnect.php");
 
 include("../pagefragments/header.php");
+include("../pagefragments/nav.php");
 ?>
-<div class="navbar-fixed">
-    <nav class="grey lighten-2" role="navigation">
-        <div class="nav-wrapper container">
-            <a href="../index.php" class="brand-logo">ScriptCademy</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a class="dropdown-trigger" href="#!" data-target="java">Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
 
-                <ul id='java' class='dropdown-content'>
-                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/servlet_notes.php">Review Notes</a></li>
-                    <li><a href="quiz?quiz=Servlets">Take the Quiz</a></li>
-                </ul>
-
-                <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
-
-                <ul id='php' class='dropdown-content'>
-                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/php_notes.php">Review Notes</a></li>
-                    <li><a href="quiz?quiz=PHP">Take the Quiz</a></li>
-                </ul>
-
-                <li><a class="dropdown-trigger" href="#!" data-target="node">NodeJS<i class="material-icons right">arrow_drop_down</i></a></li>
-
-                <ul id='node' class='dropdown-content'>
-                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/nodejs_notes.php">Review Notes</a></li>
-                    <li><a href="quiz?quiz=NodeJS">Take the Quiz</a></li>
-                </ul>
-
-                <li><a class="dropdown-trigger" href="#!" data-target="acc"><img src="../img/avatar.png" alt="" class="circle avatar"></a></li>
-
-                <ul id='acc' class='dropdown-content'>
-                    <li><a href="profile.php">
-                        <?php
-                        echo $_SESSION['username'];
-                        ?>
-                        </a> 
-                    </li>
-                    <li><a href="../links/logout.php">Logout</a></li>
-                </ul>
-            </ul>
-
-        </div>
-    </nav>
-</div>
 <div class="row">
     <div class="container">
         <div class="section">
             <div class="col s12 m4 l3">
-                <img class="profileavatar" src="../img/avatar.png" alt="" class="circle responsive-img">
+                <?php
+                if ($image_src == null) {
+                    echo "Error";
+                } else {
+                    echo "<img src=".$image_src." alt='Profile Image' class='circle responsive-img'>";
+                }
+
+                if(isset($_POST['uploadimage'])){
+
+                    $name = $_FILES['file']['name'];
+                    $target_dir = "upload/";
+                    $target_file = $target_dir . basename($_FILES["file"]["name"]);
+
+                    // Select file type
+                    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+                    // Valid file extensions
+                    $extensions_arr = array("jpg","jpeg","png","gif");
+
+                    // Check extension
+                    if( in_array($imageFileType,$extensions_arr) ){
+
+                        // Convert to base64 
+                        $image_base64 = base64_encode(file_get_contents($_FILES['file']['tmp_name']) );
+                        $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
+                        // Insert record
+
+                        $query = 'update user_accounts set image = "'.$image.'" where user_id = '.$_SESSION['user_id'].';';
+                        mysqli_query($con,$query);
+
+                    }
+                }
+                ?>
                 <form action="#" method="post" enctype='multipart/form-data'>
                     <div class="file-field input-field">
                         <div class="row">
@@ -66,13 +56,15 @@ include("../pagefragments/header.php");
                             </div>
                             <div class="col s8 offset-s2 m8 offset-m2 l8 offset-l2 file-path-wrapper">
                                 <input class="file-path validate" type="text">
-
-                                <button class="btn  blue darken-1" type="submit" name="uploadimage">Upload
-                                    <i class="material-icons right">send</i>
-                                </button>
                             </div>
-                        </div>
 
+
+                        </div>
+                    </div>
+                    <div class="col s10 offset-s1 m10 offset-m1 l12 offset-l1">
+                        <button class="btn blue darken-1" type="submit" name="uploadimage">Upload
+                            <i class="material-icons right">send</i>
+                        </button>
                     </div>
                 </form>
             </div>

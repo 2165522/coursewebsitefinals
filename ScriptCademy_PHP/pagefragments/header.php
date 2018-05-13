@@ -1,3 +1,6 @@
+<?php
+include("getimage.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,5 +17,5 @@
 
     <body>
 
-        
+
 

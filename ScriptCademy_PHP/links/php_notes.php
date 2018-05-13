@@ -5,6 +5,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     exit;
 }
 include("../pagefragments/header.php");
+include("../pagefragments/nav.php");
 
 ?>
 <div class="navbar-fixed">
