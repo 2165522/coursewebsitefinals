@@ -16,22 +16,22 @@ include("../pagefragments/header.php");
                 <li><a class="dropdown-trigger" href="#!" data-target="java">Servlets<i class="material-icons right">arrow_drop_down</i></a></li>
 
                 <ul id='java' class='dropdown-content'>
-                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/servlet_notes">Review Notes</a></li>
-                    <li><a href="#">Take the Quiz</a></li>
+                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/servlet_notes.php">Review Notes</a></li>
+                    <li><a href="quiz?quiz=Servlets">Take the Quiz</a></li>
                 </ul>
 
                 <li><a class="dropdown-trigger" href="#!" data-target="php">PHP<i class="material-icons right">arrow_drop_down</i></a></li>
 
                 <ul id='php' class='dropdown-content'>
-                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/php_notes">Review Notes</a></li>
-                    <li><a href="#">Take the Quiz</a></li>
+                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/php_notes.php">Review Notes</a></li>
+                    <li><a href="quiz?quiz=PHP">Take the Quiz</a></li>
                 </ul>
 
                 <li><a class="dropdown-trigger" href="#!" data-target="node">NodeJS<i class="material-icons right">arrow_drop_down</i></a></li>
 
                 <ul id='node' class='dropdown-content'>
-                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/nodejs_notes">Review Notes</a></li>
-                    <li><a href="#">Take the Quiz</a></li>
+                    <li><a href="http://localhost/coursewebsitefinals/ScriptCademy_PHP/links/nodejs_notes.php">Review Notes</a></li>
+                    <li><a href="quiz?quiz=NodeJS">Take the Quiz</a></li>
                 </ul>
 
                 <li><a class="dropdown-trigger" href="#!" data-target="acc"><img src="../img/avatar.png" alt="" class="circle avatar"></a></li>
@@ -75,7 +75,7 @@ include("../pagefragments/header.php");
                 
                 $counter = 0;
                 while($row = mysqli_fetch_array($result)){
-                    if($row[9] == $ans[$counter]){
+                    if($row[10] == $ans[$counter]){
                         $score++; 
                     }
                     $counter++;

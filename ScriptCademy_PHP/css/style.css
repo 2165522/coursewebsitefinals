@@ -5,7 +5,7 @@
 *
 * Made By MaterializeCSS.com
 */
-    
+
 nav ul a,
 nav .brand-logo {
     color: #444;
@@ -48,14 +48,14 @@ p {
 }
 
 img.logos {
-        width: 300px; !important;
-    }
+    width: 300px; !important;
+}
 
 @media only screen and (max-width : 992px) {
     .parallax-container .section {
         position: absolute;
     }
-    
+
     h1.header {
         font-size: 2.5em !important;
         text-align: center !important;
@@ -66,7 +66,7 @@ img.logos {
     #index-banner .section {
         top: 0;
     }
-    
+
     h1.header {
         font-size: 2.5em !important;
         text-align: center !important;
@@ -104,8 +104,11 @@ p {
 }
 
 .code-sample {
- border-radius: 25px;
- background-color:gainsboro;
+    border-radius: 25px;
+    background-color:gainsboro;
+    padding: 20px;
+    font-family: monospace;
+    text-align:left;
 
 }
 .code-comment{

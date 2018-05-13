@@ -1,22 +1,4 @@
-<?php
 
-$con = new mysqli("p:localhost", "root", "", "scriptcademy");
-
-if (isset($_POST['action'])){
-    session_start();
-    $uname = mysqli_real_escape_string($con, $_POST['username']);
-    $pword = mysqli_real_escape_string($con, $_POST['password']);
-    
-    $query = "SELECT username, password from user_accounts where username = '$uname' and password = '$pword'";
-    $result = mysqli_query($con, $query);
-    if (mysqli_num_rows($result) == 1){
-        $_SESSION['username'] = $_POST['username'];
-        header ("location: ../index.php");
-    } else {
-        echo "Wrong credentials";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,6 +27,26 @@ if (isset($_POST['action'])){
                                 <div class="card-content blue-text">
                                     <span class="card-title">Sign In</span>
                                     <hr>
+                                    <br>
+                                    <?php
+
+                                    $con = new mysqli("p:localhost", "root", "", "scriptcademy");
+
+                                    if (isset($_POST['action'])){
+                                        session_start();
+                                        $uname = mysqli_real_escape_string($con, $_POST['username']);
+                                        $pword = mysqli_real_escape_string($con, $_POST['password']);
+
+                                        $query = "SELECT username, password from user_accounts where username = '$uname' and password = '$pword'";
+                                        $result = mysqli_query($con, $query);
+                                        if (mysqli_num_rows($result) == 1){
+                                            $_SESSION['username'] = $_POST['username'];
+                                            header ("location: ../index.php");
+                                        } else {
+                                            echo "Wrong credentials";
+                                        }
+                                    }
+                                    ?>
                                     <div class="row">
                                         <form method="post" class="col s12">
                                             <div class="row">
@@ -79,5 +81,5 @@ if (isset($_POST['action'])){
             <div class="parallax"><img style="filter: brightness(40%)" src="../img/back1.jpg" alt="Unsplashed background img 1"></div>
         </div>
 
- <?php
-include("../pagefragments/footer.html");
+        <?php
+        include("../pagefragments/footer.html");

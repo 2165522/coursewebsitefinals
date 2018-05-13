@@ -50,7 +50,9 @@ public class Register extends HttpServlet {
         String uname = request.getParameter("uname");
         String email = request.getParameter("email");
         String pword = request.getParameter("pword");
-
+        
+        if (passwordValidator(pword))
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scriptcademy", "root", "");
