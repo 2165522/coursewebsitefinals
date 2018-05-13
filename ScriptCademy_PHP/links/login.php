@@ -37,10 +37,14 @@
                                         $uname = mysqli_real_escape_string($con, $_POST['username']);
                                         $pword = mysqli_real_escape_string($con, $_POST['password']);
 
-                                        $query = "SELECT username, password from user_accounts where username = '$uname' and password = '$pword'";
+                                        $query = "SELECT * from user_accounts where username = '$uname' and password = '$pword'";
                                         $result = mysqli_query($con, $query);
+                                        $row = mysqli_fetch_assoc($result);
                                         if (mysqli_num_rows($result) == 1){
                                             $_SESSION['username'] = $_POST['username'];
+                                            $_SESSION['fname'] = $row['fname'];
+                                            $_SESSION['lname'] = $row['lname'];
+                                            $_SESSION['email'] = $row['email'];
                                             header ("location: ../index.php");
                                         } else {
                                             echo "Wrong credentials";

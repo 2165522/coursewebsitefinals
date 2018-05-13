@@ -38,7 +38,7 @@ include("../pagefragments/header.php");
 
                 <ul id='acc' class='dropdown-content'>
                     <li>
-                        <a href="#">
+                        <a href="profile.php">
                             <?php
                             echo $_SESSION['username'];
                             ?>

@@ -37,7 +37,7 @@ include("../pagefragments/header.php");
                 <li><a class="dropdown-trigger" href="#!" data-target="acc"><img src="../img/avatar.png" alt="" class="circle avatar"></a></li>
 
                 <ul id='acc' class='dropdown-content'>
-                    <li><a href="#">
+                    <li><a href="profile.php">
                         <?php
                         echo $_SESSION['username'];
                         ?>
@@ -61,7 +61,7 @@ include("../pagefragments/header.php");
             echo '<h1>'.$quiz.' Quiz</h1>';
 
             $con=mysqli_connect("localhost","root","","scriptcademy");
-            $qry = 'SELECT * from topics natural join questions where topic="'.$quiz.'";';
+            $qry = 'SELECT * from questions where topic="'.$quiz.'";';
             $result=mysqli_query($con,$qry);
 
 
@@ -70,9 +70,9 @@ include("../pagefragments/header.php");
                     $questions = range(0, 3);
                     shuffle($questions);
                     echo 
-                    '<div><h5>'.$row[4].') '.$row[5].'</h5></div>';
+                    '<div><h5>'.$row[2].') '.$row[3].'</h5></div>';
                     for($i = 0; $i < 4; $i++){
-                        echo '<p><label><input name="'.$row[4].'" type="radio" value="'.$row[$questions[$i]+6].'" required /> <span>'.$row[$questions[$i]+6].'</span></label></p>';
+                        echo '<p><label><input name="'.$row[2].'" type="radio" value="'.$row[$questions[$i]+4].'" required/> <span>'.$row[$questions[$i]+4].'</span></label></p>';
                     }
                 }
             echo '

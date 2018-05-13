@@ -37,7 +37,7 @@ include("../pagefragments/header.php");
                 <li><a class="dropdown-trigger" href="#!" data-target="acc"><img src="../img/avatar.png" alt="" class="circle avatar"></a></li>
 
                 <ul id='acc' class='dropdown-content'>
-                    <li><a href="#">
+                    <li><a href="profile.php">
                         <?php
                         echo $_SESSION['username'];
                         ?>
@@ -54,37 +54,48 @@ include("../pagefragments/header.php");
 <div class="container">
     <div class="row">
         <?php
-                $ans = array();
-                $score = 0;
-                
-                if (isset($_POST['quiz'])) {
-                    $quiz = $_POST['quiz'];
-                }
-                
-                
-                $con=mysqli_connect("localhost","root","","scriptcademy");
-                $qry = 'SELECT * from topics natural join questions where topic="'.$quiz.'";';
-                $result=mysqli_query($con,$qry);
-                
-                $numRows = mysqli_num_rows($result);
-                for($i = 1; $i <= $numRows; $i++){   
-                    if (isset($_POST[''.$i.''])) {
-                        array_push($ans, $_POST[''.$i.'']);
-                    }
-                }
-                
-                $counter = 0;
-                while($row = mysqli_fetch_array($result)){
-                    if($row[10] == $ans[$counter]){
-                        $score++; 
-                    }
-                    $counter++;
-                }
-            
-                echo '<h1>'.$quiz.' Quiz</h1>';
-                echo '<h2>SCORE: '.$score.'/'.$numRows.'</h2>';
+        $ans = array();
+        $score = 0;
 
-                ?>
+        if (isset($_POST['quiz'])) {
+            $quiz = $_POST['quiz'];
+        }
+
+
+        $con=mysqli_connect("localhost","root","","scriptcademy");
+        $qry = 'SELECT * from questions where topic="'.$quiz.'";';
+        $result=mysqli_query($con,$qry);
+
+        $numRows = mysqli_num_rows($result);
+        for($i = 1; $i <= $numRows; $i++){   
+            if (isset($_POST[''.$i.''])) {
+                array_push($ans, $_POST[''.$i.'']);
+            }
+        }
+
+        $counter = 0;
+        while($row = mysqli_fetch_array($result)){
+            if($row[8] == $ans[$counter]){
+                $score++; 
+            }
+            $counter++;
+        }
+
+        echo '<h1>'.$quiz.' Quiz</h1>';
+        echo '<h2>SCORE: '.$score.'/'.$numRows.'</h2>';
+
+        if ($quiz == 'Servlets') {
+            $_SESSION['servletscore'] = $score.'/'.$numRows;
+        }
+        
+        if ($quiz == 'PHP') {
+            $_SESSION['phpscore'] = $score;
+        }
+        
+        if ($quiz == 'NodeJS') {
+            $_SESSION['NodeJSscore'] = $score;
+        }
+        ?>
     </div>
 </div>
 

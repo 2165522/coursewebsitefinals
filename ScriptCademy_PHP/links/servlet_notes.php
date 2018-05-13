@@ -37,7 +37,7 @@ include("../pagefragments/header.php");
                 <li><a class="dropdown-trigger" href="#!" data-target="acc"><img src="../img/avatar.png" alt="" class="circle avatar"></a></li>
 
                 <ul id='acc' class='dropdown-content'>
-                    <li><a href="#">
+                    <li><a href="profile.php">
                         <?php
                         echo $_SESSION['username'];
                         ?>
