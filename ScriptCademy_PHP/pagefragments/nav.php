@@ -28,7 +28,7 @@
                 <li><a class="dropdown-trigger" href="#!" data-target="acc">
                     <?php
                     if ($image_src == null) {
-                        echo "Error";
+                        echo "<img src='../img/avatar.png' alt='Profile Image' class='circle avatar'>";
                     } else {
                         echo "<img src=".$image_src." alt='Profile Image' class='circle avatar'>";
                     } ?>
@@ -57,7 +57,7 @@
         <a href="#user">
             <?php
             if ($image_src == null) {
-                echo "Error";
+                echo "<img src='../img/avatar.jpg' alt='Profile Image' class='circle responsive-img'>";
             } else {
                 echo "<img src=".$image_src." alt='Profile Image' class='circle responsive-img'>";
             } ?>

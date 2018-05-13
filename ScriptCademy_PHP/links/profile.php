@@ -16,7 +16,7 @@ include("../pagefragments/nav.php");
             <div class="col s12 m4 l3">
                 <?php
                 if ($image_src == null) {
-                    echo "Error";
+                    echo "<img src='../img/avatar.png' alt='Profile Image' class='circle responsive-img'>";
                 } else {
                     echo "<img src=".$image_src." alt='Profile Image' class='circle responsive-img'>";
                 }
