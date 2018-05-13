@@ -1,0 +1,55 @@
+PHP QUIZ
+
+1. You do not need to use a semicolon to terminate the last line of a PHP block.
+	a. True
+	b. False *
+
+2. Variables are represented by a dollar sign followed by the variable name which is also case-sensitive.
+	a. PHP *
+	b. NodJS
+	c. CSS
+	d. HTML
+
+3. It is known as an identifier(name) for a simple value that cannot be changed during the execution of the script?
+	a. Variable
+	b. Constant *
+	c. Data type
+	d. Class
+
+4. Also known as closures, allow the creation of functions which have no specified name?
+	a. Anonymous function*
+	b. Variable function
+	c. Internal function
+	d. Built-in function
+
+5. Means to access the same variable content by different names?
+	a. Predefined Variables
+	b. References*
+	c. Generators
+	d. Exceptions
+
+6. Allows you to write code that uses foreach to iterate over a set of data?
+	a. Predefined Variables
+	b. References
+	c. Generators*
+	d. Exceptions
+
+7. References that allows you to make two variables refer to the same content?
+	a. Asigning references *
+	b. Passing references
+	c. Returning by references
+
+8. The heart of a generator function is the _____ keyword.
+	a. Yield*
+	b. Generate
+	c. Catch
+
+9. It is thrown when an error occurs while mathematical operations are being performed?
+	a. ArithmeticError *
+	b. AssertionError
+	c. DivisionByZeroError
+
+10. It is thrown when an error occurs while Parsing PHP Code?
+	a. ArithmeticError 
+	b. AssertionError
+	c. ParseError*
