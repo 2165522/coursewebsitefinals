@@ -54,33 +54,33 @@ include("../pagefragments/header.php");
 <div class="container">
     <div class="row">
         <?php
-            if (isset($_GET['quiz'])) {
-                $quiz = $_GET['quiz'];
+        if (isset($_GET['quiz'])) {
+            $quiz = $_GET['quiz'];
+        }
+
+        echo '<h1>'.$quiz.' Quiz</h1>';
+
+        include("../config/dbconnect.php");
+        $qry = 'SELECT * from questions where topic="'.$quiz.'";';
+        $result=mysqli_query($con,$qry);
+
+
+        echo '<form action="quizresult.php" method="post">';
+        while($row = mysqli_fetch_array($result)){
+            $questions = range(0, 3);
+            shuffle($questions);
+            echo 
+                '<div><h5>'.$row[2].') '.$row[3].'</h5></div>';
+            for($i = 0; $i < 4; $i++){
+                echo '<p><label><input name="'.$row[2].'" type="radio" value="'.$row[$questions[$i]+4].'" required/> <span>'.$row[$questions[$i]+4].'</span></label></p>';
             }
-
-            echo '<h1>'.$quiz.' Quiz</h1>';
-
-            $con=mysqli_connect("localhost","root","","scriptcademy");
-            $qry = 'SELECT * from questions where topic="'.$quiz.'";';
-            $result=mysqli_query($con,$qry);
-
-
-            echo '<form action="quizresult.php" method="post">';
-                while($row = mysqli_fetch_array($result)){
-                    $questions = range(0, 3);
-                    shuffle($questions);
-                    echo 
-                    '<div><h5>'.$row[2].') '.$row[3].'</h5></div>';
-                    for($i = 0; $i < 4; $i++){
-                        echo '<p><label><input name="'.$row[2].'" type="radio" value="'.$row[$questions[$i]+4].'" required/> <span>'.$row[$questions[$i]+4].'</span></label></p>';
-                    }
-                }
-            echo '
+        }
+        echo '
             <input class="radh" type="radio" name="quiz" value="'.$quiz.'" checked>
             <button class="btn waves-effect my-1 blue" type="submit">SUBMIT</button>
             </form>';
-            mysqli_close($con);
-         ?>
+        mysqli_close($con);
+        ?>
     </div>
 </div>
 

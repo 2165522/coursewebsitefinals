@@ -68,30 +68,42 @@ include("../pagefragments/header.php");
                 <div class="row">
                     <div class="col s12 m5 l6">
                         <?php 
+                        include("../config/dbconnect.php");
+
+                        $query = "select * from user_accounts where user_id =".$_SESSION['user_id'].";";
+                        
+                        $result = mysqli_query($con, $query);
+                        $row = mysqli_fetch_assoc($result);
+                        
+                        $servlets_score = $row['servlets_score'];
+                        $php_score = $row['php_score'];
+                        $nodejs_score = $row['nodejs_score'];
+
+
                         echo "<h5>Servlets: <span>";
-                        if (!isset($_SESSION['servletscore'])){
+                        if ($servlets_score == null){
                             echo "<span class='pnotice'>You didn't take the quiz yet.</span></span>
-                        <h5><a href='quiz?quiz=Servlet'>Take the quiz</a></h5>";
+                        <h5><a href='quiz?quiz=Servlets'>Take the quiz</a></h5>";
                         } else {
-                            echo $_SESSION['servletscore']."</span></h5>";
-                            echo "<h5><a href='quiz?quiz=Servlet'>Retake the quiz</a></h5>"; 
+                            echo $servlets_score."</span></h5>";
+                            echo "<h5><a href='quiz?quiz=Servlets'>Retake the quiz</a></h5>"; 
                         }
 
                         echo "<h5>PHP: <span>";
-                        if (!isset($_SESSION['phpscore'])){
+                        if ($php_score == null){
                             echo "<span class='pnotice'>You didn't take the quiz yet.</span></span>
                         <h5><a href='quiz?quiz=PHP'>Take the quiz</a></h5>";
                         } else {
-                            echo $_SESSION['phpscore']."</span></h5>";
+                            echo $php_score."</span></h5>";
                             echo "<h5><a href='quiz?quiz=PHP'>Retake the quiz</a></h5>"; 
                         }
 
                         echo "<h5>NodeJS: <span>";
-                        if (!isset($_SESSION['nodejsscore'])){
+                        if ($nodejs_score == null){
                             echo "<span class='pnotice'>You didn't take the quiz yet.</span></span>
                         <h5><a href='quiz?quiz=NodeJS'>Take the quiz</a></h5>";
                         } else {
-                            echo $_SESSION['nodejsscore']."</span></h5>";
+                            echo $nodejs_score."</span></h5>";
                             echo "<h5><a href='quiz?quiz=NodeJS'>Retake the quiz</a></h5>"; 
                         }
                         ?>

@@ -30,7 +30,7 @@
                                     <br>
                                     <?php
 
-                                    $con = new mysqli("p:localhost", "root", "", "scriptcademy");
+                                    include("../config/dbconnect.php");
 
                                     if (isset($_POST['action'])){
                                         session_start();
@@ -41,6 +41,7 @@
                                         $result = mysqli_query($con, $query);
                                         $row = mysqli_fetch_assoc($result);
                                         if (mysqli_num_rows($result) == 1){
+                                            $_SESSION['user_id'] = $row['user_id'];
                                             $_SESSION['username'] = $_POST['username'];
                                             $_SESSION['fname'] = $row['fname'];
                                             $_SESSION['lname'] = $row['lname'];

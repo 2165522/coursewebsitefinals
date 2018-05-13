@@ -62,7 +62,8 @@ include("../pagefragments/header.php");
         }
 
 
-        $con=mysqli_connect("localhost","root","","scriptcademy");
+        include("../config/dbconnect.php");
+        
         $qry = 'SELECT * from questions where topic="'.$quiz.'";';
         $result=mysqli_query($con,$qry);
 
@@ -80,21 +81,13 @@ include("../pagefragments/header.php");
             }
             $counter++;
         }
+        
+        $qry2 = 'update user_accounts set '.$quiz.'_score = "'.$score.'/'.$numRows.'" where user_id = '.$_SESSION['user_id'].';';
+        
+        mysqli_query($con,$qry2);
 
         echo '<h1>'.$quiz.' Quiz</h1>';
         echo '<h2>SCORE: '.$score.'/'.$numRows.'</h2>';
-
-        if ($quiz == 'Servlets') {
-            $_SESSION['servletscore'] = $score.'/'.$numRows;
-        }
-        
-        if ($quiz == 'PHP') {
-            $_SESSION['phpscore'] = $score;
-        }
-        
-        if ($quiz == 'NodeJS') {
-            $_SESSION['NodeJSscore'] = $score;
-        }
         ?>
     </div>
 </div>
