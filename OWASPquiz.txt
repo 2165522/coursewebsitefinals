@@ -1,0 +1,33 @@
+OWASP QUIZ
+
+1. It was first published in the year ____?
+	a. 2003*
+	b. 2004	
+	c. 2005
+	d. 2006
+
+2. The man behind OWASP organization is ______.
+	a. Mark Zuckerberg
+	b. Steve Jobs
+	c. Mark Curphey*
+	d. Bill Gates
+
+3. OWASP stands for ______.
+	a. Open Web Application Security Process
+	b. Open Web Application Security Project* 
+	c. Open Web Application System Project
+	d. Open Web Android Security Project
+
+4. __________ became the Volunteer Chair in the year 2003/
+	a. Jeff Williams* 
+	b. Steve Ballmer
+	c. Mark Curphey
+	d. Mark Edison
+
+5.SAMM stands for ______.
+	a. System Assurance Maturity Model 
+	b. Software Assurance Maturity Model*
+	c. Software Android Maturity Model
+	d. System Android Maturity Model
+
+
